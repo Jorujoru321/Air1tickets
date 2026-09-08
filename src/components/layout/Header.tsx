@@ -1,0 +1,44 @@
+import Link from "next/link";
+import { Phone } from "lucide-react";
+import { Logo } from "./Logo";
+import { PRIMARY_NAV } from "./nav";
+import { AccountMenu } from "./AccountMenu";
+import { MobileNav } from "./MobileNav";
+import { site } from "@/lib/site";
+
+export function Header() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="container-page flex h-[var(--header-height)] items-center justify-between gap-4">
+        <div className="flex items-center gap-8">
+          <Logo />
+          <nav aria-label="Primary" className="hidden lg:block">
+            <ul className="flex items-center gap-1">
+              {PRIMARY_NAV.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-900">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <div className="flex items-center gap-2">
+          <a
+            href={`tel:${site.supportPhone.replace(/[^\d+]/g, "")}`}
+            className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-navy-900 hover:bg-slate-100 xl:flex"
+          >
+            <Phone className="h-4 w-4 text-ocean-600" aria-hidden />
+            {site.supportPhone}
+          </a>
+          <Link href="/booking" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-900 md:block">
+            Manage booking
+          </Link>
+          <AccountMenu className="hidden lg:flex" />
+          <MobileNav />
+        </div>
+      </div>
+    </header>
+  );
+}

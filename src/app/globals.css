@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Air1 Tickets design tokens
+   Brand: deep navy (trust), ocean blue (interactive), sunrise orange (CTA).
+   Typography: Plus Jakarta Sans (display) + Inter (body), loaded via next/font.
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-50: #eef2f9;
+  --color-navy-100: #d9e1f1;
+  --color-navy-200: #b3c3e3;
+  --color-navy-300: #7f99cc;
+  --color-navy-400: #4c6fb0;
+  --color-navy-500: #2f5296;
+  --color-navy-600: #234079;
+  --color-navy-700: #19305e;
+  --color-navy-800: #12244a;
+  --color-navy-900: #0b1d3a;
+  --color-navy-950: #071229;
+
+  --color-ocean-50: #eff8ff;
+  --color-ocean-100: #dbeefe;
+  --color-ocean-200: #bfe1fd;
+  --color-ocean-300: #93cdfb;
+  --color-ocean-400: #5fb3f7;
+  --color-ocean-500: #2f93ef;
+  --color-ocean-600: #1a75d8;
+  --color-ocean-700: #155eb3;
+  --color-ocean-800: #164f91;
+  --color-ocean-900: #174375;
+
+  --color-sunrise-50: #fff4ee;
+  --color-sunrise-100: #ffe6d6;
+  --color-sunrise-200: #ffc9ac;
+  --color-sunrise-300: #ffa477;
+  --color-sunrise-400: #ff7f47;
+  --color-sunrise-500: #ff6b35;
+  --color-sunrise-600: #f04f14;
+  --color-sunrise-700: #c73c0d;
+  --color-sunrise-800: #9e3211;
+  --color-sunrise-900: #7f2c12;
+
+  --color-success-50: #ecfdf3;
+  --color-success-500: #16a34a;
+  --color-success-600: #15803d;
+  --color-success-700: #166534;
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-700: #b45309;
+  --color-danger-50: #fef2f2;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+
+  --radius-card: 1rem;
+  --radius-field: 0.625rem;
+
+  --shadow-card: 0 1px 2px rgb(11 29 58 / 0.05), 0 4px 16px -4px rgb(11 29 58 / 0.10);
+  --shadow-card-hover: 0 2px 4px rgb(11 29 58 / 0.06), 0 12px 32px -8px rgb(11 29 58 / 0.18);
+  --shadow-float: 0 20px 50px -12px rgb(11 29 58 / 0.35);
+
+  --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-plane: plane 2.4s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    from { background-position: -600px 0; }
+    to { background-position: 600px 0; }
+  }
+  @keyframes plane {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(6px) translateY(-3px); }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-height: 4.25rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss03";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight text-navy-900;
+  }
+
+  ::selection {
+    background: var(--color-sunrise-200);
+    color: var(--color-navy-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ocean-500);
+    outline-offset: 2px;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-slate-200/80;
+    background-image: linear-gradient(90deg, rgb(226 232 240 / 0) 0, rgb(255 255 255 / 0.7) 50%, rgb(226 232 240 / 0) 100%);
+    background-size: 600px 100%;
+    background-repeat: no-repeat;
+    animation: var(--animate-shimmer);
+  }
+
+  .prose-air1 {
+    @apply text-slate-700 leading-relaxed;
+  }
+  .prose-air1 h2 {
+    @apply mt-10 mb-4 text-2xl;
+  }
+  .prose-air1 h3 {
+    @apply mt-8 mb-3 text-xl;
+  }
+  .prose-air1 p {
+    @apply my-4;
+  }
+  .prose-air1 ul {
+    @apply my-4 list-disc pl-6 space-y-1;
+  }
+  .prose-air1 ol {
+    @apply my-4 list-decimal pl-6 space-y-1;
+  }
+  .prose-air1 a {
+    @apply text-ocean-700 underline decoration-ocean-300 underline-offset-2 hover:text-ocean-800;
+  }
+  .prose-air1 strong {
+    @apply text-navy-900 font-semibold;
+  }
+  .prose-air1 table {
+    @apply my-6 w-full text-sm;
+  }
+  .prose-air1 th {
+    @apply bg-slate-100 text-left font-semibold text-navy-900 px-3 py-2;
+  }
+  .prose-air1 td {
+    @apply border-t border-slate-200 px-3 py-2;
+  }
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
