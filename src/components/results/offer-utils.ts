@@ -60,7 +60,7 @@ export function activeFilterCount(f: FilterState): number {
 
 /** Same scoring the engine uses to tag "best". */
 export function bestScore(offer: Offer, minPrice: number, minDuration: number): number {
-  return (offer.price.total / minPrice) * 0.62 + (totalDuration(offer) / minDuration) * 0.3 + totalStops(offer) * 0.07;
+  return (offer.price.total / minPrice) * 0.5 + (totalDuration(offer) / minDuration) * 0.35 + totalStops(offer) * 0.1;
 }
 
 export function sortOffers(offers: Offer[], sort: SortKey): Offer[] {

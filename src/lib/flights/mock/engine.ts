@@ -411,7 +411,7 @@ export function tagOffers(offers: Offer[]): Offer[] {
   let bestScore = Infinity;
   for (const o of offers) {
     const stops = o.slices.reduce((n, s) => n + s.stops, 0);
-    const score = (o.price.total / minPrice) * 0.62 + (dur(o) / minDur) * 0.3 + stops * 0.07;
+    const score = (o.price.total / minPrice) * 0.5 + (dur(o) / minDur) * 0.35 + stops * 0.1;
     if (score < bestScore) {
       bestScore = score;
       best = o;
