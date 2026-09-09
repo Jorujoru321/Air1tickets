@@ -99,7 +99,8 @@ Please confirm or replace the placeholders in `src/lib/site.ts`:
 `/legal/terms`, `/legal/privacy`, `/legal/cookies` and `/legal/accessibility`
 are solid drafts written for a US online travel agency (DOT 24-hour rule, CCPA,
 arbitration clause). They carry a visible "draft for legal review" notice. Have
-counsel review them, then remove the notice (one line in each page).
+counsel review them (the copy lives in `src/content/legal.ts`), then remove the
+notice — it is the `<Alert>` block in `src/components/marketing/LegalPage.tsx`.
 
 Also confirm: your seller-of-travel registrations (California, Florida, Hawaii,
 Washington require them) — I can add the registration numbers to the footer.

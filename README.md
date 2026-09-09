@@ -29,6 +29,7 @@ Useful scripts:
 | `npm run db:migrate` | Apply schema migrations to `DATABASE_URL` |
 | `npm run db:seed` | Create a demo account (`demo@air1tickets.com` / `Demo1234`) and a sample booking |
 | `npx tsx scripts/validate-data.ts` | Validate the airport/airline/route/content datasets |
+| `node scripts/smoke.mjs http://127.0.0.1:3100` | Crawl key pages on a running server, check SEO basics, save screenshots to `.smoke/` |
 
 ## What's included
 
@@ -36,7 +37,7 @@ Useful scripts:
 * **Results** — Best / Cheapest / Fastest sorting, filters (stops, airlines, times, duration, price, bags, overnight layovers), itinerary details, price alerts.
 * **Checkout** — fare-family upsell (Basic → Main → Flexible), passenger details with TSA/passport rules, bags/protection/flexible-ticket extras, Stripe Payment Element (or demo card), fare-hold countdown and re-pricing, e-ticket confirmation with calendar export.
 * **Manage booking** — lookup by reference + last name, resend confirmation, cancel (DOT 24-hour rule), accounts with trip history and price alerts.
-* **SEO engine** — 1,700+ programmatic pages: route pages (`/cheap-flights/new-york-to-los-angeles`), destination hubs (`/flights-to/...`, `/flights-from/...`), airline and airport pages, 44 destination guides, travel-guide articles; canonical URLs, Open Graph images, JSON-LD (Organization, WebSite, Flight/AggregateOffer, FAQPage, BreadcrumbList, Article), sitemap and robots.
+* **SEO engine** — 2,200+ pre-rendered pages: route pages (`/cheap-flights/new-york-to-los-angeles`), destination hubs (`/flights-to/...`, `/flights-from/...`), airline and airport pages, 38 destination guides, travel-guide articles; canonical URLs, Open Graph images, JSON-LD (Organization, WebSite, Flight/AggregateOffer, FAQPage, BreadcrumbList, Article), sitemap and robots.
 * **Trust & content** — help center (55 FAQs), about, contact, US-ready legal pages (terms, privacy/CCPA, cookies, accessibility).
 
 ## Architecture

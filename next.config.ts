@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
+  async rewrites() {
+    return [{ source: "/opengraph-image", destination: "/api/og" }];
+  },
   async redirects() {
     return [
       { source: "/flight", destination: "/flights", permanent: true },

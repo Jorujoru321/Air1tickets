@@ -25,7 +25,9 @@ const TIPS = [
   { icon: ShieldCheck, title: "Compare the total, not the base fare", text: "Basic fares can add $70–$150 in bag and seat fees. We show what's included so you can compare like for like." },
 ];
 
-export default function FlightsHubPage() {
+export default async function FlightsHubPage({ searchParams }: { searchParams: Promise<{ from?: string; to?: string }> }) {
+  const { from, to } = await searchParams;
+  const initial = from || to ? { origin: from?.toUpperCase(), destination: to?.toUpperCase() } : undefined;
   const faqs = getFaqGroup("booking")?.items.slice(0, 6) ?? [];
   return (
     <>
@@ -35,7 +37,7 @@ export default function FlightsHubPage() {
           <h1 className="max-w-3xl text-3xl text-white sm:text-4xl lg:text-5xl">Search cheap flights</h1>
           <p className="mt-3 max-w-2xl text-base text-white/75 sm:text-lg">Compare fares from 500+ airlines, see the true total with taxes and fees, and book in minutes.</p>
           <div className="mt-8">
-            <SearchForm variant="hero" />
+            <SearchForm variant="hero" initial={initial} />
           </div>
         </div>
       </section>

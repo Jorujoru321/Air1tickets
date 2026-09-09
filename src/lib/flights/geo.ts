@@ -123,3 +123,8 @@ export function estimateBlockMinutes(distMiles: number, bearingDeg?: number): nu
   }
   return Math.round(minutes / 5) * 5;
 }
+
+/** Current UTC offset (minutes) for a timezone, evaluated at request time. */
+export function currentTzOffsetMinutes(tz: string): number {
+  return tzOffsetMinutes(Date.now(), tz);
+}

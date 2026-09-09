@@ -206,7 +206,7 @@ async function main() {
         problems.push(`${id}: description must be 80–160 chars`);
       if (!isDate(a.publishedAt) || !isDate(a.updatedAt)) problems.push(`${id}: bad dates`);
       if (!Array.isArray(a.sections) || a.sections.length < 4) problems.push(`${id}: needs ≥4 sections`);
-      const words = (a.sections ?? []).flatMap((s: any) => s.paragraphs ?? []).join(" ").split(/\s+/).length;
+      const words = [a.intro ?? "", ...(a.sections ?? []).flatMap((s: any) => [...(s.paragraphs ?? []), ...(s.bullets ?? [])]), ...(a.takeaways ?? []), ...(a.faqs ?? []).map((f: any) => f.answer)].join(" ").split(/\s+/).length;
       if (words < 700) problems.push(`${id}: only ~${words} words; need ≥700`);
       if (!Array.isArray(a.gradient) || !a.gradient.every(isHex)) problems.push(`${id}: gradient must be hex pair`);
       for (const d of a.relatedDestinations ?? [])

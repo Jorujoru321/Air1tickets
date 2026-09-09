@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
-export const runtime = "edge";
-
 /** Dynamic Open Graph image: /api/og?title=...&subtitle=... */
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -25,8 +23,9 @@ export async function GET(req: Request) {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <div style={{ width: 64, height: 64, borderRadius: 16, background: "#2f93ef", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 40, fontWeight: 800 }}>1</div>
-          <div style={{ fontSize: 40, fontWeight: 800 }}>
-            Air1 <span style={{ opacity: 0.7, fontWeight: 600 }}>Tickets</span>
+          <div style={{ display: "flex", gap: 10, fontSize: 40, fontWeight: 800 }}>
+            <span>Air1</span>
+            <span style={{ opacity: 0.7, fontWeight: 600 }}>Tickets</span>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

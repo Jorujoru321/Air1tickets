@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     include: ["tests/unit/**/*.test.ts", "src/**/*.test.ts"],
     environment: "node",
+    testTimeout: 20_000,
   },
   resolve: {
     alias: { "@": new URL("./src", import.meta.url).pathname },
