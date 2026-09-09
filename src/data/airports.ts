@@ -47,7 +47,7 @@ export const AIRPORTS: Airport[] = [
   { iata: "MCO", icao: "KMCO", name: "Orlando International Airport", city: "Orlando", state: "FL", ...US, lat: 28.4312, lon: -81.3081, tz: "America/New_York", size: 5, keywords: ["Disney World", "Walt Disney World", "Universal", "Kissimmee", "Central Florida", "Florida"] },
   { iata: "TPA", icao: "KTPA", name: "Tampa International Airport", city: "Tampa", state: "FL", ...US, lat: 27.9755, lon: -82.5332, tz: "America/New_York", size: 4, keywords: ["Tampa Bay", "St. Petersburg", "Clearwater", "Florida"] },
   { iata: "RSW", icao: "KRSW", name: "Southwest Florida International Airport", city: "Fort Myers", state: "FL", ...US, lat: 26.5362, lon: -81.7552, tz: "America/New_York", size: 4, keywords: ["Ft Myers", "Naples", "Cape Coral", "Sanibel", "Southwest Florida", "Florida"] },
-  { iata: "PBI", icao: "KPBI", name: "Palm Beach International Airport", city: "West Palm Beach", state: "FL", ...US, lat: 26.6832, lon: -80.0956, tz: "America/New_York", size: 3, keywords: ["Palm Beach", "Boca Raton", "Jupiter", "Florida"] },
+  { iata: "PBI", icao: "KPBI", name: "Palm Beach International Airport", city: "West Palm Beach", state: "FL", ...US, lat: 26.6832, lon: -80.0956, tz: "America/New_York", size: 3, keywords: ["Palm Beach", "Boca Raton", "DJT", "Trump International", "Jupiter", "Florida"] },
   { iata: "JAX", icao: "KJAX", name: "Jacksonville International Airport", city: "Jacksonville", state: "FL", ...US, lat: 30.4941, lon: -81.6879, tz: "America/New_York", size: 3, keywords: ["Northeast Florida", "St. Augustine", "Amelia Island", "Florida"] },
   { iata: "SFB", icao: "KSFB", name: "Orlando Sanford International Airport", city: "Sanford", state: "FL", ...US, lat: 28.7776, lon: -81.2375, tz: "America/New_York", size: 2, keywords: ["Orlando", "Orlando Sanford", "Central Florida", "Florida"] },
   { iata: "PIE", icao: "KPIE", name: "St. Pete-Clearwater International Airport", city: "St. Petersburg", state: "FL", ...US, lat: 27.9102, lon: -82.6874, tz: "America/New_York", size: 2, keywords: ["Clearwater", "Tampa Bay", "Saint Petersburg", "Florida"] },
@@ -70,7 +70,9 @@ export const AIRPORTS: Airport[] = [
   { iata: "BHM", icao: "KBHM", name: "Birmingham-Shuttlesworth International Airport", city: "Birmingham", state: "AL", ...US, lat: 33.5629, lon: -86.7535, tz: "America/Chicago", size: 2, keywords: ["Alabama", "Shuttlesworth"] },
   { iata: "MSY", icao: "KMSY", name: "Louis Armstrong New Orleans International Airport", city: "New Orleans", state: "LA", ...US, lat: 29.9934, lon: -90.258, tz: "America/Chicago", size: 4, keywords: ["NOLA", "Louisiana", "French Quarter", "Kenner", "Big Easy"] },
   { iata: "LIT", icao: "KLIT", name: "Bill and Hillary Clinton National Airport", city: "Little Rock", state: "AR", ...US, lat: 34.7294, lon: -92.2243, tz: "America/Chicago", size: 2, keywords: ["Arkansas", "Adams Field"] },
-  { iata: "XNA", icao: "KXNA", name: "Northwest Arkansas National Airport", city: "Bentonville", state: "AR", ...US, lat: 36.2819, lon: -94.3068, tz: "America/Chicago", size: 2, keywords: ["Fayetteville", "Rogers", "Springdale", "Northwest Arkansas", "Arkansas"] },
+  { iata: "XNA", icao: "KXNA", name: "Northwest Arkansas National Airport", city: "Fayetteville", state: "AR", ...US, lat: 36.2819, lon: -94.3068, tz: "America/Chicago", size: 2, keywords: ["Bentonville", "Rogers", "Springdale", "Northwest Arkansas", "Arkansas"] },
+  { iata: "JAN", icao: "KJAN", name: "Jackson-Medgar Wiley Evers International Airport", city: "Jackson", state: "MS", ...US, lat: 32.3112, lon: -90.0759, tz: "America/Chicago", size: 1, keywords: ["Mississippi", "Medgar Evers"] },
+  { iata: "CRW", icao: "KCRW", name: "West Virginia International Yeager Airport", city: "Charleston", state: "WV", ...US, lat: 38.3731, lon: -81.5932, tz: "America/New_York", size: 1, keywords: ["West Virginia", "Yeager"] },
   { iata: "RIC", icao: "KRIC", name: "Richmond International Airport", city: "Richmond", state: "VA", ...US, lat: 37.5052, lon: -77.3197, tz: "America/New_York", size: 3, keywords: ["Virginia", "Central Virginia"] },
   { iata: "ORF", icao: "KORF", name: "Norfolk International Airport", city: "Norfolk", state: "VA", ...US, lat: 36.8946, lon: -76.2012, tz: "America/New_York", size: 3, keywords: ["Virginia Beach", "Hampton Roads", "Chesapeake", "Virginia"] },
   { iata: "SJU", icao: "TJSJ", name: "Luis Muñoz Marín International Airport", city: "San Juan", state: "PR", ...US, lat: 18.4394, lon: -66.0018, tz: "America/Puerto_Rico", size: 4, keywords: ["Puerto Rico", "Carolina", "Old San Juan", "Condado", "Isla Verde"] },
@@ -105,7 +107,7 @@ export const AIRPORTS: Airport[] = [
   { iata: "AUS", icao: "KAUS", name: "Austin-Bergstrom International Airport", city: "Austin", state: "TX", ...US, lat: 30.1975, lon: -97.6664, tz: "America/Chicago", size: 4, keywords: ["Bergstrom", "Texas", "Hill Country", "Round Rock", "ATX"] },
   { iata: "SAT", icao: "KSAT", name: "San Antonio International Airport", city: "San Antonio", state: "TX", ...US, lat: 29.5337, lon: -98.4698, tz: "America/Chicago", size: 4, keywords: ["Texas", "Alamo", "River Walk", "Hill Country"] },
   { iata: "ELP", icao: "KELP", name: "El Paso International Airport", city: "El Paso", state: "TX", ...US, lat: 31.8072, lon: -106.3776, tz: "America/Denver", size: 2, keywords: ["Texas", "Ciudad Juarez", "Las Cruces", "Fort Bliss"] },
-  { iata: "OKC", icao: "KOKC", name: "Will Rogers International Airport", city: "Oklahoma City", state: "OK", ...US, lat: 35.3931, lon: -97.6007, tz: "America/Chicago", size: 3, keywords: ["Oklahoma", "Will Rogers", "Will Rogers World Airport", "Norman"] },
+  { iata: "OKC", icao: "KOKC", name: "OKC Will Rogers International Airport", city: "Oklahoma City", state: "OK", ...US, lat: 35.3931, lon: -97.6007, tz: "America/Chicago", size: 3, keywords: ["Oklahoma", "Will Rogers", "Will Rogers World Airport", "Norman"] },
   { iata: "TUL", icao: "KTUL", name: "Tulsa International Airport", city: "Tulsa", state: "OK", ...US, lat: 36.1984, lon: -95.8881, tz: "America/Chicago", size: 2, keywords: ["Oklahoma", "Green Country"] },
   { iata: "PHX", icao: "KPHX", name: "Phoenix Sky Harbor International Airport", city: "Phoenix", state: "AZ", ...US, lat: 33.4373, lon: -112.0078, tz: "America/Phoenix", size: 5, keywords: ["Sky Harbor", "Arizona", "Scottsdale", "Tempe", "Mesa", "Valley of the Sun"] },
   { iata: "TUS", icao: "KTUS", name: "Tucson International Airport", city: "Tucson", state: "AZ", ...US, lat: 32.1161, lon: -110.941, tz: "America/Phoenix", size: 2, keywords: ["Arizona", "Southern Arizona", "Sonoran Desert"] },
@@ -123,7 +125,7 @@ export const AIRPORTS: Airport[] = [
   { iata: "SNA", icao: "KSNA", name: "John Wayne Airport, Orange County", city: "Santa Ana", metro: "LAX", state: "CA", ...US, lat: 33.6762, lon: -117.8675, tz: "America/Los_Angeles", size: 4, keywords: ["Orange County", "John Wayne", "Irvine", "Anaheim", "Disneyland", "Newport Beach", "Los Angeles", "California"] },
   { iata: "ONT", icao: "KONT", name: "Ontario International Airport", city: "Ontario", metro: "LAX", state: "CA", ...US, lat: 34.056, lon: -117.6012, tz: "America/Los_Angeles", size: 3, keywords: ["Inland Empire", "Riverside", "San Bernardino", "Los Angeles", "California"] },
   { iata: "SFO", icao: "KSFO", name: "San Francisco International Airport", city: "San Francisco", metro: "BAY", state: "CA", ...US, lat: 37.6213, lon: -122.379, tz: "America/Los_Angeles", size: 5, keywords: ["Bay Area", "SF", "Silicon Valley", "Peninsula", "Northern California", "California"] },
-  { iata: "OAK", icao: "KOAK", name: "Oakland International Airport", city: "Oakland", metro: "BAY", state: "CA", ...US, lat: 37.7126, lon: -122.2197, tz: "America/Los_Angeles", size: 4, keywords: ["San Francisco", "Bay Area", "East Bay", "Berkeley", "San Francisco Bay Oakland", "California"] },
+  { iata: "OAK", icao: "KOAK", name: "Oakland San Francisco Bay Airport", city: "Oakland", metro: "BAY", state: "CA", ...US, lat: 37.7126, lon: -122.2197, tz: "America/Los_Angeles", size: 4, keywords: ["San Francisco", "Bay Area", "East Bay", "Berkeley", "San Francisco Bay Oakland", "California"] },
   { iata: "SJC", icao: "KSJC", name: "San Jose Mineta International Airport", city: "San Jose", metro: "BAY", state: "CA", ...US, lat: 37.3639, lon: -121.9289, tz: "America/Los_Angeles", size: 4, keywords: ["Silicon Valley", "Bay Area", "Mineta", "San Francisco", "Santa Clara", "Palo Alto", "California"] },
   { iata: "SAN", icao: "KSAN", name: "San Diego International Airport", city: "San Diego", state: "CA", ...US, lat: 32.7338, lon: -117.1933, tz: "America/Los_Angeles", size: 4, keywords: ["Lindbergh Field", "La Jolla", "Southern California", "California"] },
   { iata: "SMF", icao: "KSMF", name: "Sacramento International Airport", city: "Sacramento", state: "CA", ...US, lat: 38.6954, lon: -121.5908, tz: "America/Los_Angeles", size: 4, keywords: ["Northern California", "Davis", "Lake Tahoe", "California"] },
@@ -145,7 +147,7 @@ export const AIRPORTS: Airport[] = [
   { iata: "ANC", icao: "PANC", name: "Ted Stevens Anchorage International Airport", city: "Anchorage", state: "AK", ...US, lat: 61.1743, lon: -149.9963, tz: "America/Anchorage", size: 3, keywords: ["Alaska", "Ted Stevens", "Denali"] },
   { iata: "FAI", icao: "PAFA", name: "Fairbanks International Airport", city: "Fairbanks", state: "AK", ...US, lat: 64.8151, lon: -147.8561, tz: "America/Anchorage", size: 1, keywords: ["Alaska", "Interior Alaska", "Northern Lights"] },
   { iata: "JNU", icao: "PAJN", name: "Juneau International Airport", city: "Juneau", state: "AK", ...US, lat: 58.355, lon: -134.5763, tz: "America/Juneau", size: 1, keywords: ["Alaska", "Southeast Alaska", "Inside Passage"] },
-  { iata: "GUM", icao: "PGUM", name: "Antonio B. Won Pat International Airport", city: "Tamuning", country: "Guam", countryCode: "GU", lat: 13.4834, lon: 144.796, tz: "Pacific/Guam", size: 2, keywords: ["Guam", "Hagatna", "Hagåtña", "Tumon", "US territory", "Micronesia"] },
+  { iata: "GUM", icao: "PGUM", name: "Antonio B. Won Pat International Airport", city: "Guam", country: "Guam", countryCode: "GU", lat: 13.4834, lon: 144.796, tz: "Pacific/Guam", size: 2, keywords: ["Guam", "Hagatna", "Hagåtña", "Tumon", "US territory", "Micronesia"] },
 
   /* ─────────────────────────────── Canada ───────────────────────────────── */
   { iata: "YYZ", icao: "CYYZ", name: "Toronto Pearson International Airport", city: "Toronto", country: "Canada", countryCode: "CA", lat: 43.6777, lon: -79.6248, tz: "America/Toronto", size: 4, keywords: ["Pearson", "Ontario", "Mississauga", "GTA"] },
@@ -183,7 +185,7 @@ export const AIRPORTS: Airport[] = [
   { iata: "PLS", icao: "MBPV", name: "Providenciales International Airport", city: "Providenciales", country: "Turks and Caicos Islands", countryCode: "TC", lat: 21.7736, lon: -72.2659, tz: "America/Grand_Turk", size: 2, keywords: ["Turks and Caicos", "Provo", "Grace Bay", "TCI"] },
   { iata: "BGI", icao: "TBPB", name: "Grantley Adams International Airport", city: "Bridgetown", country: "Barbados", countryCode: "BB", lat: 13.0746, lon: -59.4925, tz: "America/Barbados", size: 2, keywords: ["Barbados", "Christ Church", "Grantley Adams"] },
   { iata: "POS", icao: "TTPP", name: "Piarco International Airport", city: "Port of Spain", country: "Trinidad and Tobago", countryCode: "TT", lat: 10.5954, lon: -61.3372, tz: "America/Port_of_Spain", size: 2, keywords: ["Trinidad", "Piarco", "Tobago", "Carnival"] },
-  { iata: "HAV", icao: "MUHA", name: "José Martí International Airport", city: "Havana", country: "Cuba", countryCode: "CU", lat: 22.9892, lon: -82.4091, tz: "America/Havana", size: 3, keywords: ["Jose Marti", "La Habana", "Cuba", "Old Havana"] },
+  { iata: "HAV", icao: "MUHA", name: "José Martí International Airport", city: "Havana", country: "Cuba", countryCode: "CU", lat: 22.9892, lon: -82.4091, tz: "America/Havana", size: 2, keywords: ["Jose Marti", "La Habana", "Cuba", "Old Havana"] },
 
   /* ─────────────────────────── Central America ──────────────────────────── */
   { iata: "PTY", icao: "MPTO", name: "Tocumen International Airport", city: "Panama City", country: "Panama", countryCode: "PA", lat: 9.0714, lon: -79.3835, tz: "America/Panama", size: 4, keywords: ["Tocumen", "Panama", "Panama Canal", "Ciudad de Panama"] },
@@ -362,6 +364,7 @@ function normalize(s: string): string {
     .normalize("NFKD")
     .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
+    .replace(/[.,'’()\-/]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -403,7 +406,8 @@ const SEARCH_INDEX: SearchIndexEntry[] = AIRPORTS.map((a) => {
 /** Lower rank = better match. Returns null when the entry doesn't match. */
 function rankEntry(e: SearchIndexEntry, q: string): number | null {
   if (e.iata === q) return 0;
-  if (e.city.startsWith(q) || e.metroTerms.some((t) => t.startsWith(q))) return 1;
+  if (e.city.startsWith(q)) return 1;
+  if (e.metroTerms.some((t) => t.startsWith(q))) return 1.5;
   if (e.name.startsWith(q) || e.keywords.some((k) => k.startsWith(q))) return 2;
   // Word-start matches inside the city/name ("york" → New York) rank just above raw substrings.
   if (e.haystack.some((h) => h.split(" ").some((w) => w.startsWith(q)))) return 3;
@@ -418,7 +422,7 @@ function rankEntry(e: SearchIndexEntry, q: string): number | null {
  */
 export function searchAirports(query: string, limit = 8): Airport[] {
   const q = normalize(query ?? "");
-  if (!q) return [...AIRPORTS].sort(bySizeThenCity).slice(0, limit);
+  if (!q) return [...AIRPORTS].sort((a, b) => Number(b.countryCode === "US") - Number(a.countryCode === "US") || bySizeThenCity(a, b)).slice(0, limit);
 
   const scored: { airport: Airport; rank: number }[] = [];
   for (const e of SEARCH_INDEX) {

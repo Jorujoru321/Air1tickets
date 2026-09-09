@@ -12,8 +12,44 @@ import { slugify } from "@/lib/utils";
 import { AIRPORTS, getAirport } from "@/data/airports";
 import type { Airport } from "@/lib/flights/types";
 
-export function citySlug(a: Pick<Airport, "city">): string {
-  return slugify(a.city);
+const US_STATE_NAMES: Record<string, string> = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming", DC: "District of Columbia", PR: "Puerto Rico", VI: "US Virgin Islands", GU: "Guam",
+};
+
+/**
+ * City slug for URLs. Cities that share a name in different states/countries are
+ * disambiguated: the largest airport's city keeps the plain slug ("portland"),
+ * the others get a suffix ("portland-maine", "san-jose-costa-rica").
+ */
+const citySlugByIata: Map<string, string> = (() => {
+  const groups = new Map<string, Airport[]>();
+  for (const a of AIRPORTS) {
+    const key = slugify(a.city);
+    groups.set(key, [...(groups.get(key) ?? []), a]);
+  }
+  const out = new Map<string, string>();
+  for (const [key, list] of groups) {
+    const regionOf = (a: Airport) => (a.countryCode === "US" ? `US-${a.state}` : a.countryCode);
+    const regions = Array.from(new Set(list.map(regionOf)));
+    if (regions.length === 1) {
+      for (const a of list) out.set(a.iata, key);
+      continue;
+    }
+    const byRegion = new Map<string, Airport[]>();
+    for (const a of list) byRegion.set(regionOf(a), [...(byRegion.get(regionOf(a)) ?? []), a]);
+    const ranked = Array.from(byRegion.entries()).sort((x, y) => Math.max(...y[1].map((a) => a.size)) - Math.max(...x[1].map((a) => a.size)));
+    ranked.forEach(([, airports], i) => {
+      const a0 = airports[0];
+      const suffix = a0.countryCode === "US" ? slugify(US_STATE_NAMES[a0.state ?? ""] ?? a0.state ?? "") : slugify(a0.country);
+      for (const a of airports) out.set(a.iata, i === 0 ? key : `${key}-${suffix}`);
+    });
+  }
+  return out;
+})();
+
+
+export function citySlug(a: Pick<Airport, "city" | "iata">): string {
+  return citySlugByIata.get(a.iata) ?? slugify(a.city);
 }
 
 /** City slug → airports in that city, largest first. */
