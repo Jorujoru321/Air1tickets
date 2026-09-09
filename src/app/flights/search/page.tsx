@@ -8,7 +8,7 @@ import { getFlightProvider } from "@/lib/flights/provider";
 import { safeParseSearchQuery, type RawQuery } from "@/lib/flights/search-params";
 import { getAirport } from "@/data/airports";
 import { formatDateShort } from "@/lib/utils";
-import { logSearch } from "@/app/api/search/route";
+import { logSearch } from "@/lib/booking/search-log";
 import type { SearchParams } from "@/lib/flights/types";
 import type { SortKey } from "@/components/results/offer-utils";
 

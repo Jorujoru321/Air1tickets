@@ -1,32 +1,11 @@
 import { NextResponse } from "next/server";
-import { nanoid } from "nanoid";
 import { safeParseSearchQuery, type RawQuery } from "@/lib/flights/search-params";
 import { getFlightProvider } from "@/lib/flights/provider";
 import { getAirport } from "@/data/airports";
 import type { SearchParams } from "@/lib/flights/types";
-import { getDb, schema } from "@/lib/db/client";
+import { logSearch } from "@/lib/booking/search-log";
 
 export const dynamic = "force-dynamic";
-
-/** Fire-and-forget analytics row. Never blocks or fails the search. */
-export async function logSearch(params: SearchParams, resultCount: number, minPrice?: number) {
-  try {
-    const db = await getDb();
-    await db.insert(schema.searchLog).values({
-      id: `srch_${nanoid(14)}`,
-      origin: params.origin,
-      destination: params.destination,
-      departDate: params.departDate,
-      returnDate: params.returnDate ?? null,
-      cabin: params.cabin,
-      passengers: params.passengers.adults + params.passengers.children + params.passengers.infants,
-      resultCount,
-      minPrice: minPrice ?? null,
-    });
-  } catch (e) {
-    console.warn("[air1] search log failed", (e as Error).message);
-  }
-}
 
 async function run(raw: RawQuery) {
   const parsed = safeParseSearchQuery(raw);
