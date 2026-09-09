@@ -31,7 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
         </label>
       )}
       <div className="relative">
-        {leftIcon && <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">{leftIcon}</span>}
+        {leftIcon && <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-500">{leftIcon}</span>}
         <input
           ref={ref}
           id={inputId}

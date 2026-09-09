@@ -30,7 +30,8 @@ export function buildMetadata(meta: PageMeta): Metadata {
   const url = absoluteUrl(meta.path);
   const image = meta.image ? absoluteUrl(meta.image) : absoluteUrl(`/opengraph-image?title=${encodeURIComponent(meta.title)}`);
   return {
-    title,
+    // Absolute: the root layout's "%s | Air1 Tickets" template must not be applied twice.
+    title: { absolute: title },
     description,
     keywords: meta.keywords,
     alternates: { canonical: url },

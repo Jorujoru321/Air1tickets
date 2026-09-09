@@ -106,7 +106,7 @@ export function FareOptions({ options, activeId, onSelect }: { options: Offer[];
               <span className="mt-0.5 text-sm text-slate-600">{diff === 0 ? formatMoney(o.price.total, { cents: true }) : `+${formatMoney(diff, { cents: true })}`}</span>
               <ul className="mt-3 space-y-1 text-xs">
                 {fareSummaryChips(o).map((c) => (
-                  <li key={c.label} className={cn("flex items-center gap-1.5", c.included ? "text-slate-700" : "text-slate-400")}>
+                  <li key={c.label} className={cn("flex items-center gap-1.5", c.included ? "text-slate-700" : "text-slate-500")}>
                     <span aria-hidden className={c.included ? "text-success-600" : ""}>
                       {c.included ? "✓" : "✕"}
                     </span>

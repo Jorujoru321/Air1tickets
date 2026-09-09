@@ -38,7 +38,7 @@ function ToggleCard({ title, price, priceNote, bullets, checked, onChange, icon:
             </li>
           ))}
         </ul>
-        {note && <span className="mt-2 block text-xs text-slate-400">{note}</span>}
+        {note && <span className="mt-2 block text-xs text-slate-500">{note}</span>}
       </span>
     </label>
   );

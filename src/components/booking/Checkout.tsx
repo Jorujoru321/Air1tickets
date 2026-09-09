@@ -52,11 +52,11 @@ function StepIndicator({ step }: { step: Step }) {
           <li key={s.n} className="flex items-center gap-2">
             <span
               aria-current={current ? "step" : undefined}
-              className={cn("flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold", done ? "bg-success-500 text-white" : current ? "bg-navy-900 text-white" : "border border-slate-300 text-slate-400")}
+              className={cn("flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold", done ? "bg-success-700 text-white" : current ? "bg-navy-900 text-white" : "border border-slate-300 text-slate-500")}
             >
               {done ? <Check className="h-4 w-4" aria-hidden /> : s.n}
             </span>
-            <span className={cn("hidden font-semibold sm:inline", current ? "text-navy-900" : done ? "text-slate-600" : "text-slate-400")}>{s.label}</span>
+            <span className={cn("hidden font-semibold sm:inline", current ? "text-navy-900" : done ? "text-slate-600" : "text-slate-500")}>{s.label}</span>
             {i < STEPS.length - 1 && <span className="mx-1 h-px w-6 bg-slate-300 sm:w-10" aria-hidden />}
           </li>
         );

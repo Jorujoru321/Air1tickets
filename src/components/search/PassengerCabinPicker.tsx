@@ -53,9 +53,9 @@ export function PassengerCabinPicker({ id, passengers, cabin, onChange, compact,
         onClick={() => setOpen((o) => !o)}
         className={cn(fieldButtonClass, compact && "h-12")}
       >
-        <Users className="h-5 w-5 shrink-0 text-slate-400" aria-hidden />
+        <Users className="h-5 w-5 shrink-0 text-slate-500" aria-hidden />
         <span className={cn("min-w-0 flex-1 truncate text-navy-900", compact ? "text-[15px]" : "text-base font-semibold")}>{summarizeTravelers(passengers, cabin)}</span>
-        <ChevronDown className={cn("h-4 w-4 shrink-0 text-slate-400 transition-transform", open && "rotate-180")} aria-hidden />
+        <ChevronDown className={cn("h-4 w-4 shrink-0 text-slate-500 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
       {open && (
         <div role="dialog" aria-label="Travelers and cabin" className="absolute right-0 z-50 mt-1.5 w-[20rem] rounded-xl border border-slate-200 bg-white p-4 shadow-float">

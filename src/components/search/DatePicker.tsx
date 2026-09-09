@@ -180,8 +180,8 @@ export function DatePicker({ id, mode, value, onChange, origin, destination, cab
         onClick={() => openFor(field)}
         className={cn(fieldButtonClass, compact && "h-12", open && picking === field && "border-ocean-500 ring-3 ring-ocean-500/20")}
       >
-        <Calendar className="h-5 w-5 shrink-0 text-slate-400" aria-hidden />
-        <span className={cn("truncate", date ? "text-navy-900" : "text-slate-400", compact ? "text-[15px]" : "text-base font-semibold")}>{date ? formatDateShort(date) : "Add date"}</span>
+        <Calendar className="h-5 w-5 shrink-0 text-slate-500" aria-hidden />
+        <span className={cn("truncate", date ? "text-navy-900" : "text-slate-500", compact ? "text-[15px]" : "text-base font-semibold")}>{date ? formatDateShort(date) : "Add date"}</span>
       </button>
       {error && (
         <p id={`${id}-${field}-error`} className="mt-1 text-xs font-medium text-danger-600" role="alert">
@@ -205,7 +205,7 @@ export function DatePicker({ id, mode, value, onChange, origin, destination, cab
             </button>
             <p className="text-sm font-medium text-slate-600" aria-live="polite">
               {mode === "range" ? (picking === "start" ? "Select departure date" : "Select return date") : "Select date"}
-              {origin && destination && <span className="ml-2 text-xs text-slate-400">· lowest round-trip fares per traveler</span>}
+              {origin && destination && <span className="ml-2 text-xs text-slate-500">· lowest round-trip fares per traveler</span>}
             </p>
             <button type="button" onClick={() => shiftView(1)} aria-label="Next month" className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-slate-100">
               <ChevronRight className="h-5 w-5" aria-hidden />
@@ -227,7 +227,7 @@ export function DatePicker({ id, mode, value, onChange, origin, destination, cab
                   <p className="mb-2 text-center text-sm font-bold text-navy-900">
                     {MONTHS[mo.m]} {mo.y}
                   </p>
-                  <div className="grid grid-cols-7 text-center text-[11px] font-semibold uppercase text-slate-400" role="row">
+                  <div className="grid grid-cols-7 text-center text-[11px] font-semibold uppercase text-slate-500" role="row">
                     {WEEKDAYS.map((w) => (
                       <span key={w} role="columnheader" className="py-1">
                         {w}
@@ -269,7 +269,7 @@ export function DatePicker({ id, mode, value, onChange, origin, destination, cab
                         >
                           <span className="leading-none">{Number(date.slice(8))}</span>
                           {price !== undefined && !disabled && (
-                            <span className={cn("mt-0.5 text-[10px] leading-none", isStart || isEnd ? "text-white/80" : price <= cheapCut ? "font-semibold text-success-600" : "text-slate-400")}>${price}</span>
+                            <span className={cn("mt-0.5 text-[10px] leading-none", isStart || isEnd ? "text-white/80" : price <= cheapCut ? "font-semibold text-success-600" : "text-slate-500")}>${price}</span>
                           )}
                         </button>
                       );

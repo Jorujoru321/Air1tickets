@@ -16,7 +16,7 @@ export const metadata = buildMetadata({
 export default function HelpPage() {
   return (
     <>
-      <JsonLd data={[webPageJsonLd({ name: "Help center", description: metadata.description ?? "", path: "/help", type: "FAQPage" }), faqPageJsonLd(ALL_FAQS.slice(0, 40))]} />
+      <JsonLd data={[webPageJsonLd({ name: "Help center", description: metadata.description ?? "", path: "/help" }), faqPageJsonLd(ALL_FAQS.slice(0, 40))]} />
       <PageHeader crumbs={[{ name: "Home", path: "/" }, { name: "Help center", path: "/help" }]} eyebrow="Support" title="Help center" lead="Straight answers about booking, paying, changing and flying. Can't find it? Our US-based team answers the phone 24/7." />
       <div className="container-page grid gap-10 py-12 lg:grid-cols-[1fr_18rem]">
         <FaqSearch groups={FAQ_GROUPS} />

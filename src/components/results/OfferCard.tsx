@@ -25,12 +25,12 @@ function SliceRow({ slice, label }: { slice: Slice; label?: string }) {
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
           <p className="text-lg font-bold tabular-nums text-navy-900">
-            {formatTime(slice.departure)} <span className="mx-1 text-slate-400">–</span> {formatTime(slice.arrival)}
+            {formatTime(slice.departure)} <span className="mx-1 text-slate-500">–</span> {formatTime(slice.arrival)}
             {slice.daysOffset > 0 && <sup className="ml-0.5 text-xs font-semibold text-sunrise-700">+{slice.daysOffset}</sup>}
           </p>
           <p className="text-sm text-slate-500">
             {slice.origin} → {slice.destination}
-            {label && <span className="ml-2 text-xs font-medium uppercase tracking-wide text-slate-400">{label}</span>}
+            {label && <span className="ml-2 text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>}
           </p>
         </div>
         <p className="mt-0.5 truncate text-xs text-slate-500">
@@ -46,9 +46,9 @@ function SliceRow({ slice, label }: { slice: Slice; label?: string }) {
         <p className="text-sm font-semibold tabular-nums text-navy-900">{formatDuration(slice.durationMinutes)}</p>
         <p className={cn("text-xs", slice.stops === 0 ? "font-medium text-success-600" : "text-slate-500")}>
           {stopsLabel(slice.stops)}
-          {slice.layovers.length > 0 && <span className="text-slate-400"> · {slice.layovers.map((l) => `${formatDuration(l.durationMinutes)} ${l.airport}`).join(", ")}</span>}
+          {slice.layovers.length > 0 && <span className="text-slate-500"> · {slice.layovers.map((l) => `${formatDuration(l.durationMinutes)} ${l.airport}`).join(", ")}</span>}
         </p>
-        <p className="mt-0.5 flex justify-end gap-2 text-[11px] text-slate-400">
+        <p className="mt-0.5 flex justify-end gap-2 text-[11px] text-slate-500">
           {isRedEye(slice) && (
             <span className="inline-flex items-center gap-0.5">
               <Moon className="h-3 w-3" aria-hidden /> Red-eye
@@ -63,7 +63,7 @@ function SliceRow({ slice, label }: { slice: Slice; label?: string }) {
 
 const TAG_STYLES: Record<string, { label: string; className: string }> = {
   best: { label: "Best", className: "bg-navy-900 text-white" },
-  cheapest: { label: "Cheapest", className: "bg-success-500 text-white" },
+  cheapest: { label: "Cheapest", className: "bg-success-700 text-white" },
   fastest: { label: "Fastest", className: "bg-ocean-600 text-white" },
 };
 
@@ -92,10 +92,10 @@ export function OfferCard({ offer, perTraveler, position }: { offer: Offer; perT
           ))}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
             <span className="font-medium text-slate-700">{offer.fare.brand}</span>
-            <span className={cn("inline-flex items-center gap-1", offer.fare.carryOnIncluded ? "text-success-700" : "text-slate-400 line-through")}>
+            <span className={cn("inline-flex items-center gap-1", offer.fare.carryOnIncluded ? "text-success-700" : "text-slate-500 line-through")}>
               <Briefcase className="h-3.5 w-3.5" aria-hidden /> Carry-on
             </span>
-            <span className={cn("inline-flex items-center gap-1", offer.fare.checkedBagsIncluded > 0 ? "text-success-700" : "text-slate-400")}>
+            <span className={cn("inline-flex items-center gap-1", offer.fare.checkedBagsIncluded > 0 ? "text-success-700" : "text-slate-500")}>
               <Luggage className="h-3.5 w-3.5" aria-hidden /> {offer.fare.checkedBagsIncluded > 0 ? `${offer.fare.checkedBagsIncluded} checked bag${offer.fare.checkedBagsIncluded > 1 ? "s" : ""}` : `Checked bag ${offer.fare.checkedBagFee ? `from ${formatMoney(offer.fare.checkedBagFee)}` : "extra"}`}
             </span>
             {offer.fare.changeable ? <span>Changes {offer.fare.changeFee ? `${formatMoney(offer.fare.changeFee)} fee` : "free"}</span> : <span>No changes</span>}
@@ -110,7 +110,7 @@ export function OfferCard({ offer, perTraveler, position }: { offer: Offer; perT
           </div>
           <Link
             href={`/book/${encodeURIComponent(offer.id)}`}
-            className="inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-field)] bg-sunrise-500 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-sunrise-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500 lg:w-full"
+            className="inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-field)] bg-sunrise-500 px-6 text-sm font-semibold text-navy-950 shadow-sm transition hover:bg-sunrise-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500 lg:w-full"
             aria-label={`Select ${offerCarrierLabel(offer)} flight to ${dest?.city ?? offer.slices[0].destination} for ${formatMoney(each)} per traveler`}
           >
             Select
@@ -125,7 +125,7 @@ export function OfferCard({ offer, perTraveler, position }: { offer: Offer; perT
         {open && (
           <div id={detailsId} className="border-t border-slate-100 py-5">
             <ItineraryDetails offer={offer} />
-            <p className="mt-4 text-xs text-slate-400">
+            <p className="mt-4 text-xs text-slate-500">
               Departs {formatDateShort(offer.slices[0].departure)}
               {offer.slices[1] && ` · Returns ${formatDateShort(offer.slices[1].departure)}`}
             </p>

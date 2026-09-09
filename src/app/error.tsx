@@ -14,7 +14,7 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
       <p className="mt-3 max-w-md text-slate-600">
         We hit an unexpected problem. Please try again — if it keeps happening, call us at {site.supportPhone} and we&apos;ll finish your booking by phone.
       </p>
-      {error.digest && <p className="mt-2 text-xs text-slate-400">Reference: {error.digest}</p>}
+      {error.digest && <p className="mt-2 text-xs text-slate-500">Reference: {error.digest}</p>}
       <div className="mt-8 flex gap-3">
         <Button onClick={reset}>Try again</Button>
         <Button href="/" variant="outline">

@@ -34,7 +34,8 @@ const pages = [
   ["404", "/this-does-not-exist"],
 ];
 
-const browser = await chromium.launch();
+// Set PLAYWRIGHT_CHROMIUM_EXECUTABLE to reuse a system Chromium instead of the downloaded one.
+const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined });
 const results = [];
 for (const [name, path] of pages) {
   for (const [vp, w, h] of [["desktop", 1366, 900], ["mobile", 390, 844]]) {

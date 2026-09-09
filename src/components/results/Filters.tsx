@@ -36,7 +36,7 @@ function CheckRow({ label, sub, checked, onChange, count, price, logo, onOnly }:
         {logo}
         <span className="min-w-0 flex-1 truncate text-slate-700">
           {label}
-          {sub && <span className="ml-1 text-xs text-slate-400">{sub}</span>}
+          {sub && <span className="ml-1 text-xs text-slate-500">{sub}</span>}
         </span>
         {price !== undefined && <span className="shrink-0 text-xs tabular-nums text-slate-500">{formatMoney(price)}</span>}
       </label>

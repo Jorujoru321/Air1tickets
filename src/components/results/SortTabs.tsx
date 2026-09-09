@@ -32,7 +32,7 @@ export function SortTabs({ offers, sort, onChange, perTraveler }: { offers: Offe
                 <span className="font-semibold text-navy-900">{formatMoney(s.price / perTraveler)}</span> · {formatDuration(s.duration)}
               </span>
             ) : (
-              <span className="text-xs text-slate-400">—</span>
+              <span className="text-xs text-slate-500">—</span>
             )}
           </button>
         );

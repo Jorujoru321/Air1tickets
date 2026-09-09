@@ -2,19 +2,21 @@
 
 import * as React from "react";
 import { getAirline } from "@/data/airlines";
+import { hasAirlineLogoFile } from "@/data/airline-logos";
 import { cn } from "@/lib/utils";
 
 /**
- * Airline identifier: shows /airlines/{IATA}.svg when such a file exists in
- * /public (drop real logos there), otherwise a generated mark in the brand
- * colour with the IATA code. Always includes the airline name for screen readers.
+ * Airline identifier: shows /airlines/{IATA}.svg when the file is registered in
+ * src/data/airline-logos.ts (drop real logos in /public/airlines), otherwise a
+ * generated mark in the brand colour with the IATA code. Always includes the
+ * airline name for screen readers.
  */
 export function AirlineLogo({ iata, size = 36, className }: { iata: string; size?: number; className?: string }) {
   const [failed, setFailed] = React.useState(false);
   const airline = getAirline(iata);
   const name = airline?.name ?? iata;
   const color = airline?.color ?? "#12244a";
-  if (!failed) {
+  if (!failed && hasAirlineLogoFile(iata)) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img

@@ -47,15 +47,15 @@ export function RouteFacts({ info }: { info: RouteInfo }) {
   return (
     <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {facts.map((f) => (
-        <div key={f.label} className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ocean-50 text-ocean-600">
+        <div key={f.label} className="grid grid-cols-[2.5rem_1fr] gap-x-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
+          <dt className="col-start-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{f.label}</dt>
+          <dd className="col-start-1 row-span-2 row-start-1 flex h-10 w-10 items-center justify-center rounded-xl bg-ocean-50 text-ocean-600">
             <f.icon className="h-5 w-5" aria-hidden />
-          </span>
-          <div className="min-w-0">
-            <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">{f.label}</dt>
-            <dd className="mt-0.5 text-base font-bold text-navy-900">{f.value}</dd>
-            {f.note && <dd className="text-xs text-slate-500">{f.note}</dd>}
-          </div>
+          </dd>
+          <dd className="col-start-2 mt-0.5 min-w-0 text-base font-bold text-navy-900">
+            {f.value}
+            {f.note && <span className="block text-xs font-normal text-slate-500">{f.note}</span>}
+          </dd>
         </div>
       ))}
     </dl>

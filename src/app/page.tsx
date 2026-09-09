@@ -72,7 +72,7 @@ async function TrendingRoutes() {
             <Link href={routePath(o, d)} className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-xs transition hover:border-ocean-300 hover:shadow-card">
               <span className="min-w-0">
                 <span className="block truncate text-sm font-semibold text-navy-900">
-                  {o.city} <span className="text-slate-400">→</span> {d.city}
+                  {o.city} <span className="text-slate-500">→</span> {d.city}
                 </span>
                 <span className="block text-xs text-slate-500">
                   {o.iata} – {d.iata}
@@ -85,7 +85,7 @@ async function TrendingRoutes() {
                     from {formatMoney(fare.price)}
                   </span>
                 )}
-                <span className="block text-[11px] text-slate-400">round trip</span>
+                <span className="block text-[11px] text-slate-500">round trip</span>
               </span>
             </Link>
           </li>
@@ -209,7 +209,7 @@ export default function HomePage() {
               ["Book", "Enter traveler details once, pay securely, and get your e-ticket and airline confirmation code by email."],
             ].map(([title, text], i) => (
               <li key={title} className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sunrise-500 font-display text-sm font-extrabold">{i + 1}</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sunrise-500 font-display text-sm font-extrabold text-navy-950">{i + 1}</span>
                 <p className="mt-4 text-lg font-bold">{title}</p>
                 <p className="mt-1 text-sm text-white/75">{text}</p>
               </li>
@@ -283,12 +283,12 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section className="container-page pb-16">
-        <div className="flex flex-col items-center gap-4 rounded-2xl bg-sunrise-500 px-6 py-10 text-center text-white sm:flex-row sm:justify-between sm:text-left">
+        <div className="flex flex-col items-center gap-4 rounded-2xl bg-sunrise-500 px-6 py-10 text-center text-navy-950 sm:flex-row sm:justify-between sm:text-left">
           <div>
-            <h2 className="text-2xl text-white">Ready when you are</h2>
-            <p className="mt-1 text-white/90">Search once, compare everything, book with confidence.</p>
+            <h2 className="text-2xl text-navy-950">Ready when you are</h2>
+            <p className="mt-1 text-navy-900/85">Search once, compare everything, book with confidence.</p>
           </div>
-          <Button href="/flights" variant="white" size="lg" rightIcon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+          <Button href="/flights" variant="secondary" size="lg" rightIcon={<ArrowRight className="h-4 w-4" aria-hidden />}>
             Search flights
           </Button>
         </div>

@@ -86,7 +86,7 @@ export function AccountMenu({ className }: { className?: string }) {
       >
         <UserCircle2 className="h-5 w-5 text-ocean-600" aria-hidden />
         <span className="max-w-[9rem] truncate">{me.firstName}</span>
-        <ChevronDown className={cn("h-4 w-4 text-slate-400 transition-transform", open && "rotate-180")} aria-hidden />
+        <ChevronDown className={cn("h-4 w-4 text-slate-500 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
       {open && (
         <div role="menu" className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-float">

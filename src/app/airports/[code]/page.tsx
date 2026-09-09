@@ -184,9 +184,9 @@ export default async function AirportPage({ params }: PageProps) {
                     <li key={s.iata}>
                       <Link href={airportPath(s)} className="flex items-center justify-between text-sm font-medium text-navy-900 hover:underline">
                         <span>
-                          {s.name} <span className="text-slate-400">({s.iata})</span>
+                          {s.name} <span className="text-slate-500">({s.iata})</span>
                         </span>
-                        <ArrowRight className="h-4 w-4 text-slate-400" aria-hidden />
+                        <ArrowRight className="h-4 w-4 text-slate-500" aria-hidden />
                       </Link>
                     </li>
                   ))}

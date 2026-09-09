@@ -53,7 +53,7 @@ function CompactRouteList({ routes }: { routes: ResolvedRoute[] }) {
             <span className="group-hover:underline underline-offset-4">
               {r.origin.city} to {r.destination.city}
             </span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               {r.origin.iata}–{r.destination.iata}
             </span>
           </Link>
@@ -115,7 +115,7 @@ export default async function CheapFlightsHubPage() {
               <span className="block font-semibold text-navy-900 group-hover:underline">Browse flights by destination</span>
               <span className="block text-sm text-slate-600">Every city we fly to, grouped by region, with fares from major US airports.</span>
             </span>
-            <ArrowRight className="h-5 w-5 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
+            <ArrowRight className="h-5 w-5 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
           </Link>
           <Link href="/flights-from" className="group flex items-center gap-4 rounded-2xl border border-slate-200 p-5 shadow-card transition hover:border-ocean-300 hover:shadow-card-hover">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ocean-50 text-ocean-600">
@@ -125,7 +125,7 @@ export default async function CheapFlightsHubPage() {
               <span className="block font-semibold text-navy-900 group-hover:underline">Browse flights by departure city</span>
               <span className="block text-sm text-slate-600">Start from your home airport and see where the cheapest fares go.</span>
             </span>
-            <ArrowRight className="h-5 w-5 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
+            <ArrowRight className="h-5 w-5 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
           </Link>
         </div>
       </section>

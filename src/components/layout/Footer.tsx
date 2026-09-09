@@ -134,7 +134,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div className="container-page pb-6 text-xs text-white/40">
+        <div className="container-page pb-6 text-xs text-white/60">
           © {new Date().getFullYear()} {site.legalName}. All rights reserved. Prices shown in US dollars and include taxes and fees unless noted. Airline names and logos are trademarks of their respective owners.
         </div>
       </div>

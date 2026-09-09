@@ -28,7 +28,7 @@ function PasswordInput({ id, label, value, onChange, error, autoComplete, hint }
       hint={hint}
       autoComplete={autoComplete}
       rightSlot={
-        <button type="button" onClick={() => setShow((s) => !s)} aria-label={show ? "Hide password" : "Show password"} className="rounded p-1 text-slate-400 hover:text-navy-900">
+        <button type="button" onClick={() => setShow((s) => !s)} aria-label={show ? "Hide password" : "Show password"} className="rounded p-1 text-slate-500 hover:text-navy-900">
           {show ? <EyeOff className="h-4 w-4" aria-hidden /> : <Eye className="h-4 w-4" aria-hidden />}
         </button>
       }

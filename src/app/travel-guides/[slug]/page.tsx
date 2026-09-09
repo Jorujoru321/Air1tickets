@@ -90,24 +90,26 @@ export default async function ArticlePage({ params }: PageProps) {
               <h1 className="mt-3 text-3xl sm:text-4xl lg:text-[2.6rem] lg:leading-[1.1]">{a.title}</h1>
               <p className="mt-4 text-lg text-slate-600">{a.description}</p>
               <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <UserRound className="h-4 w-4" aria-hidden />
+                <div>
                   <dt className="sr-only">Author</dt>
-                  <dd>
+                  <dd className="flex items-center gap-1.5">
+                    <UserRound className="h-4 w-4" aria-hidden />
                     {a.author.name} · {a.author.role}
                   </dd>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <CalendarDays className="h-4 w-4" aria-hidden />
+                <div>
                   <dt className="sr-only">Updated</dt>
-                  <dd>
+                  <dd className="flex items-center gap-1.5">
+                    <CalendarDays className="h-4 w-4" aria-hidden />
                     Updated <time dateTime={a.updatedAt}>{formatDateLong(a.updatedAt)}</time>
                   </dd>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" aria-hidden />
+                <div>
                   <dt className="sr-only">Reading time</dt>
-                  <dd>{a.readingMinutes} min read</dd>
+                  <dd className="flex items-center gap-1.5">
+                    <Clock className="h-4 w-4" aria-hidden />
+                    {a.readingMinutes} min read
+                  </dd>
                 </div>
               </dl>
             </div>

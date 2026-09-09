@@ -14,7 +14,7 @@ export function Breadcrumbs({ items, className }: { items: Crumb[]; className?: 
           const last = i === items.length - 1;
           return (
             <li key={c.path} className="flex items-center gap-1.5">
-              {i > 0 && <ChevronRight className="h-3.5 w-3.5 text-slate-400" aria-hidden />}
+              {i > 0 && <ChevronRight className="h-3.5 w-3.5 text-slate-500" aria-hidden />}
               {last ? (
                 <span aria-current="page" className="font-medium text-navy-900">
                   {c.name}

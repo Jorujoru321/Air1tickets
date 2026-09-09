@@ -29,7 +29,7 @@ export function FaqSearch({ groups }: { groups: FAQGroup[] }) {
           leftIcon={<Search className="h-5 w-5" aria-hidden />}
           rightSlot={
             query ? (
-              <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="rounded p-1 text-slate-400 hover:text-navy-900">
+              <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="rounded p-1 text-slate-500 hover:text-navy-900">
                 <X className="h-4 w-4" aria-hidden />
               </button>
             ) : undefined

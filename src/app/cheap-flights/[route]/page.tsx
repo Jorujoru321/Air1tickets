@@ -351,7 +351,7 @@ export default async function RoutePage({ params }: PageProps) {
                           {carriers.length} {carriers.length === 1 ? "airline" : "airlines"}
                         </span>
                       </span>
-                      <MapPin className="h-4 w-4 shrink-0 text-slate-400" aria-hidden />
+                      <MapPin className="h-4 w-4 shrink-0 text-slate-500" aria-hidden />
                     </li>
                   );
                 })}
@@ -403,7 +403,7 @@ export default async function RoutePage({ params }: PageProps) {
                     Fares, airlines and tips for {destination.iata} to {origin.iata}.
                   </span>
                 </span>
-                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
+                <ArrowRight className="h-5 w-5 shrink-0 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
               </Link>
             )}
             <div className="rounded-2xl bg-navy-900 p-6 text-white">

@@ -13,7 +13,7 @@ export function AirlineList({ items, className }: { items: RouteAirline[]; class
   return (
     <ul className={cn("divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-card", className)}>
       {items.map(({ airline, nonstop, flightsPerDay, via }) => (
-        <li key={airline.iata}>
+        <li key={airline.iata} className="min-w-0">
           <Link href={airlinePath(airline.slug)} className="group flex items-center gap-4 px-4 py-3.5 transition hover:bg-slate-50 sm:px-5">
             <AirlineLogo iata={airline.iata} size={40} />
             <span className="min-w-0 flex-1">
@@ -30,7 +30,7 @@ export function AirlineList({ items, className }: { items: RouteAirline[]; class
             <Badge tone={nonstop ? "success" : "neutral"} className="hidden sm:inline-flex">
               {nonstop ? "Nonstop" : "1 stop"}
             </Badge>
-            <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
+            <ArrowRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
           </Link>
         </li>
       ))}

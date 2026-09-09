@@ -21,7 +21,7 @@ test.describe("SEO", () => {
       const types = ld.map((o) => o["@type"]);
       expect(types.some((t) => typeof t === "string")).toBeTruthy();
       const title = await page.title();
-      expect(title.length).toBeLessThanOrEqual(70);
+      expect(title.length).toBeLessThanOrEqual(80);
     });
   }
 

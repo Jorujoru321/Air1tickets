@@ -134,7 +134,7 @@ export function AirportAutocomplete({ id, label, value, onChange, placeholder = 
         {label}
       </label>
       <div className="relative">
-        {icon && <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">{icon}</span>}
+        {icon && <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-500">{icon}</span>}
         <input
           ref={inputRef}
           id={id}
@@ -178,7 +178,7 @@ export function AirportAutocomplete({ id, label, value, onChange, placeholder = 
               setQuery("");
               inputRef.current?.focus();
             }}
-            className="absolute inset-y-0 right-2 flex w-7 items-center justify-center rounded-full text-slate-400 hover:text-navy-900"
+            className="absolute inset-y-0 right-2 flex w-7 items-center justify-center rounded-full text-slate-500 hover:text-navy-900"
           >
             <X className="h-4 w-4" aria-hidden />
           </button>
@@ -196,7 +196,7 @@ export function AirportAutocomplete({ id, label, value, onChange, placeholder = 
         hidden={!open}
         className="absolute left-0 z-50 mt-1.5 max-h-80 w-full min-w-[20rem] overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-float sm:w-[22rem]"
       >
-        {!query.trim() && <li className="px-3 pb-1 pt-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Popular airports</li>}
+        {!query.trim() && <li className="px-3 pb-1 pt-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Popular airports</li>}
         {options.length === 0 && (
           <li className="px-3 py-3 text-sm text-slate-500" aria-live="polite">
             No airports match &ldquo;{query}&rdquo;. Try a city name or 3-letter code.

@@ -22,7 +22,7 @@ import { DESTINATIONS, getDestination } from "@/data/destinations";
 import { getAirport } from "@/data/airports";
 import { REGION_LABELS } from "@/data/types";
 import { ARTICLES } from "@/content/articles";
-import { formatDuration, formatMoney } from "@/lib/utils";
+import { formatDateShort, formatDuration, formatMoney } from "@/lib/utils";
 
 export const revalidate = 21600;
 export const dynamicParams = false;
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const d = getDestination(slug);
   if (!d) return {};
   const from = Math.min(...d.typicalFares.map((f) => f.price));
-  const title = `${d.city} Travel Guide — Cheap Flights${Number.isFinite(from) ? ` from ${formatMoney(from)}` : ""}, Best Time to Visit`;
+  const title = `${d.city} Travel Guide — Flights${Number.isFinite(from) ? ` from ${formatMoney(from)}` : ""} & When to Go`;
   return buildMetadata({ title, description: d.summary, path: destinationPath(d.slug), keywords: d.keywords });
 }
 
@@ -232,10 +232,10 @@ export default async function DestinationPage({ params }: PageProps) {
                     <td className="px-4 py-3">
                       {r.live ? (
                         <span className="font-semibold text-success-700">
-                          {formatMoney(r.live)} <span className="font-normal text-slate-500">· {r.liveDate}</span>
+                          {formatMoney(r.live)} <span className="font-normal text-slate-500">· {r.liveDate ? formatDateShort(r.liveDate) : ""}</span>
                         </span>
                       ) : (
-                        <span className="text-slate-400">—</span>
+                        <span className="text-slate-500">—</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -279,7 +279,7 @@ export default async function DestinationPage({ params }: PageProps) {
               <div key={w.season} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
                 <p className="text-xs font-semibold uppercase tracking-wide text-ocean-700">{w.season}</p>
                 <p className="mt-2 font-display text-2xl font-extrabold text-navy-900">
-                  {w.highF}° <span className="text-base font-semibold text-slate-400">/ {w.lowF}°</span>
+                  {w.highF}° <span className="text-base font-semibold text-slate-500">/ {w.lowF}°</span>
                 </p>
                 <p className="mt-2 text-sm text-slate-600">{w.note}</p>
               </div>

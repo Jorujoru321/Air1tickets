@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- ad-hoc validation over raw dataset shapes */
 /**
  * Mechanical validation of the curated datasets in src/data and src/content.
  * Run: npx tsx scripts/validate-data.ts

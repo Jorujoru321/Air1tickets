@@ -38,7 +38,7 @@ function TripCard({ b }: { b: Booking }) {
           </span>
         </span>
         <Badge tone={TONE[b.status] ?? "neutral"}>{b.status}</Badge>
-        <ArrowRight className="hidden h-4 w-4 text-slate-400 sm:block" aria-hidden />
+        <ArrowRight className="hidden h-4 w-4 text-slate-500 sm:block" aria-hidden />
       </Link>
     </li>
   );

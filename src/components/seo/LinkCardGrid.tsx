@@ -20,7 +20,7 @@ export function LinkCardGrid({ items, columns = 3, className, ariaLabel }: { ite
   return (
     <ul className={cn("grid gap-3", cols, className)} aria-label={ariaLabel}>
       {items.map((it, i) => (
-        <li key={it.key ?? `${it.href}-${i}`}>
+        <li key={it.key ?? `${it.href}-${i}`} className="min-w-0">
           <Link href={it.href} className="group flex h-full items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-xs transition hover:border-ocean-300 hover:shadow-card">
             <span className="flex min-w-0 items-center gap-3">
               {it.leading}
@@ -31,7 +31,7 @@ export function LinkCardGrid({ items, columns = 3, className, ariaLabel }: { ite
             </span>
             <span className="flex shrink-0 items-center gap-2">
               {it.aside && <span className="text-right text-sm font-bold tabular-nums text-navy-900">{it.aside}</span>}
-              <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
+              <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
             </span>
           </Link>
         </li>
@@ -46,7 +46,7 @@ export function InlineLinkList({ items, className }: { items: { href: string; la
   return (
     <ul className={cn("flex flex-wrap gap-x-4 gap-y-2 text-sm", className)}>
       {items.map((it) => (
-        <li key={it.href}>
+        <li key={it.href} className="min-w-0">
           <Link href={it.href} className="font-medium text-ocean-700 underline-offset-4 hover:underline">
             {it.label}
           </Link>

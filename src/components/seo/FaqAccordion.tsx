@@ -10,7 +10,7 @@ export function FaqAccordion({ items, className, idPrefix }: { items: FAQ[]; cla
         <details key={f.question} id={idPrefix ? `${idPrefix}-${i}` : undefined} className="group px-5 py-4 open:bg-slate-50/60">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-navy-900 marker:content-none [&::-webkit-details-marker]:hidden">
             <span>{f.question}</span>
-            <ChevronDown className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180" aria-hidden />
+            <ChevronDown className="h-5 w-5 shrink-0 text-slate-500 transition-transform group-open:rotate-180" aria-hidden />
           </summary>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">{f.answer}</p>
         </details>
