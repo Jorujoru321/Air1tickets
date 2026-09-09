@@ -21,6 +21,8 @@ export default defineConfig([
         "warn",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      // Reading localStorage / window after hydration legitimately needs setState in an effect.
+      "react-hooks/set-state-in-effect": "warn",
     },
   },
 ]);
