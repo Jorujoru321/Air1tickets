@@ -48,10 +48,17 @@ test.describe("booking flow (demo payments)", () => {
     await payWithCard(page, "4242 4242 4242 4242");
     await expect(page).toHaveURL(/\/confirmation/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /you're booked/i })).toBeVisible({ timeout: 45_000 });
-    await expect(page.getByText(/booking reference/i).first()).toBeVisible();
-    // The confirmation page exposes the reference; the lookup form finds it again.
-    const reference = await page.locator("text=/\\b[A-Z0-9]{8}\\b/").first().textContent();
-    expect(reference).toBeTruthy();
+    await expect(page.getByText("Air1 reference")).toBeVisible();
+    // The confirmation page exposes the reference; the manage-booking lookup finds it again.
+    const reference = (await page.getByText("Air1 reference").locator("xpath=following-sibling::dd").textContent())?.trim() ?? "";
+    expect(reference).toMatch(/^[A-Z0-9]{8}$/);
+    await page.context().clearCookies();
+    await page.goto("/booking");
+    await page.getByLabel("Booking reference").fill(reference);
+    await page.getByLabel(/last name/i).fill("Morgan");
+    await page.getByRole("button", { name: /find|look ?up|manage/i }).click();
+    await expect(page).toHaveURL(new RegExp(`/booking/${reference}`), { timeout: 20_000 });
+    await expect(page.getByText(reference).first()).toBeVisible();
   });
 
   test("a declined card shows an error and stays on the payment step", async ({ page }) => {

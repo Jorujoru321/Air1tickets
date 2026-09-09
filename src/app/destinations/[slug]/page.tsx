@@ -214,7 +214,7 @@ export default async function DestinationPage({ params }: PageProps) {
                   <th scope="col" className="px-4 py-3">
                     Lowest live fare
                   </th>
-                  <th scope="col" className="px-4 py-3">
+                  <th scope="col" className="relative px-4 py-3">
                     <span className="sr-only">Actions</span>
                   </th>
                 </tr>
