@@ -27,7 +27,8 @@ test.describe("price lock (lead model)", () => {
     await page.locator("#lock-name").fill("Jordan Lee");
     await page.locator("#lock-phone").fill("+1 (312) 555-0188");
     await page.locator("#lock-email").fill("jordan.lee@example.com");
-    await page.getByLabel(/phone call/i).check();
+    await page.locator("label", { hasText: "Phone call" }).click();
+    await expect(page.getByRole("radio", { name: /phone call/i })).toBeChecked();
     await page.locator("#lock-notes").fill("Flexible by a day either side.");
     await page.getByRole("button", { name: /^Lock \$/ }).click();
 

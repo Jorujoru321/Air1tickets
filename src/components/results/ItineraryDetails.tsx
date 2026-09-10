@@ -78,7 +78,7 @@ export function FareChips({ offer, className }: { offer: Offer; className?: stri
   return (
     <ul className={cn("flex flex-wrap gap-1.5", className)} aria-label="Fare conditions">
       {fareSummaryChips(offer).map((c) => (
-        <li key={c.label} className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium", c.included ? "bg-success-50 text-success-700" : "bg-slate-100 text-slate-500")}>
+        <li key={c.label} className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium", c.included ? "bg-success-50 text-success-700" : "bg-slate-100 text-slate-600")}>
           <span aria-hidden>{c.included ? "✓" : "✕"}</span>
           {c.label}
         </li>

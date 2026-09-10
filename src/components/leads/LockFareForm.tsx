@@ -115,9 +115,9 @@ export function LockFareForm({ offerId, price, lockHours, source = "results", in
             return (
               <label key={c.value} className={cn("flex cursor-pointer flex-col items-center gap-1 rounded-xl border px-3 py-3 text-center text-sm transition", active ? "border-ocean-500 bg-ocean-50 text-navy-900 ring-2 ring-ocean-500/20" : "border-slate-300 bg-white text-slate-700 hover:border-slate-400")}>
                 <input type="radio" name="channel" value={c.value} checked={active} onChange={() => setForm({ ...form, channel: c.value })} className="sr-only" />
-                <c.icon className={cn("h-5 w-5", c.value === "whatsapp" ? "text-[#128c4a]" : "text-ocean-600")} />
+                <c.icon className={cn("h-5 w-5", c.value === "whatsapp" ? "text-[#0d7a3f]" : "text-ocean-600")} />
                 <span className="font-semibold">{c.label}</span>
-                {c.hint && <span className="text-[11px] text-slate-500">{c.hint}</span>}
+                {c.hint && <span className="text-[11px] text-slate-600">{c.hint}</span>}
               </label>
             );
           })}
@@ -152,7 +152,7 @@ export function LockFareForm({ offerId, price, lockHours, source = "results", in
       </p>
       <p className="text-center text-sm text-slate-600">
         Prefer to chat right away?{" "}
-        <a href={whatsappHref} target="_blank" rel="noopener" className="font-semibold text-[#128c4a] hover:underline">
+        <a href={whatsappHref} target="_blank" rel="noopener" className="font-semibold text-[#0d7a3f] hover:underline">
           Message us on WhatsApp
         </a>
       </p>

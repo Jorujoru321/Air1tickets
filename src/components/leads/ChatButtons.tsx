@@ -50,7 +50,7 @@ export function ChatButtons({ text, messengerRef, size = "md", layout = "inline"
 /** Tiny inline "WhatsApp" text link for dense places like result cards. */
 export function WhatsAppTextLink({ text, className, label = "Ask on WhatsApp" }: { text: string; className?: string; label?: string }) {
   return (
-    <a href={whatsappLink(text)} target="_blank" rel="noopener" className={cn("inline-flex items-center gap-1 text-xs font-semibold text-[#128c4a] hover:underline", className)}>
+    <a href={whatsappLink(text)} target="_blank" rel="noopener" className={cn("inline-flex items-center gap-1 text-xs font-semibold text-[#0d7a3f] hover:underline", className)}>
       <Send className="h-3.5 w-3.5" aria-hidden /> {label}
     </a>
   );

@@ -22,6 +22,7 @@ const pages = [
   ["destinations", "/destinations"],
   ["destination", "/destinations/cancun"],
   ["deals", "/deals"],
+  ["price-lock", "/price-lock"],
   ["guides", "/travel-guides"],
   ["guide", "/travel-guides/how-to-find-cheap-flights"],
   ["help", "/help"],
