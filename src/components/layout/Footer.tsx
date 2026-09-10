@@ -3,7 +3,7 @@ import { CreditCard, Lock, Phone, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { FOOTER_COMPANY, FOOTER_LEGAL, FOOTER_SUPPORT } from "./nav";
 import { NewsletterForm } from "./NewsletterForm";
-import { site } from "@/lib/site";
+import { isLeadMode, site } from "@/lib/site";
 import { POPULAR_ROUTES } from "@/data/routes";
 import { POPULAR_DESTINATIONS } from "@/data/destinations";
 import { getAirport } from "@/data/airports";
@@ -115,13 +115,13 @@ export function Footer() {
         <div className="container-page flex flex-col gap-4 py-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <span className="inline-flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5" aria-hidden /> 256-bit SSL secure checkout
+              <Lock className="h-3.5 w-3.5" aria-hidden /> {isLeadMode ? "Locking a fare is free — no card" : "256-bit SSL secure checkout"}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <CreditCard className="h-3.5 w-3.5" aria-hidden /> Visa · Mastercard · Amex · Discover
+              <CreditCard className="h-3.5 w-3.5" aria-hidden /> {isLeadMode ? "Pay only when you accept your deal" : "Visa · Mastercard · Amex · Discover"}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-3.5 w-3.5" aria-hidden /> 24-hour free cancellation
+              <ShieldCheck className="h-3.5 w-3.5" aria-hidden /> {isLeadMode ? "Real US-based agents on WhatsApp" : "24-hour free cancellation"}
             </span>
           </div>
           <ul className="flex flex-wrap gap-x-4 gap-y-1">

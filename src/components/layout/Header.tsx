@@ -18,7 +18,7 @@ export function Header() {
             <ul className="flex items-center gap-1">
               {PRIMARY_NAV.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-900">
+                  <Link href={item.href} className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-900">
                     {item.label}
                   </Link>
                 </li>
@@ -29,7 +29,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${site.supportPhone.replace(/[^\d+]/g, "")}`}
-            className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-navy-900 hover:bg-slate-100 xl:flex"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-navy-900 hover:bg-slate-100 2xl:flex"
           >
             <Phone className="h-4 w-4 text-ocean-600" aria-hidden />
             {site.supportPhone}
