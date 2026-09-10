@@ -1,5 +1,6 @@
 import "server-only";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { createClient, type Client } from "@libsql/client";
 import { drizzle, type LibSQLDatabase } from "drizzle-orm/libsql";
@@ -18,8 +19,17 @@ function resolveUrl(): string {
   if (url.startsWith("file:")) {
     const rel = url.slice("file:".length);
     const abs = path.isAbsolute(rel) ? rel : path.join(/* turbopackIgnore: true */ process.cwd(), rel);
-    fs.mkdirSync(path.dirname(abs), { recursive: true });
-    return `file:${abs}`;
+    try {
+      fs.mkdirSync(path.dirname(abs), { recursive: true });
+      fs.accessSync(path.dirname(abs), fs.constants.W_OK);
+      return `file:${abs}`;
+    } catch {
+      // Serverless hosts (Vercel, Lambda) mount the app read-only; only /tmp is writable.
+      // Data there is per-instance and ephemeral — fine for previews, not for production.
+      const tmp = path.join(os.tmpdir(), "air1.db");
+      console.warn(`[air1] ${path.dirname(abs)} is not writable; using ephemeral database at ${tmp}. Set DATABASE_URL (e.g. Turso) for persistent data.`);
+      return `file:${tmp}`;
+    }
   }
   return url;
 }

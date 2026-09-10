@@ -2,7 +2,10 @@
  * Central site configuration. Everything brand-related lives here so it can
  * be changed in one place (and read from env where it makes sense).
  */
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "");
+// Canonical origin. Falls back to the Vercel-provided hostname so preview deploys
+// get correct canonical/OG URLs before a custom domain is configured.
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+const rawUrl = (process.env.NEXT_PUBLIC_SITE_URL || (vercelHost ? `https://${vercelHost}` : ""))?.replace(/\/+$/, "");
 
 export const site = {
   name: "Air1 Tickets",

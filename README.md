@@ -78,9 +78,23 @@ automatically on first access.
 
 ## Deploying
 
-1. Push to GitHub and import the repo in Vercel (or any Node 20+ host).
-2. Add the environment variables from `.env.example` — at minimum `NEXT_PUBLIC_SITE_URL`, `SESSION_SECRET`, `DATABASE_URL` + `DATABASE_AUTH_TOKEN`.
-3. Deploy. Submit `/sitemap.xml` in Google Search Console.
+### One-click preview (Vercel, ~2 minutes)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FJorujoru321%2FAir1tickets&project-name=air1tickets&repository-name=air1tickets&env=SESSION_SECRET&envDescription=Any%20random%20string%20of%2032%2B%20characters%20(e.g.%20run%3A%20openssl%20rand%20-base64%2048)&envLink=https%3A%2F%2Fgithub.com%2FJorujoru321%2FAir1tickets%2Fblob%2Fclaude%2Ftravel-ticketing-website-2uop5k%2Fdocs%2FWHAT-I-NEED-FROM-YOU.md)
+
+Or import the existing repository instead of cloning it: **vercel.com/new → Import
+Git Repository → `Jorujoru321/Air1tickets`**, add one environment variable
+`SESSION_SECRET` (any random 32+ character string), leave everything else at
+its defaults and click **Deploy**. The preview runs fully in demo mode: live-looking
+fares, a working checkout with test card `4242 4242 4242 4242`, and all 2,200+ SEO
+pages. Without `DATABASE_URL` the preview stores bookings in a per-instance
+temporary database, so bookings and accounts reset between deployments — that
+is expected for a preview.
+
+### Production
+
+1. Add the environment variables from `.env.example` — at minimum `NEXT_PUBLIC_SITE_URL`, `SESSION_SECRET`, `DATABASE_URL` + `DATABASE_AUTH_TOKEN` (Turso), then the Stripe, Resend and flight-provider keys as they become available.
+2. Deploy. Submit `/sitemap.xml` in Google Search Console.
 
 ## Testing
 
