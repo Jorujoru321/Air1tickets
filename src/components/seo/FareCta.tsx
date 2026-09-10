@@ -1,5 +1,6 @@
 import { ArrowRight, CalendarDays, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { WhatsAppTextLink } from "@/components/leads/ChatButtons";
 import type { MonthFare } from "@/lib/flights/route-info";
 import { cn, formatDateShort, formatMoney } from "@/lib/utils";
 
@@ -34,8 +35,9 @@ export function FareCta({ lowest, cheapestMonth, href, originCity, destinationCi
           {lowest ? "See fares on these dates" : "Search fares"}
         </Button>
         <p className="mt-3 flex items-center gap-1.5 text-xs text-white/60">
-          <ShieldCheck className="h-3.5 w-3.5" aria-hidden /> Free cancellation within 24 hours of booking
+          <ShieldCheck className="h-3.5 w-3.5" aria-hidden /> Lock any fare free — pay only when you accept your last-minute deal
         </p>
+        <WhatsAppTextLink className="mt-2 text-[#7ee2a8] hover:text-[#a5f0c4]" label="Or ask an agent on WhatsApp" text={`Hi Air1, I'm looking at flights from ${originCity} to ${destinationCity}${lowest ? ` (from ${formatMoney(lowest.price)})` : ""}. Can you lock me a low fare?`} />
       </div>
     </div>
   );

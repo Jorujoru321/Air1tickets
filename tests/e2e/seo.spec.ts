@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { jsonLd } from "./helpers";
 
-const PAGES = ["/", "/flights", "/cheap-flights/new-york-to-los-angeles", "/flights-to/los-angeles", "/airlines/delta-air-lines", "/airports/jfk", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help"];
+const PAGES = ["/", "/flights", "/price-lock", "/cheap-flights/new-york-to-los-angeles", "/flights-to/los-angeles", "/airlines/delta-air-lines", "/airports/jfk", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help"];
 
 test.describe("SEO", () => {
   for (const path of PAGES) {

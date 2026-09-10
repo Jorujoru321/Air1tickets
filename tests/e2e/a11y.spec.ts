@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { searchUrl, waitForOffers } from "./helpers";
 
-const STATIC_PAGES = ["/", "/flights", "/cheap-flights/new-york-to-los-angeles", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help", "/booking", "/account/login", "/legal/privacy"];
+const STATIC_PAGES = ["/", "/flights", "/price-lock", "/cheap-flights/new-york-to-los-angeles", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help", "/booking", "/account/login", "/legal/privacy"];
 
 async function audit(page: Page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).disableRules(["color-contrast-enhanced"]).analyze();
@@ -24,11 +24,11 @@ test.describe("accessibility (axe, WCAG 2.2 AA)", () => {
     await audit(page);
   });
 
-  test("checkout step 1 has no serious violations", async ({ page }) => {
+  test("lock / checkout step has no serious violations", async ({ page }) => {
     await page.goto(searchUrl("JFK", "LAX"));
     const select = await waitForOffers(page);
     await select.first().click();
-    await expect(page.getByRole("heading", { name: /who's traveling/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /who's traveling|^Lock \$/i })).toBeVisible();
     await audit(page);
   });
 

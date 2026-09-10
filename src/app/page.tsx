@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, BadgeDollarSign, Headset, Lock, PlaneTakeoff, Search, ShieldCheck, Tags } from "lucide-react";
+import { ArrowRight, BadgeDollarSign, Headset, Lock, MessageCircle, PlaneTakeoff, Search, ShieldCheck, Tag } from "lucide-react";
+import { ChatButtons } from "@/components/leads/ChatButtons";
 import { SearchForm } from "@/components/search";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/seo/FaqAccordion";
@@ -22,38 +23,38 @@ import { addDays, formatDateShort, formatMoney } from "@/lib/utils";
 export const revalidate = 21600;
 
 export const metadata = buildMetadata({
-  title: "Cheap Flights & Airline Tickets — Compare 500+ Airlines",
-  description: "Search and book cheap flights from every US airport. Compare 500+ airlines, see the true total with taxes and fees, and get 24/7 US-based support from Air1 Tickets.",
+  title: "Cheap Flights — Lock a Low Fare Free, Get a Last-Minute Deal",
+  description: "Search cheap flights from every US airport across 500+ airlines. Lock the fare you like free, no card needed, and our US-based agents send you a last-minute deal on WhatsApp 1–2 days before you fly.",
   path: "/",
 });
 
 const TRUST = [
-  { icon: BadgeDollarSign, title: "True total price", text: "Taxes and fees shown before you click." },
-  { icon: ShieldCheck, title: "Free 24-hour cancellation", text: "Change your mind within a day, full refund." },
-  { icon: Headset, title: "24/7 US-based support", text: `Real people at ${site.supportPhone}.` },
-  { icon: Lock, title: "Secure checkout", text: "Encrypted payments, never stored." },
+  { icon: Lock, title: "Lock any fare free", text: `No card. Held for ${site.priceLock.hours} hours.` },
+  { icon: Tag, title: "Last-minute deals", text: "Final quote 1–2 days before you fly." },
+  { icon: MessageCircle, title: "Agents on WhatsApp", text: `Reply in about ${site.priceLock.responseMinutes} minutes.` },
+  { icon: BadgeDollarSign, title: "Pay only when you accept", text: "Your locked price is the most you'll pay." },
 ];
 
 const WHY = [
   {
-    icon: Tags,
-    title: "Every fare, explained",
-    text: "Basic, Main or Flexible — we show what each fare includes (bags, seats, changes) side by side, so the cheapest option never surprises you at the airport.",
+    icon: Lock,
+    title: "Lock the fare, skip the panic",
+    text: "See a price you like? Lock it in 30 seconds with just your name and number. We hold that itinerary and price — no card, no commitment.",
   },
   {
-    icon: Search,
-    title: "500+ airlines in one search",
-    text: "Legacy carriers, low-cost airlines and international partners compared in a single results page, sorted by best value, price or speed.",
+    icon: Tag,
+    title: "We shop it again before you fly",
+    text: "Fares move right up to departure. 1–2 days before you fly our agents re-check every airline and send your final, last-minute deal — usually below what you locked.",
   },
   {
     icon: Headset,
-    title: "Humans, around the clock",
-    text: "Flight cancelled at 2am? Our US-based agents answer the phone 24/7 and rebook you — no bots, no overseas call queue.",
+    title: "A real agent on WhatsApp",
+    text: "US-based agents reply on WhatsApp, Messenger or the phone, can see every airline's availability, and rebook you if anything changes.",
   },
   {
-    icon: ShieldCheck,
-    title: "Your rights, protected",
-    text: "Free cancellation within 24 hours of booking, refunds within 7 business days when airlines cancel, and DOT-compliant fare disclosure.",
+    icon: Search,
+    title: "500+ airlines, true totals",
+    text: "Legacy carriers, low-cost airlines and international partners in one results page, with taxes, fees and bag rules shown before you lock.",
   },
 ];
 
@@ -96,7 +97,7 @@ async function TrendingRoutes() {
 }
 
 export default function HomePage() {
-  const faqs = getFaqGroup("about")?.items.slice(0, 5) ?? [];
+  const faqs = getFaqGroup("price-lock")?.items.slice(0, 5) ?? [];
   const destinations = POPULAR_DESTINATIONS.slice(0, 8);
   const articles = ARTICLES.slice(0, 3);
   const dealsDeepLink = (() => {
@@ -116,10 +117,10 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(47,147,239,0.45),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(255,107,53,0.22),transparent_50%)]" aria-hidden />
         <div className="container-page relative pb-10 pt-14 sm:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ocean-200 backdrop-blur">
-            <PlaneTakeoff className="h-3.5 w-3.5" aria-hidden /> US-based online travel agency
+            <PlaneTakeoff className="h-3.5 w-3.5" aria-hidden /> US-based travel agency · real agents on WhatsApp
           </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">Cheap flights from every US airport</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">Compare 500+ airlines. See the true total price. Book in minutes — with real people on the phone 24/7.</p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">Find a low fare. Lock it free. Pay less later.</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">Search 500+ airlines from every US airport. Lock the fare you like — no card — and our agents send you a last-minute deal 1–2 days before you fly.</p>
           <div className="mt-8">
             <SearchForm variant="hero" />
           </div>
@@ -201,12 +202,20 @@ export default function HomePage() {
       {/* How it works */}
       <section className="bg-navy-900 py-14 text-white">
         <div className="container-page">
-          <h2 className="text-2xl text-white sm:text-3xl">Booking takes about three minutes</h2>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl text-white sm:text-3xl">How price lock works</h2>
+              <p className="mt-1 text-white/75">Three steps, one WhatsApp thread. You never pay until you say yes.</p>
+            </div>
+            <Link href="/price-lock" className="inline-flex items-center gap-1 text-sm font-semibold text-ocean-200 hover:text-white">
+              Full details <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
           <ol className="mt-8 grid gap-6 md:grid-cols-3">
             {[
-              ["Search", "Enter your airports and dates. We check 500+ airlines and show every fare with bags and seat rules spelled out."],
-              ["Choose", "Sort by best value, lowest price or shortest trip. Filter by stops, airline, departure time and bag allowance."],
-              ["Book", "Enter traveler details once, pay securely, and get your e-ticket and airline confirmation code by email."],
+              ["Search & lock", `Find a fare you like and tap "Lock this price". Leave your name and WhatsApp number — we hold that itinerary and price for ${site.priceLock.hours} hours, free.`],
+              ["Talk to an agent", `Within about ${site.priceLock.responseMinutes} minutes an agent confirms your lock on WhatsApp, Messenger or by phone and flags smarter options, like a nearby airport or better dates.`],
+              ["Get your deal & fly", "1–2 days before departure we re-shop every airline and send your final quote — the locked price is the most you'll pay. Accept, pay via secure link, and your e-ticket is emailed."],
             ].map(([title, text], i) => (
               <li key={title} className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sunrise-500 font-display text-sm font-extrabold text-navy-950">{i + 1}</span>
@@ -267,7 +276,7 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="bg-white py-14">
         <div className="container-page max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl">Good to know before you book</h2>
+          <h2 className="text-2xl sm:text-3xl">Good to know before you lock</h2>
           <div className="mt-6">
             <FaqAccordion items={faqs} />
           </div>
@@ -286,11 +295,14 @@ export default function HomePage() {
         <div className="flex flex-col items-center gap-4 rounded-2xl bg-sunrise-500 px-6 py-10 text-center text-navy-950 sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h2 className="text-2xl text-navy-950">Ready when you are</h2>
-            <p className="mt-1 text-navy-900/85">Search once, compare everything, book with confidence.</p>
+            <p className="mt-1 text-navy-900/85">Search once, lock what you like, and let an agent find your deal.</p>
           </div>
-          <Button href="/flights" variant="secondary" size="lg" rightIcon={<ArrowRight className="h-4 w-4" aria-hidden />}>
-            Search flights
-          </Button>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <Button href="/flights" variant="secondary" size="lg" rightIcon={<ArrowRight className="h-4 w-4" aria-hidden />}>
+              Search flights
+            </Button>
+            <ChatButtons showMessenger={false} whatsappLabel="WhatsApp an agent" />
+          </div>
         </div>
       </section>
     </>

@@ -5,7 +5,33 @@ payments, local database, emails logged to the console). Each item below turns
 one piece real. None of them require code changes — just values in `.env.local`
 (or your host's environment settings) and a few decisions.
 
-## 1. Live flight inventory & ticketing (the big one)
+## 0. Your chat channels and lead inbox (needed first — 5 minutes)
+
+The site's main action is **Lock this price → talk to an agent**. Set these so
+the buttons open your real accounts and leads reach your team:
+
+```
+NEXT_PUBLIC_WHATSAPP_NUMBER=+1 555 123 4567     # your WhatsApp Business number
+NEXT_PUBLIC_MESSENGER_PAGE=yourpagename         # facebook.com/<this> → m.me link
+NEXT_PUBLIC_TELEGRAM_USERNAME=                  # optional
+LEADS_EMAIL=leads@your-domain.com               # every new lock is emailed here
+ADMIN_EMAILS=you@your-domain.com,agent@...      # accounts allowed to open /admin/leads
+NEXT_PUBLIC_PRICE_LOCK_HOURS=48                 # how long you honor a locked fare
+NEXT_PUBLIC_LOCK_RESPONSE_MINUTES=15            # response time promised on the site
+```
+
+Then create an account on the site with one of the `ADMIN_EMAILS` addresses and
+open `/admin/leads`: every lock shows the traveler, trip, locked price, expiry,
+one-click WhatsApp / call / email buttons and a status (new → contacted →
+quoted → won/lost), plus CSV export.
+
+**Please confirm the promises the copy makes**, or tell me what to change:
+the locked price is the *maximum* the traveler pays; you re-check fares and send
+a final quote 1–2 days before departure; first reply within ~15 minutes during
+business hours; locks last 48 hours. Copy lives in `src/data/faqs.ts`
+(`price-lock` group), `src/app/price-lock/page.tsx` and the home page.
+
+## 1. Live flight inventory & ticketing
 
 You need a contract with a flight content provider. The code ships with a
 **Duffel** adapter because it is the fastest to get started with and issues
@@ -30,7 +56,11 @@ have an ARC-accredited agency or a consolidator relationship, tell me and I'll
 build the adapter for their API instead (the `FlightProvider` interface in
 `src/lib/flights/types.ts` is the only thing that needs implementing).
 
-## 2. Payments — Stripe
+## 2. Payments — Stripe (only if you switch to on-site checkout)
+
+In the default lead model the site never takes payment; you send travelers a
+payment link from your own processor when they accept a deal. Set
+`NEXT_PUBLIC_BOOKING_MODE=checkout` to turn on the built-in checkout, then:
 
 1. Create a Stripe account (stripe.com), complete business verification.
 2. Developers → API keys → copy the **publishable** and **secret** keys.

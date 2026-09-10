@@ -35,6 +35,9 @@ async function payWithCard(page: Page, number: string) {
 }
 
 test.describe("booking flow (demo payments)", () => {
+  // The default site mode is "lead" (fares are locked, not booked). Run these with NEXT_PUBLIC_BOOKING_MODE=checkout.
+  test.skip(process.env.NEXT_PUBLIC_BOOKING_MODE !== "checkout", "checkout mode only");
+
   test("validation blocks an empty passenger form", async ({ page }) => {
     await startCheckout(page);
     await page.getByRole("button", { name: /continue to extras/i }).click();

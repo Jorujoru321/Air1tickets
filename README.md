@@ -4,10 +4,17 @@ A US-based online travel agency for flights — search, compare and book airline
 tickets, in the spirit of Kiwi.com and Booking.com. Built with Next.js 16,
 TypeScript and Tailwind CSS v4, with SEO as a first-class concern.
 
+**How it converts (lead model, the default):** travelers search real-looking
+fares, tap **Lock this price** (name + WhatsApp number, no card) or message the
+agency directly on WhatsApp / Messenger with the fare prefilled. Every lock is
+saved, emailed to the agency and listed in `/admin/leads`; agents then send a
+last-minute deal 1–2 days before departure and take payment off-site. The full
+self-service checkout still exists behind `NEXT_PUBLIC_BOOKING_MODE=checkout`.
+
 **Everything works out of the box in demo mode**: a realistic, deterministic
-flight-inventory engine, a demo card checkout, a local SQLite database and
-console-logged emails. Plug in Duffel, Stripe, Resend and Turso to go live —
-see [`docs/WHAT-I-NEED-FROM-YOU.md`](docs/WHAT-I-NEED-FROM-YOU.md).
+flight-inventory engine, a local SQLite database and console-logged emails.
+Plug in Duffel, Resend and Turso (and Stripe if you switch to checkout mode)
+to go live — see [`docs/WHAT-I-NEED-FROM-YOU.md`](docs/WHAT-I-NEED-FROM-YOU.md).
 
 ## Quick start
 
@@ -35,7 +42,8 @@ Useful scripts:
 
 * **Search** — airport autocomplete (250 airports), round-trip/one-way, date picker with fare-per-day hints, traveler & cabin picker, nonstop filter.
 * **Results** — Best / Cheapest / Fastest sorting, filters (stops, airlines, times, duration, price, bags, overnight layovers), itinerary details, price alerts.
-* **Checkout** — fare-family upsell (Basic → Main → Flexible), passenger details with TSA/passport rules, bags/protection/flexible-ticket extras, Stripe Payment Element (or demo card), fare-hold countdown and re-pricing, e-ticket confirmation with calendar export.
+* **Price lock (lead model)** — "Lock this price" on every result → 30-second form (name, WhatsApp number, email, preferred channel) → reference like `L-7K2M9Q`, confirmation email, and a WhatsApp deep link with the fare and reference prefilled. Site-wide WhatsApp button, Messenger links, `/price-lock` explainer page, leads dashboard at `/admin/leads` with status tracking and CSV export, lead emails to the agency.
+* **Checkout (optional mode)** — fare-family upsell (Basic → Main → Flexible), passenger details with TSA/passport rules, bags/protection/flexible-ticket extras, Stripe Payment Element (or demo card), fare-hold countdown and re-pricing, e-ticket confirmation with calendar export. Enabled with `NEXT_PUBLIC_BOOKING_MODE=checkout`.
 * **Manage booking** — lookup by reference + last name, resend confirmation, cancel (DOT 24-hour rule), accounts with trip history and price alerts.
 * **SEO engine** — 2,200+ pre-rendered pages: route pages (`/cheap-flights/new-york-to-los-angeles`), destination hubs (`/flights-to/...`, `/flights-from/...`), airline and airport pages, 40 destination guides, travel-guide articles; canonical URLs, Open Graph images, JSON-LD (Organization, WebSite, Flight/AggregateOffer, FAQPage, BreadcrumbList, Article), sitemap and robots.
 * **Trust & content** — help center (55 FAQs), about, contact, US-ready legal pages (terms, privacy/CCPA, cookies, accessibility).
@@ -86,8 +94,9 @@ Or import the existing repository instead of cloning it: **vercel.com/new → Im
 Git Repository → `Jorujoru321/Air1tickets`**, add one environment variable
 `SESSION_SECRET` (any random 32+ character string), leave everything else at
 its defaults and click **Deploy**. The preview runs fully in demo mode: live-looking
-fares, a working checkout with test card `4242 4242 4242 4242`, and all 2,200+ SEO
-pages. Without `DATABASE_URL` the preview stores bookings in a per-instance
+fares, the full price-lock flow (leads are stored and logged), and all 2,200+ SEO
+pages. Add `NEXT_PUBLIC_WHATSAPP_NUMBER` and `NEXT_PUBLIC_MESSENGER_PAGE` so the
+chat buttons open your real accounts. Without `DATABASE_URL` the preview stores bookings in a per-instance
 temporary database, so bookings and accounts reset between deployments — that
 is expected for a preview.
 

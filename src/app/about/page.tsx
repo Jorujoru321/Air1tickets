@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 });
 
 const VALUES = [
-  { icon: BadgeDollarSign, title: "The price you see is the price you pay", text: "Taxes, fees and what each fare includes are shown before you click. No surprise charges at checkout, no drip pricing." },
+  { icon: BadgeDollarSign, title: "Lock the fare, then we beat it", text: "Found a low fare? Lock it free. Your locked price is the most you'll pay, and 1–2 days before departure our agents re-shop every airline and send you a last-minute deal." },
   { icon: Headset, title: "Humans, 24/7, in the United States", text: "Flight cancelled at 2am? A real agent picks up, sees every airline's availability and rebooks you. No overseas call queues." },
   { icon: ShieldCheck, title: "Your rights, built in", text: "Free cancellation within 24 hours of booking, DOT-compliant refunds, and plain-English fare rules on every result." },
   { icon: Lock, title: "Secure by design", text: "Card payments are processed by a PCI-compliant processor and never stored on our servers. Your data stays yours." },
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="prose-air1">
             <h2 className="text-2xl sm:text-3xl">What we do</h2>
             <p>Air1 Tickets is an online travel agency based in the United States. We search fares from more than 500 airlines — the legacy carriers, the low-cost airlines and the international partners — and present them in one results page sorted by what matters: value, price or speed.</p>
-            <p>When you book, we issue your ticket with the airline and stay responsible for the reservation. That means one number to call for changes, cancellations and irregular operations, and an agent who can see availability across airlines rather than just one.</p>
+            <p>We work differently from a self-service booking site. You lock the fare you like, free and with no card. An agent confirms it with you on WhatsApp, Messenger or by phone, then watches the route and sends you a final, last-minute deal one to two days before departure. When you accept, we issue the ticket with the airline and stay responsible for the reservation: one number to message for changes, cancellations and irregular operations.</p>
             <p>We make money from commissions and incentives paid by airlines and from optional extras you choose at checkout, such as travel protection. When a service fee applies, it is shown as its own line before you pay.</p>
           </div>
           <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-card">

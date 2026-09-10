@@ -360,12 +360,53 @@ export const FAQ_GROUPS: FAQGroup[] = [
       },
     ],
   },
+  {
+    id: "price-lock",
+    title: "Price lock & last-minute deals",
+    items: [
+      {
+        question: "What is a price lock?",
+        answer:
+          "When you find a fare you like, you lock it instead of paying for it. We record the exact itinerary and price you saw, hold it for 48 hours, and an agent confirms with you on WhatsApp, Messenger or by phone. The locked price is the most you will pay for that itinerary. It is free and needs no card.",
+      },
+      {
+        question: "How does the last-minute deal work?",
+        answer:
+          "Airline fares move right up to departure, and our agents watch them for you. One to two days before you fly we re-check every airline for your route and send you a final quote, which is usually below the price you locked. You accept it and pay, we issue the ticket with the airline, and you receive the e-ticket and airline confirmation code by email.",
+      },
+      {
+        question: "Do I pay anything when I lock a fare?",
+        answer:
+          "No. Locking is free and there is no obligation. You pay only when you accept the final deal an agent sends you. If you change your mind, simply tell the agent or let the lock expire.",
+      },
+      {
+        question: "How quickly will someone contact me?",
+        answer:
+          "Within about 15 minutes during business hours on the channel you chose, usually WhatsApp. Outside business hours you will hear from us first thing the next morning. Your lock reference (for example L-7K2M9Q) lets any agent pull up your fare instantly.",
+      },
+      {
+        question: "What if the price goes up before you send my deal?",
+        answer:
+          "Your locked price is a ceiling. If fares rise after you lock, you still pay no more than the locked amount for the same itinerary. If fares fall, you get the lower price. The lock is valid for 48 hours from the time you lock and can be extended by an agent when you are still deciding.",
+      },
+      {
+        question: "Can I just message you instead of filling in the form?",
+        answer:
+          "Yes. Every fare has a WhatsApp button that opens a chat with the flight details already filled in, and the Messenger button works the same way. The form simply makes sure we have your email and a reference so nothing gets lost.",
+      },
+      {
+        question: "Is it safe to share my details?",
+        answer:
+          "We only ask for a name, a phone number and an email so an agent can reach you. We never ask for card details in chat; when you accept a deal you receive a secure payment link. See our privacy policy for how we store and protect your information.",
+      },
+    ],
+  },
 ];
 
 /** Every FAQ across all groups, in display order. Handy for FAQPage JSON-LD and search. */
 export const ALL_FAQS: FAQ[] = FAQ_GROUPS.flatMap((group) => group.items);
 
-/** Look up a group by its id ("about", "booking", "payments", "changes", "baggage", "travel", "support"). */
+/** Look up a group by its id ("about", "booking", "payments", "changes", "baggage", "travel", "support", "price-lock"). */
 export function getFaqGroup(id: string): FAQGroup | undefined {
   return FAQ_GROUPS.find((group) => group.id === id);
 }

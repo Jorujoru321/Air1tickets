@@ -15,7 +15,7 @@ export function searchUrl(from: string, to: string, opts: { days?: number; night
 
 /** Wait for results to render and return the first "Select" button. */
 export async function waitForOffers(page: Page) {
-  const select = page.getByRole("link", { name: /^Select .* flight/ });
+  const select = page.getByRole("link", { name: /^(Select|Lock) .* flight/ });
   await expect(select.first()).toBeVisible({ timeout: 30_000 });
   return select;
 }

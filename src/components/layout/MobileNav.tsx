@@ -54,8 +54,8 @@ export function MobileNav() {
                   </li>
                 ))}
                 <li>
-                  <Link href="/booking" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100">
-                    Manage booking
+                  <Link href="/price-lock" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100">
+                    How price lock works
                   </Link>
                 </li>
               </ul>

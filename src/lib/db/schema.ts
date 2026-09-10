@@ -131,3 +131,40 @@ export type NewUser = typeof users.$inferInsert;
 export type Booking = typeof bookings.$inferSelect;
 export type NewBooking = typeof bookings.$inferInsert;
 export type PriceAlert = typeof priceAlerts.$inferSelect;
+
+/** Fare lock requests (leads): a traveler saw a fare and asked us to hold it and follow up. */
+export const fareLocks = sqliteTable(
+  "fare_locks",
+  {
+    id: text("id").primaryKey(),
+    /** Human reference like L-7K2M9Q shown to the traveler and used in chat. */
+    reference: text("reference").notNull(),
+    status: text("status", { enum: ["new", "contacted", "quoted", "won", "lost"] }).notNull().default("new"),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone").notNull(),
+    channel: text("channel", { enum: ["whatsapp", "messenger", "call", "sms", "email"] }).notNull(),
+    notes: text("notes"),
+    source: text("source").notNull().default("results"),
+    origin: text("origin").notNull(),
+    destination: text("destination").notNull(),
+    departDate: text("depart_date").notNull(),
+    returnDate: text("return_date"),
+    cabin: text("cabin").notNull(),
+    adults: integer("adults").notNull().default(1),
+    children: integer("children").notNull().default(0),
+    infants: integer("infants").notNull().default(0),
+    airline: text("airline"),
+    offerId: text("offer_id"),
+    /** Serialized itinerary summary (segments, times) for the agent. */
+    offerJson: text("offer_json"),
+    lockedPrice: real("locked_price").notNull(),
+    currency: text("currency").notNull().default("USD"),
+    expiresAt: text("expires_at").notNull(),
+    userId: text("user_id").references(() => users.id, { onDelete: "set null" }),
+    createdAt: text("created_at").notNull().default(now()),
+    updatedAt: text("updated_at").notNull().default(now()),
+  },
+  (t) => [uniqueIndex("fare_locks_reference_idx").on(t.reference), index("fare_locks_status_idx").on(t.status), index("fare_locks_created_idx").on(t.createdAt)],
+);
+export type FareLock = typeof fareLocks.$inferSelect;

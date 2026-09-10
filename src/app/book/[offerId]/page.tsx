@@ -7,6 +7,8 @@ import { buildSearchUrl } from "@/lib/flights/search-params";
 import { extrasPricingFor } from "@/lib/booking/pricing";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { stripeEnabled } from "@/lib/payments/stripe";
+import { redirect } from "next/navigation";
+import { isLeadMode } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +24,8 @@ function searchUrlFor(offerId: string): string {
 
 export default async function BookPage({ params }: { params: Promise<{ offerId: string }> }) {
   const { offerId: raw } = await params;
+  // In lead mode the site never takes payment: fares are locked, not booked.
+  if (isLeadMode) redirect(`/lock/${raw}`);
   const offerId = decodeURIComponent(raw);
   const provider = getFlightProvider();
   const offer = await provider.getOffer(offerId);

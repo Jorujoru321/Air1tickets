@@ -115,3 +115,16 @@ drizzle/                    Generated SQL migrations (committed)
 3. **Manage**: `/booking` lookup by reference + last name → `/booking/[reference]`.
 4. **SEO pages** are statically generated from `data/*` with ISR and use the
    provider's `priceCalendar()` for "cheapest month" widgets.
+
+## Lead model (price lock)
+
+`NEXT_PUBLIC_BOOKING_MODE` selects how results convert. In `lead` mode (default)
+`OfferCard` links to `/lock/[offerId]`, where `LockFareForm` posts to
+`POST /api/price-locks`. `src/lib/leads/service.ts` re-fetches the offer,
+stores a `fare_locks` row (reference `L-XXXXXX`, itinerary snapshot, locked
+per-traveler price, expiry) and emails both the agency (`LEADS_EMAIL`) and the
+traveler. `src/lib/leads/chat-links.ts` builds `wa.me` / `m.me` deep links with
+the fare or reference prefilled; `FloatingChat` and the header use them.
+`/admin/leads` (users with role `admin` or listed in `ADMIN_EMAILS`) lists leads
+with inline status updates (`PATCH /api/admin/leads/:id`) and CSV export.
+`/book/*` redirects to `/lock/*` in lead mode so old links keep working.

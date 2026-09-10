@@ -36,7 +36,31 @@ export const site = {
     linkedin: "https://www.linkedin.com/company/air1tickets",
   },
   twitterHandle: "@air1tickets",
+  /**
+   * How travelers convert. "lead": travelers lock a fare and talk to an agent
+   * (WhatsApp / Messenger / call) who sends a last-minute deal; the site never
+   * takes payment. "checkout": the full self-service booking flow.
+   */
+  bookingMode: (process.env.NEXT_PUBLIC_BOOKING_MODE === "checkout" ? "checkout" : "lead") as "lead" | "checkout",
+  chat: {
+    /** E.164 digits only, e.g. 18885550147. */
+    whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 (888) 555-0147").replace(/[^\d]/g, ""),
+    /** Facebook Page username for m.me links. */
+    messenger: process.env.NEXT_PUBLIC_MESSENGER_PAGE ?? "air1tickets",
+    /** Optional Telegram username (without @). */
+    telegram: process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? "",
+  },
+  priceLock: {
+    /** How long a locked fare is honored, in hours. */
+    hours: Number(process.env.NEXT_PUBLIC_PRICE_LOCK_HOURS ?? 48),
+    /** Promised first response time for a new lock, in minutes. */
+    responseMinutes: Number(process.env.NEXT_PUBLIC_LOCK_RESPONSE_MINUTES ?? 15),
+    /** Where new leads are emailed. */
+    leadsEmail: process.env.LEADS_EMAIL ?? process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@air1tickets.com",
+  },
 } as const;
+
+export const isLeadMode = site.bookingMode === "lead";
 
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;

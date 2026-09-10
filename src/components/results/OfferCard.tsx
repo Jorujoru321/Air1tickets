@@ -2,11 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Briefcase, ChevronDown, Luggage, Moon } from "lucide-react";
+import { Briefcase, ChevronDown, Luggage, Moon, Lock } from "lucide-react";
 import type { Offer, Slice } from "@/lib/flights/types";
 import { airlineName } from "@/data/airlines";
 import { getAirport } from "@/data/airports";
 import { isRedEye, offerCarrierLabel, stopsLabel } from "@/lib/flights/format";
+import { WhatsAppTextLink } from "@/components/leads/ChatButtons";
+import { offerChatText } from "@/lib/leads/chat-links";
+import { isLeadMode } from "@/lib/site";
 import { cn, formatDateShort, formatDuration, formatMoney, formatTime } from "@/lib/utils";
 import { AirlineLogo } from "./AirlineLogo";
 import { ItineraryDetails } from "./ItineraryDetails";
@@ -108,13 +111,17 @@ export function OfferCard({ offer, perTraveler, position }: { offer: Offer; perT
             <p className="text-xs text-slate-500">{perTraveler > 1 ? `per traveler · ${formatMoney(total)} total` : offer.slices.length > 1 ? "round trip per traveler" : "one way per traveler"}</p>
             {offer.seatsRemaining !== undefined && offer.seatsRemaining <= 5 && <p className="mt-1 text-xs font-semibold text-sunrise-700">Only {offer.seatsRemaining} seat{offer.seatsRemaining > 1 ? "s" : ""} left at this price</p>}
           </div>
-          <Link
-            href={`/book/${encodeURIComponent(offer.id)}`}
-            className="inline-flex h-11 shrink-0 items-center justify-center rounded-[var(--radius-field)] bg-sunrise-500 px-6 text-sm font-semibold text-navy-950 shadow-sm transition hover:bg-sunrise-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500 lg:w-full"
-            aria-label={`Select ${offerCarrierLabel(offer)} flight to ${dest?.city ?? offer.slices[0].destination} for ${formatMoney(each)} per traveler`}
-          >
-            Select
-          </Link>
+          <div className="flex shrink-0 flex-col items-end gap-1.5 lg:w-full lg:items-stretch">
+            <Link
+              href={isLeadMode ? `/lock/${encodeURIComponent(offer.id)}` : `/book/${encodeURIComponent(offer.id)}`}
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-[var(--radius-field)] bg-sunrise-500 px-6 text-sm font-semibold text-navy-950 shadow-sm transition hover:bg-sunrise-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500 lg:w-full"
+              aria-label={`${isLeadMode ? "Lock" : "Select"} ${offerCarrierLabel(offer)} flight to ${dest?.city ?? offer.slices[0].destination} for ${formatMoney(each)} per traveler`}
+            >
+              {isLeadMode && <Lock className="h-4 w-4" aria-hidden />}
+              {isLeadMode ? "Lock this price" : "Select"}
+            </Link>
+            {isLeadMode && <WhatsAppTextLink text={offerChatText(offer)} className="lg:self-center" />}
+          </div>
         </div>
       </div>
       <div className="border-t border-slate-100 px-4 sm:px-5">

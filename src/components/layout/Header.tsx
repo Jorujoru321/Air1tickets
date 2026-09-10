@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/leads/ChatButtons";
+import { genericChatText, whatsappLink } from "@/lib/leads/chat-links";
 import { Logo } from "./Logo";
 import { PRIMARY_NAV } from "./nav";
 import { AccountMenu } from "./AccountMenu";
@@ -32,9 +34,9 @@ export function Header() {
             <Phone className="h-4 w-4 text-ocean-600" aria-hidden />
             {site.supportPhone}
           </a>
-          <Link href="/booking" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-900 md:block">
-            Manage booking
-          </Link>
+          <a href={whatsappLink(genericChatText())} target="_blank" rel="noopener" className="hidden items-center gap-2 rounded-lg bg-[#25d366] px-3 py-2 text-sm font-semibold text-[#062b16] hover:bg-[#1fbf5b] md:flex">
+            <WhatsAppIcon className="h-4 w-4" /> WhatsApp
+          </a>
           <AccountMenu className="hidden lg:flex" />
           <MobileNav />
         </div>
