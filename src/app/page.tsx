@@ -3,6 +3,8 @@ import { ArrowRight, BadgeDollarSign, Headset, Lock, MessageCircle, PlaneTakeoff
 import { ChatButtons } from "@/components/leads/ChatButtons";
 import { SearchTabs } from "@/components/search";
 import { PartnerStrip } from "@/components/marketing/PartnerStrip";
+import { HeroMedia } from "@/components/marketing/HeroMedia";
+import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { destinationSuggestions } from "@/data/destinations";
 import { PARTNERS } from "@/data/partners";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -114,10 +116,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy-950 text-white">
-        <div className="absolute inset-0 opacity-40" aria-hidden>
-          <DestinationArt theme="city" gradient={["#071229", "#12244a"]} seed="air1-hero" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(47,147,239,0.45),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(255,107,53,0.22),transparent_50%)]" aria-hidden />
+        <HeroMedia slot="home" theme="city" gradient={["#071229", "#1a75d8"]} seed="air1-hero" />
         <div className="container-page relative pb-10 pt-14 sm:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ocean-200 backdrop-blur">
             <PlaneTakeoff className="h-3.5 w-3.5" aria-hidden /> US-based travel agency · real agents on WhatsApp
@@ -142,6 +141,8 @@ export default function HomePage() {
           </ul>
         </div>
       </section>
+
+      <CaseStudies kind="flight" />
 
       <PartnerStrip partners={PARTNERS.slice(0, 10)} title="Fares and rates compared across" subtitle="Brand names are shown for reference only. Air1 Tickets is an independent travel agency and is not affiliated with these companies." />
 

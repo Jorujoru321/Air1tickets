@@ -14,6 +14,9 @@ import { destinationPath } from "@/lib/seo/slugs";
 import { typicalNightly } from "@/lib/hotels/rates";
 import { DESTINATIONS, POPULAR_DESTINATIONS, destinationSuggestions } from "@/data/destinations";
 import { partnersFor } from "@/data/partners";
+import { destinationPhoto } from "@/data/photos";
+import { HeroMedia } from "@/components/marketing/HeroMedia";
+import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { site } from "@/lib/site";
 import { formatMoney } from "@/lib/utils";
 
@@ -57,10 +60,7 @@ export default function HotelsPage() {
       <JsonLd data={[webPageJsonLd({ name: "Hotels", description: metadata.description ?? "", path: "/hotels" }), faqPageJsonLd(FAQS)]} />
 
       <section className="relative isolate overflow-hidden bg-navy-950 text-white">
-        <div className="absolute inset-0 -z-10 opacity-45" aria-hidden>
-          <DestinationArt theme="tropical" gradient={["#071229", "#1a75d8"]} seed="hotels-hero" />
-        </div>
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(47,147,239,0.4),transparent_55%)]" aria-hidden />
+        <HeroMedia slot="hotels" theme="tropical" gradient={["#071229", "#1a75d8"]} seed="hotels-hero" />
         <div className="container-page pb-10 pt-6 sm:pt-8">
           <Breadcrumbs items={crumbs} className="text-white/70 [&_a:hover]:text-white [&_span[aria-current]]:text-white" />
           <div className="mt-10 max-w-3xl sm:mt-14">
@@ -87,7 +87,7 @@ export default function HotelsPage() {
               <li key={d.slug}>
                 <Link href={destinationPath(d.slug)} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover">
                   <div className="aspect-[16/10]">
-                    <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={`hotel-${d.slug}`} />
+                    <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={`hotel-${d.slug}`} image={destinationPhoto(d.slug) ?? undefined} alt={`Hotels in ${d.city}`} />
                   </div>
                   <div className="flex flex-1 flex-col p-4">
                     <p className="font-display text-lg font-bold text-navy-900 group-hover:text-ocean-700">{d.city}</p>
@@ -132,7 +132,7 @@ export default function HotelsPage() {
           {resorts.map((d) => (
             <li key={d.slug} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
               <div className="aspect-[16/10]">
-                <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={`resort-${d.slug}`} />
+                <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={`resort-${d.slug}`} image={destinationPhoto(d.slug) ?? undefined} alt={`Resorts in ${d.city}`} />
               </div>
               <div className="p-4">
                 <p className="font-display text-lg font-bold text-navy-900">{d.city}</p>
@@ -143,6 +143,8 @@ export default function HotelsPage() {
           ))}
         </ul>
       </section>
+
+      <CaseStudies kind="hotel" title="A real booking we handled" description="Prices are what the traveler actually paid." />
 
       <section className="bg-white py-12">
         <div className="container-page max-w-3xl">

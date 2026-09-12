@@ -11,6 +11,7 @@ import { US_AIRLINES } from "@/data/airlines";
 import { getAirport } from "@/data/airports";
 import { getFaqGroup } from "@/data/faqs";
 import { FaqAccordion } from "@/components/seo/FaqAccordion";
+import { CaseStudies } from "@/components/marketing/CaseStudies";
 
 export const metadata = buildMetadata({
   title: "Cheap Flights — Compare & Book Airline Tickets",
@@ -118,6 +119,8 @@ export default function FlightsHubPage() {
           .
         </p>
       </section>
+
+      <CaseStudies kind="flight" />
 
       <section className="bg-white py-14">
         <div className="container-page max-w-3xl">

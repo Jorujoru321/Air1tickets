@@ -21,6 +21,7 @@ import { lowestRouteFare } from "@/lib/flights/route-info";
 import { DESTINATIONS, getDestination } from "@/data/destinations";
 import { getAirport } from "@/data/airports";
 import { REGION_LABELS } from "@/data/types";
+import { destinationPhoto } from "@/data/photos";
 import { ARTICLES } from "@/content/articles";
 import { formatDateShort, formatDuration, formatMoney } from "@/lib/utils";
 
@@ -110,7 +111,7 @@ export default async function DestinationPage({ params }: PageProps) {
 
       <header className="relative isolate overflow-hidden bg-navy-900 text-white">
         <div className="absolute inset-0 -z-10">
-          <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={d.slug} priority className="h-full w-full" />
+          <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={d.slug} priority className="h-full w-full" image={destinationPhoto(d.slug) ?? undefined} alt={`${d.city}, ${d.countryCode === "US" ? d.state : d.country}`} />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/40 to-navy-900/20" aria-hidden />
         </div>
         <div className="container-page pb-10 pt-6 sm:pt-8">

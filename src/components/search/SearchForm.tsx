@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftRight, PlaneLanding, PlaneTakeoff, Search } from "lucide-react";
-import { WhatsAppIcon } from "@/components/leads/ChatButtons";
 import { flightRequestText } from "@/lib/leads/request-text";
 import { openWhatsAppRequest } from "@/lib/leads/open-whatsapp";
 import { searchGoesToWhatsApp } from "@/lib/site";
@@ -207,15 +206,8 @@ export function SearchForm({ variant, initial, className, onSearch, toResults = 
           compact={!hero}
         />
         <div className="flex items-end">
-          <Button
-            type="submit"
-            size={hero ? "xl" : "lg"}
-            full
-            loading={submitting}
-            leftIcon={toWhatsApp ? <WhatsAppIcon className="h-5 w-5" /> : <Search className="h-5 w-5" aria-hidden />}
-            className={cn(hero ? "lg:mt-5 lg:h-14" : "lg:mt-5 lg:h-12", toWhatsApp && "bg-[#25d366] text-[#062b16] hover:bg-[#1fbf5b] active:bg-[#17a34c]")}
-          >
-            {submitting ? "Opening WhatsApp…" : hero ? "Get my price" : "Get price"}
+          <Button type="submit" size={hero ? "xl" : "lg"} full loading={submitting} leftIcon={<Search className="h-5 w-5" aria-hidden />} className={cn(hero ? "lg:mt-5 lg:h-14" : "lg:mt-5 lg:h-12")}>
+            {hero ? "Search flights" : "Search"}
           </Button>
         </div>
       </div>
@@ -226,7 +218,7 @@ export function SearchForm({ variant, initial, className, onSearch, toResults = 
       )}
       {toWhatsApp && (
         <p className="mt-3 text-center text-xs text-slate-600 lg:text-left">
-          We send your trip to a live agent on WhatsApp and reply with a last-minute deal. Free, no card, no account.
+          We check every airline and reply with your price, including the last-minute deals that never reach public search.
         </p>
       )}
     </form>

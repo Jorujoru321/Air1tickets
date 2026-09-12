@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { WhatsAppIcon } from "@/components/leads/ChatButtons";
+import { Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { DatePicker } from "./DatePicker";
 import { CountField, PlaceInput } from "./PlaceInput";
@@ -68,9 +68,9 @@ export function HotelSearchForm({ variant = "hero", suggestions, initialDestinat
         </div>
       </div>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-slate-600">Agents compare Expedia, Booking.com and direct hotel rates, then send you the lowest.</p>
-        <Button type="submit" size={hero ? "xl" : "lg"} loading={submitting} leftIcon={<WhatsAppIcon className="h-5 w-5" />} className="bg-[#25d366] text-[#062b16] hover:bg-[#1fbf5b] active:bg-[#17a34c] sm:w-auto">
-          {submitting ? "Opening WhatsApp…" : "Get my hotel price"}
+        <p className="text-xs text-slate-600">We compare Expedia, Booking.com and direct hotel rates, then send you the lowest.</p>
+        <Button type="submit" size={hero ? "xl" : "lg"} loading={submitting} leftIcon={<Search className="h-5 w-5" aria-hidden />} className="sm:w-auto">
+          Search hotels
         </Button>
       </div>
     </form>
