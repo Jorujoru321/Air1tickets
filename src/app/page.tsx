@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowRight, BadgeDollarSign, Headset, Lock, MessageCircle, PlaneTakeoff, Search, ShieldCheck, Tag } from "lucide-react";
 import { ChatButtons } from "@/components/leads/ChatButtons";
-import { SearchForm } from "@/components/search";
+import { SearchTabs } from "@/components/search";
+import { PartnerStrip } from "@/components/marketing/PartnerStrip";
+import { destinationSuggestions } from "@/data/destinations";
+import { PARTNERS } from "@/data/partners";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/seo/FaqAccordion";
 import { DestinationArt } from "@/components/marketing/DestinationArt";
@@ -23,8 +26,8 @@ import { addDays, formatDateShort, formatMoney } from "@/lib/utils";
 export const revalidate = 21600;
 
 export const metadata = buildMetadata({
-  title: "Cheap Flights — Lock a Low Fare Free, Get a Last-Minute Deal",
-  description: "Search cheap flights from every US airport across 500+ airlines. Lock the fare you like free, no card needed, and our US-based agents send you a last-minute deal on WhatsApp 1–2 days before you fly.",
+  title: "Cheap Flights, Hotels & Things to Do — Priced on WhatsApp",
+  description: "Tell us where you're going and a US-based agent sends your price on WhatsApp in about 15 minutes. Flights from every US airport, hotels, resorts and tours — with last-minute deals you won't find online.",
   path: "/",
 });
 
@@ -119,10 +122,10 @@ export default function HomePage() {
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ocean-200 backdrop-blur">
             <PlaneTakeoff className="h-3.5 w-3.5" aria-hidden /> US-based travel agency · real agents on WhatsApp
           </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">Find a low fare. Lock it free. Pay less later.</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">Search 500+ airlines from every US airport. Lock the fare you like — no card — and our agents send you a last-minute deal 1–2 days before you fly.</p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">Tell us where you&apos;re going. Get the price on WhatsApp.</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">Flights, hotels and things to do. Fill in your trip, hit the button, and a real agent replies with a last-minute deal in about {site.priceLock.responseMinutes} minutes. Free, no account, no card.</p>
           <div className="mt-8">
-            <SearchForm variant="hero" />
+            <SearchTabs suggestions={destinationSuggestions()} />
           </div>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {TRUST.map((t) => (
@@ -139,6 +142,8 @@ export default function HomePage() {
           </ul>
         </div>
       </section>
+
+      <PartnerStrip partners={PARTNERS.slice(0, 10)} title="Fares and rates compared across" subtitle="Brand names are shown for reference only. Air1 Tickets is an independent travel agency and is not affiliated with these companies." />
 
       {/* Popular destinations */}
       <section className="container-page py-14">
@@ -204,7 +209,7 @@ export default function HomePage() {
         <div className="container-page">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl text-white sm:text-3xl">How price lock works</h2>
+              <h2 className="text-2xl text-white sm:text-3xl">How it works</h2>
               <p className="mt-1 text-white/75">Three steps, one WhatsApp thread. You never pay until you say yes.</p>
             </div>
             <Link href="/price-lock" className="inline-flex items-center gap-1 text-sm font-semibold text-ocean-200 hover:text-white">
@@ -213,9 +218,9 @@ export default function HomePage() {
           </div>
           <ol className="mt-8 grid gap-6 md:grid-cols-3">
             {[
-              ["Search & lock", `Find a fare you like and tap "Lock this price". Leave your name and WhatsApp number — we hold that itinerary and price for ${site.priceLock.hours} hours, free.`],
-              ["Talk to an agent", `Within about ${site.priceLock.responseMinutes} minutes an agent confirms your lock on WhatsApp, Messenger or by phone and flags smarter options, like a nearby airport or better dates.`],
-              ["Get your deal & fly", "1–2 days before departure we re-shop every airline and send your final quote — the locked price is the most you'll pay. Accept, pay via secure link, and your e-ticket is emailed."],
+              ["Tell us the trip", "Fill in where you're going and when — flights, a hotel or something to do. One tap sends it to us on WhatsApp with everything already typed out."],
+              [`A real agent replies`, `In about ${site.priceLock.responseMinutes} minutes you get a price, plus the cheaper options you'd never find yourself: a nearby airport, a date shifted by a day, a resort with more included.`],
+              ["Lock it in, pay later", `Like a price? We hold it for ${site.priceLock.hours} hours free. Close to departure we re-shop it and send your final last-minute deal — you only pay when you accept.`],
             ].map(([title, text], i) => (
               <li key={title} className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sunrise-500 font-display text-sm font-extrabold text-navy-950">{i + 1}</span>

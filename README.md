@@ -4,9 +4,13 @@ A US-based online travel agency for flights — search, compare and book airline
 tickets, in the spirit of Kiwi.com and Booking.com. Built with Next.js 16,
 TypeScript and Tailwind CSS v4, with SEO as a first-class concern.
 
-**How it converts (lead model, the default):** travelers search real-looking
-fares, tap **Lock this price** (name + WhatsApp number, no card) or message the
-agency directly on WhatsApp / Messenger with the fare prefilled. Every lock is
+**How it converts (WhatsApp-first, the default):** a traveler fills in the
+flight, hotel or activity search and taps the green button; WhatsApp opens with
+their whole request already typed out (route, dates, travelers, cabin) so an
+agent can reply with a last-minute deal. Every hand-off is also recorded in
+`quote_requests` and shown in `/admin/leads`, so demand is captured even when
+someone never presses send. Travelers who browse the on-site fare pages can
+still tap **Lock this price** to hold a fare (name + WhatsApp number, no card). Every lock is
 saved, emailed to the agency and listed in `/admin/leads`; agents then send a
 last-minute deal 1–2 days before departure and take payment off-site. The full
 self-service checkout still exists behind `NEXT_PUBLIC_BOOKING_MODE=checkout`.

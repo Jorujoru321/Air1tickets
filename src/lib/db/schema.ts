@@ -168,3 +168,25 @@ export const fareLocks = sqliteTable(
   (t) => [uniqueIndex("fare_locks_reference_idx").on(t.reference), index("fare_locks_status_idx").on(t.status), index("fare_locks_created_idx").on(t.createdAt)],
 );
 export type FareLock = typeof fareLocks.$inferSelect;
+
+/** Every search a visitor turned into a WhatsApp request (flight, hotel or activity). */
+export const quoteRequests = sqliteTable(
+  "quote_requests",
+  {
+    id: text("id").primaryKey(),
+    kind: text("kind", { enum: ["flight", "hotel", "activity"] }).notNull(),
+    /** The exact message text we handed to WhatsApp. */
+    message: text("message").notNull(),
+    /** Request fields as JSON (origin/destination/dates/travelers...). */
+    details: text("details"),
+    origin: text("origin"),
+    destination: text("destination"),
+    startDate: text("start_date"),
+    endDate: text("end_date"),
+    travelers: integer("travelers"),
+    referrer: text("referrer"),
+    createdAt: text("created_at").notNull().default(now()),
+  },
+  (t) => [index("quote_requests_kind_idx").on(t.kind), index("quote_requests_created_idx").on(t.createdAt)],
+);
+export type QuoteRequest = typeof quoteRequests.$inferSelect;

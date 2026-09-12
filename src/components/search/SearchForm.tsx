@@ -3,6 +3,10 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftRight, PlaneLanding, PlaneTakeoff, Search } from "lucide-react";
+import { WhatsAppIcon } from "@/components/leads/ChatButtons";
+import { flightRequestText } from "@/lib/leads/request-text";
+import { openWhatsAppRequest } from "@/lib/leads/open-whatsapp";
+import { searchGoesToWhatsApp } from "@/lib/site";
 import type { Airport, CabinClass, PassengerCounts, SearchParams } from "@/lib/flights/types";
 import { getAirport } from "@/data/airports";
 import { buildSearchUrl } from "@/lib/flights/search-params";
@@ -18,6 +22,8 @@ export interface SearchFormProps {
   className?: string;
   /** Called instead of navigating (used by tests / embedded flows). */
   onSearch?: (params: SearchParams) => void;
+  /** Force the on-site results page even when the site sends searches to WhatsApp. */
+  toResults?: boolean;
 }
 
 const STORAGE_KEY = "air1:lastSearch";
@@ -41,7 +47,7 @@ function readStored(): Stored | null {
   }
 }
 
-export function SearchForm({ variant, initial, className, onSearch }: SearchFormProps) {
+export function SearchForm({ variant, initial, className, onSearch, toResults = false }: SearchFormProps) {
   const router = useRouter();
   const hero = variant === "hero";
   const [tripType, setTripType] = React.useState<"round_trip" | "one_way">(initial && "returnDate" in initial && !initial.returnDate && initial.departDate ? "one_way" : "round_trip");
@@ -54,6 +60,7 @@ export function SearchForm({ variant, initial, className, onSearch }: SearchForm
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [submitting, setSubmitting] = React.useState(false);
   const uid = React.useId().replace(/:/g, "");
+  const toWhatsApp = searchGoesToWhatsApp && !toResults && !onSearch;
 
   // Prefill from the last search (or sensible defaults) when nothing was provided.
   React.useEffect(() => {
@@ -116,6 +123,10 @@ export function SearchForm({ variant, initial, className, onSearch }: SearchForm
     } catch {}
     if (onSearch) return onSearch(params);
     setSubmitting(true);
+    if (toWhatsApp) {
+      openWhatsAppRequest(flightRequestText(params), { kind: "flight", ...params });
+      return;
+    }
     router.push(buildSearchUrl(params));
   }
 
@@ -189,14 +200,26 @@ export function SearchForm({ variant, initial, className, onSearch }: SearchForm
           compact={!hero}
         />
         <div className="flex items-end">
-          <Button type="submit" size={hero ? "xl" : "lg"} full loading={submitting} leftIcon={<Search className="h-5 w-5" aria-hidden />} className={cn(hero ? "lg:mt-5 lg:h-14" : "lg:mt-5 lg:h-12")}>
-            {hero ? "Search flights" : "Search"}
+          <Button
+            type="submit"
+            size={hero ? "xl" : "lg"}
+            full
+            loading={submitting}
+            leftIcon={toWhatsApp ? <WhatsAppIcon className="h-5 w-5" /> : <Search className="h-5 w-5" aria-hidden />}
+            className={cn(hero ? "lg:mt-5 lg:h-14" : "lg:mt-5 lg:h-12", toWhatsApp && "bg-[#25d366] text-[#062b16] hover:bg-[#1fbf5b] active:bg-[#17a34c]")}
+          >
+            {submitting ? "Opening WhatsApp…" : hero ? "Get my price" : "Get price"}
           </Button>
         </div>
       </div>
       {errors.passengers && (
         <p className="mt-2 text-sm font-medium text-danger-600" role="alert">
           {errors.passengers}
+        </p>
+      )}
+      {toWhatsApp && (
+        <p className="mt-3 text-center text-xs text-slate-600 lg:text-left">
+          We send your trip to a live agent on WhatsApp and reply with a last-minute deal. Free, no card, no account.
         </p>
       )}
     </form>

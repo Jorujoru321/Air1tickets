@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { searchUrl, waitForOffers } from "./helpers";
 
-const STATIC_PAGES = ["/", "/flights", "/price-lock", "/cheap-flights/new-york-to-los-angeles", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help", "/booking", "/account/login", "/legal/privacy"];
+const STATIC_PAGES = ["/", "/flights", "/hotels", "/activities", "/price-lock", "/cheap-flights/new-york-to-los-angeles", "/destinations/cancun", "/travel-guides/how-to-find-cheap-flights", "/help", "/booking", "/account/login", "/legal/privacy"];
 
 async function audit(page: Page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).disableRules(["color-contrast-enhanced"]).analyze();

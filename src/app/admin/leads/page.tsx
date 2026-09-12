@@ -8,7 +8,7 @@ import { WhatsAppIcon } from "@/components/leads/ChatButtons";
 import { LeadStatusSelect } from "@/components/leads/LeadStatusSelect";
 import { getCurrentUser } from "@/lib/auth/current-user";
 import { isAdminUser } from "@/lib/leads/admin";
-import { listFareLocks } from "@/lib/leads/service";
+import { listFareLocks, listQuoteRequests } from "@/lib/leads/service";
 import { lockExpired } from "@/lib/leads/reference";
 import { getAirport } from "@/data/airports";
 import { getAirline } from "@/data/airlines";
@@ -35,7 +35,7 @@ export default async function LeadsAdminPage() {
       </div>
     );
   }
-  const leads = await listFareLocks(300);
+  const [leads, requests] = await Promise.all([listFareLocks(300), listQuoteRequests(40)]);
   const open = leads.filter((l) => l.status === "new" || l.status === "contacted" || l.status === "quoted").length;
 
   return (
@@ -145,6 +145,35 @@ export default async function LeadsAdminPage() {
           </table>
         </div>
       )}
+
+      <section className="mt-12" aria-labelledby="requests-heading">
+        <h2 id="requests-heading" className="text-xl font-bold text-navy-900">
+          Searches sent to WhatsApp
+        </h2>
+        <p className="mt-1 text-sm text-slate-600">Every search someone handed off to WhatsApp, recorded here even if they never pressed send. Useful for spotting demand and following up.</p>
+        {requests.length === 0 ? (
+          <p className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-600">No searches recorded yet.</p>
+        ) : (
+          <ul className="mt-4 space-y-2">
+            {requests.map((r) => (
+              <li key={r.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                  <span className="rounded-full bg-ocean-100 px-2 py-0.5 font-semibold capitalize text-ocean-800">{r.kind}</span>
+                  <span>{formatDateShort(r.createdAt)}</span>
+                  {r.travelers ? <span>· {r.travelers} traveler{r.travelers === 1 ? "" : "s"}</span> : null}
+                  {r.startDate ? (
+                    <span>
+                      · {formatDateShort(r.startDate)}
+                      {r.endDate ? ` – ${formatDateShort(r.endDate)}` : ""}
+                    </span>
+                  ) : null}
+                </div>
+                <p className="mt-2 whitespace-pre-line text-sm text-slate-700">{r.message}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   );
 }

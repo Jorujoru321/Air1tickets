@@ -10,6 +10,8 @@ import { airlinePath, airportPath, articlePath, citySlug, destinationPath, route
 const STATIC: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "/", priority: 1, changeFrequency: "daily" },
   { path: "/flights", priority: 0.9, changeFrequency: "daily" },
+  { path: "/hotels", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/activities", priority: 0.85, changeFrequency: "weekly" },
   { path: "/deals", priority: 0.9, changeFrequency: "daily" },
   { path: "/price-lock", priority: 0.8, changeFrequency: "monthly" },
   { path: "/cheap-flights", priority: 0.9, changeFrequency: "weekly" },

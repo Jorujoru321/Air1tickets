@@ -19,7 +19,7 @@ export const site = {
   language: "en-US",
   currency: "USD",
   country: "US",
-  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (888) 555-0147",
+  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (942) 338-2017",
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@air1tickets.com",
   address: {
     streetAddress: "1250 Market Street, Suite 400",
@@ -42,9 +42,17 @@ export const site = {
    * takes payment. "checkout": the full self-service booking flow.
    */
   bookingMode: (process.env.NEXT_PUBLIC_BOOKING_MODE === "checkout" ? "checkout" : "lead") as "lead" | "checkout",
+  /**
+   * What the big "Search" button does. "whatsapp" (default): opens WhatsApp
+   * with the whole request typed out, so an agent can quote a last-minute deal.
+   * "results": shows the on-site fare results page instead.
+   */
+  searchMode: (process.env.NEXT_PUBLIC_SEARCH_MODE === "results" ? "results" : "whatsapp") as "whatsapp" | "results",
   chat: {
-    /** E.164 digits only, e.g. 18885550147. */
-    whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 (888) 555-0147").replace(/[^\d]/g, ""),
+    /** E.164 digits only, e.g. 19423382017 (country code + number). */
+    whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 942-338-2017").replace(/[^\d]/g, ""),
+    /** The same number formatted for display. */
+    whatsappDisplay: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+1 (942) 338-2017",
     /** Facebook Page username for m.me links. */
     messenger: process.env.NEXT_PUBLIC_MESSENGER_PAGE ?? "air1tickets",
     /** Optional Telegram username (without @). */
@@ -61,6 +69,7 @@ export const site = {
 } as const;
 
 export const isLeadMode = site.bookingMode === "lead";
+export const searchGoesToWhatsApp = site.searchMode === "whatsapp";
 
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;

@@ -1,15 +1,17 @@
 /** Primary navigation — single source of truth for header + footer + sitemap hubs. */
 export const PRIMARY_NAV = [
   { label: "Flights", href: "/flights" },
+  { label: "Hotels", href: "/hotels" },
+  { label: "Things to do", href: "/activities" },
   { label: "Deals", href: "/deals" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Travel guides", href: "/travel-guides" },
-  { label: "Price lock", href: "/price-lock" },
   { label: "Help", href: "/help" },
 ] as const;
 
 export const FOOTER_COMPANY = [
   { label: "About Air1 Tickets", href: "/about" },
+  { label: "Hotels", href: "/hotels" },
+  { label: "Things to do", href: "/activities" },
   { label: "Contact us", href: "/contact" },
   { label: "Help center", href: "/help" },
   { label: "Deals", href: "/deals" },

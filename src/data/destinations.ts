@@ -28,3 +28,8 @@ export const POPULAR_DESTINATIONS: Destination[] = DESTINATIONS.filter((d) => d.
 export function getDestinationsByRegion(region: Region): Destination[] {
   return DESTINATIONS.filter((d) => d.region === region);
 }
+
+/** Human place labels ("Cancún, Mexico") used as datalist suggestions in hotel/activity search. */
+export function destinationSuggestions(): string[] {
+  return DESTINATIONS.map((d) => (d.countryCode === "US" ? `${d.city}, ${d.state}` : `${d.city}, ${d.country}`)).sort((a, b) => a.localeCompare(b));
+}

@@ -2,7 +2,7 @@ import "server-only";
 import { desc, eq } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import { getDb, schema } from "@/lib/db/client";
-import type { FareLock } from "@/lib/db/schema";
+import type { FareLock, QuoteRequest } from "@/lib/db/schema";
 import type { Offer } from "@/lib/flights/types";
 import { getAirport } from "@/data/airports";
 import { getAirline } from "@/data/airlines";
@@ -153,4 +153,10 @@ export function fareLocksToCsv(rows: FareLock[]): string {
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
   return [cols.join(","), ...rows.map((r) => cols.map((c) => esc(r[c])).join(","))].join("\n");
+}
+
+/** Recent searches that were handed off to WhatsApp (whether or not the traveler pressed send). */
+export async function listQuoteRequests(limit = 50): Promise<QuoteRequest[]> {
+  const db = await getDb();
+  return db.select().from(schema.quoteRequests).orderBy(desc(schema.quoteRequests.createdAt)).limit(limit);
 }

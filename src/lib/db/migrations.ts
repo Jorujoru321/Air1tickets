@@ -149,4 +149,24 @@ export const MIGRATIONS: Migration[] = [
       `CREATE INDEX IF NOT EXISTS fare_locks_created_idx ON fare_locks (created_at)`,
     ],
   },
+  {
+    id: "0003_quote_requests",
+    statements: [
+      `CREATE TABLE IF NOT EXISTS quote_requests (
+        id TEXT PRIMARY KEY,
+        kind TEXT NOT NULL,
+        message TEXT NOT NULL,
+        details TEXT,
+        origin TEXT,
+        destination TEXT,
+        start_date TEXT,
+        end_date TEXT,
+        travelers INTEGER,
+        referrer TEXT,
+        created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+      )`,
+      `CREATE INDEX IF NOT EXISTS quote_requests_kind_idx ON quote_requests (kind)`,
+      `CREATE INDEX IF NOT EXISTS quote_requests_created_idx ON quote_requests (created_at)`,
+    ],
+  },
 ];
