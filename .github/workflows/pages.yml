@@ -5,6 +5,13 @@ name: Deploy preview to GitHub Pages
 # the full WhatsApp search flow, which runs in the browser. Pages that need a
 # server (fare results, price lock, checkout, accounts, admin, contact form)
 # are not part of the preview; deploy to Vercel for those.
+#
+# ONE-TIME SETUP: GitHub Pages must be turned on for this repository before the
+# deploy job can publish. Go to Settings → Pages → "Build and deployment" and
+# set Source to "GitHub Actions". (If the deploy still fails, also check
+# Settings → Actions → General → Workflow permissions is set to
+# "Read and write permissions".) Then re-run this workflow — the build job
+# below works either way, so the site is always ready to publish.
 
 on:
   push:
@@ -31,27 +38,31 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        with:
-          # Turns Pages on for the repository the first time this runs.
-          enablement: true
+      # Project pages live under /<repo>, so the base path is derived from the
+      # repository name rather than from the Pages API — that keeps the build
+      # working before Pages has been switched on.
+      - name: Work out the public URL
+        id: url
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY%%/*}"
+          echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
+          echo "base_url=https://${owner,,}.github.io/${repo}" >> "$GITHUB_OUTPUT"
 
       - run: npm ci
 
       - name: Strip server-only routes and switch to static export
         env:
           FORCE_STATIC_EXPORT: "1"
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.url.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.url.outputs.base_url }}
         run: node scripts/prepare-static-export.mjs
 
       - name: Build static site
         env:
           NEXT_PUBLIC_STATIC_PREVIEW: "1"
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.url.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.url.outputs.base_url }}
           NEXT_TELEMETRY_DISABLED: "1"
         run: npm run build
 
@@ -69,5 +80,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Enables Pages automatically where the repository's token is allowed to.
+      # If this fails, switch Pages on by hand (see the note at the top).
+      - uses: actions/configure-pages@v5
+        continue-on-error: true
+        with:
+          enablement: true
+
       - id: deployment
         uses: actions/deploy-pages@v4
