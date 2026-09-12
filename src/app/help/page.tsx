@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { ALL_FAQS, FAQ_GROUPS } from "@/data/faqs";
 import { site } from "@/lib/site";
+import { contactHref } from "@/lib/leads/chat-links";
 
 export const metadata = buildMetadata({
   title: "Help Center — Bookings, Changes, Baggage & Travel Documents",
@@ -42,7 +43,7 @@ export default function HelpPage() {
             <a href={`mailto:${site.supportEmail}`} className="mt-2 flex items-center gap-2 text-sm text-white/85">
               <Mail className="h-4 w-4 text-ocean-300" aria-hidden /> {site.supportEmail}
             </a>
-            <a href="/contact" className="mt-4 inline-block text-sm font-semibold text-ocean-200 hover:underline">
+            <a href={contactHref()} className="mt-4 inline-block text-sm font-semibold text-ocean-200 hover:underline">
               Send us a message →
             </a>
           </div>

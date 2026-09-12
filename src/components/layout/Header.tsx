@@ -3,10 +3,10 @@ import { Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/leads/ChatButtons";
 import { genericChatText, whatsappLink } from "@/lib/leads/chat-links";
 import { Logo } from "./Logo";
-import { PRIMARY_NAV } from "./nav";
+import { PRIMARY_NAV, visibleLinks } from "./nav";
 import { AccountMenu } from "./AccountMenu";
 import { MobileNav } from "./MobileNav";
-import { site } from "@/lib/site";
+import { isStaticPreview, site } from "@/lib/site";
 
 export function Header() {
   return (
@@ -16,7 +16,7 @@ export function Header() {
           <Logo />
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center gap-1">
-              {PRIMARY_NAV.map((item) => (
+              {visibleLinks(PRIMARY_NAV).map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-900">
                     {item.label}
@@ -37,7 +37,7 @@ export function Header() {
           <a href={whatsappLink(genericChatText())} target="_blank" rel="noopener" className="hidden items-center gap-2 rounded-lg bg-[#25d366] px-3 py-2 text-sm font-semibold text-[#062b16] hover:bg-[#1fbf5b] md:flex">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
           </a>
-          <AccountMenu className="hidden lg:flex" />
+          {!isStaticPreview && <AccountMenu className="hidden lg:flex" />}
           <MobileNav />
         </div>
       </div>

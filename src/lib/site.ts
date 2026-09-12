@@ -71,6 +71,13 @@ export const site = {
 export const isLeadMode = site.bookingMode === "lead";
 export const searchGoesToWhatsApp = site.searchMode === "whatsapp";
 
+/**
+ * True in the static GitHub Pages preview, which has no server: pages that
+ * need a database or an API route are not built, so links to them are hidden
+ * and trip deep links go to WhatsApp instead.
+ */
+export const isStaticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1";
+
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;
   return `${site.url}${path.startsWith("/") ? path : `/${path}`}`;

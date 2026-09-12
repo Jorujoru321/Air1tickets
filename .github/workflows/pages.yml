@@ -1,0 +1,73 @@
+name: Deploy preview to GitHub Pages
+
+# Publishes a static preview of the site at
+# https://<owner>.github.io/<repo>/ — the whole marketing and SEO surface plus
+# the full WhatsApp search flow, which runs in the browser. Pages that need a
+# server (fare results, price lock, checkout, accounts, admin, contact form)
+# are not part of the preview; deploy to Vercel for those.
+
+on:
+  push:
+    branches: [claude/travel-ticketing-website-2uop5k, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          # Turns Pages on for the repository the first time this runs.
+          enablement: true
+
+      - run: npm ci
+
+      - name: Strip server-only routes and switch to static export
+        env:
+          FORCE_STATIC_EXPORT: "1"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+        run: node scripts/prepare-static-export.mjs
+
+      - name: Build static site
+        env:
+          NEXT_PUBLIC_STATIC_PREVIEW: "1"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: npm run build
+
+      - name: Stop Pages from hiding _next/
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

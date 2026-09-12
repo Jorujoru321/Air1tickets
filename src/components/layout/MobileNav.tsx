@@ -3,9 +3,9 @@
 import * as React from "react";
 import Link from "next/link";
 import { Menu, Phone, X } from "lucide-react";
-import { PRIMARY_NAV } from "./nav";
+import { PRIMARY_NAV, visibleLinks } from "./nav";
 import { Button } from "@/components/ui/Button";
-import { site } from "@/lib/site";
+import { isStaticPreview, site } from "@/lib/site";
 import { Logo } from "./Logo";
 
 export function MobileNav() {
@@ -46,7 +46,7 @@ export function MobileNav() {
             </div>
             <nav className="flex-1 overflow-y-auto px-3 py-3">
               <ul className="space-y-0.5">
-                {PRIMARY_NAV.map((item) => (
+                {visibleLinks(PRIMARY_NAV).map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100">
                       {item.label}
@@ -59,14 +59,16 @@ export function MobileNav() {
                   </Link>
                 </li>
               </ul>
-              <div className="mt-4 space-y-2 border-t border-slate-100 px-3 pt-4">
-                <Button href="/account/login" variant="outline" full onClick={() => setOpen(false)}>
-                  Sign in
-                </Button>
-                <Button href="/account/register" variant="secondary" full onClick={() => setOpen(false)}>
-                  Create account
-                </Button>
-              </div>
+              {!isStaticPreview && (
+                <div className="mt-4 space-y-2 border-t border-slate-100 px-3 pt-4">
+                  <Button href="/account/login" variant="outline" full onClick={() => setOpen(false)}>
+                    Sign in
+                  </Button>
+                  <Button href="/account/register" variant="secondary" full onClick={() => setOpen(false)}>
+                    Create account
+                  </Button>
+                </div>
+              )}
             </nav>
             <div className="border-t border-slate-100 px-5 py-4 text-sm text-slate-600">
               <a href={`tel:${site.supportPhone.replace(/[^\d+]/g, "")}`} className="flex items-center gap-2 font-semibold text-navy-900">

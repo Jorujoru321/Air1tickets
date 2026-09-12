@@ -1,3 +1,14 @@
+import { isStaticPreview } from "@/lib/site";
+
+/** Pages the static preview does not build (they need a database or an API route). */
+const SERVER_ONLY = ["/booking", "/price-alerts", "/contact", "/account", "/admin", "/flights/search"];
+
+/** Hide links to server-only pages when running as the static preview. */
+export function visibleLinks<T extends { href: string }>(links: readonly T[]): T[] {
+  if (!isStaticPreview) return [...links];
+  return links.filter((l) => !SERVER_ONLY.some((p) => l.href === p || l.href.startsWith(`${p}/`) || l.href.startsWith(`${p}#`)));
+}
+
 /** Primary navigation — single source of truth for header + footer + sitemap hubs. */
 export const PRIMARY_NAV = [
   { label: "Flights", href: "/flights" },

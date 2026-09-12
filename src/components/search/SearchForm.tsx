@@ -62,14 +62,21 @@ export function SearchForm({ variant, initial, className, onSearch, toResults = 
   const uid = React.useId().replace(/:/g, "");
   const toWhatsApp = searchGoesToWhatsApp && !toResults && !onSearch;
 
-  // Prefill from the last search (or sensible defaults) when nothing was provided.
+  // Prefill from the URL (?from=JFK&to=LAX), then the last search, then sensible
+  // defaults. Reading the query here rather than on the server keeps every page
+  // that embeds this form statically renderable.
   React.useEffect(() => {
     if (initial?.origin || initial?.destination || initial?.departDate) return;
+    const query = new URLSearchParams(window.location.search);
+    const fromParam = query.get("from")?.toUpperCase();
+    const toParam = query.get("to")?.toUpperCase();
+    if (fromParam) setOrigin(getAirport(fromParam) ?? null);
+    if (toParam) setDestination(getAirport(toParam) ?? null);
     const stored = readStored();
     const today = toDateOnly(new Date());
     if (stored) {
-      if (stored.origin) setOrigin(getAirport(stored.origin) ?? null);
-      if (stored.destination) setDestination(getAirport(stored.destination) ?? null);
+      if (stored.origin && !fromParam) setOrigin(getAirport(stored.origin) ?? null);
+      if (stored.destination && !toParam) setDestination(getAirport(stored.destination) ?? null);
       const start = stored.departDate && stored.departDate >= today ? stored.departDate : addDays(today, 14);
       const end = stored.returnDate && stored.returnDate >= start ? stored.returnDate : stored.returnDate === null ? null : addDays(start, 7);
       setDates({ start, end });

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { site } from "@/lib/site";
+import { contactHref } from "@/lib/leads/chat-links";
 
 export const metadata = buildMetadata({
   title: "About Air1 Tickets — A US Travel Agency With Real People",
@@ -91,7 +92,7 @@ export default function AboutPage() {
               <p className="mt-4 text-slate-700">We are travel agents, former airline operations staff and engineers working from {site.address.addressLocality} and remotely across the US. Our support team is entirely US-based and staffed around the clock; our editors write every destination guide and route page from real schedules and fares rather than templates.</p>
               <p className="mt-3 text-slate-700">We don&apos;t publish invented review scores or booking counts. What we can promise is on every page: the total price up front, the fare rules in plain English and a person on the line when you need one.</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                <Button href="/contact" variant="secondary">
+                <Button href={contactHref()} variant="secondary">
                   Contact us
                 </Button>
                 <Button href="/help" variant="outline">

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { CreditCard, Lock, Phone, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
-import { FOOTER_COMPANY, FOOTER_LEGAL, FOOTER_SUPPORT } from "./nav";
+import { FOOTER_COMPANY, FOOTER_LEGAL, FOOTER_SUPPORT, visibleLinks } from "./nav";
 import { NewsletterForm } from "./NewsletterForm";
-import { isLeadMode, site } from "@/lib/site";
+import { isLeadMode, isStaticPreview, site } from "@/lib/site";
 import { POPULAR_ROUTES } from "@/data/routes";
 import { POPULAR_DESTINATIONS } from "@/data/destinations";
 import { getAirport } from "@/data/airports";
@@ -49,7 +49,7 @@ export function Footer() {
 
         <FooterColumn title="Company">
           <ul className="space-y-2">
-            {FOOTER_COMPANY.map((l) => (
+            {visibleLinks(FOOTER_COMPANY).map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className={linkClass}>
                   {l.label}
@@ -61,7 +61,7 @@ export function Footer() {
 
         <FooterColumn title="Support">
           <ul className="space-y-2">
-            {FOOTER_SUPPORT.map((l) => (
+            {visibleLinks(FOOTER_SUPPORT).map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className={linkClass}>
                   {l.label}
@@ -125,7 +125,7 @@ export function Footer() {
             </span>
           </div>
           <ul className="flex flex-wrap gap-x-4 gap-y-1">
-            {FOOTER_LEGAL.map((l) => (
+            {visibleLinks(FOOTER_LEGAL).map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-white">
                   {l.label}

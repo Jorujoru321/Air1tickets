@@ -5,6 +5,9 @@
 import { z } from "zod";
 import { CABIN_CLASSES, type CabinClass, type SearchParams } from "./types";
 import { addDays, toDateOnly } from "@/lib/utils";
+import { isStaticPreview } from "@/lib/site";
+import { flightRequestText } from "@/lib/leads/request-text";
+import { whatsappLink } from "@/lib/leads/chat-links";
 
 const iata = z
   .string()
@@ -102,8 +105,13 @@ export function toSearchParams(q: SearchQuery): SearchParams {
   };
 }
 
-/** Build the canonical search URL for a set of params. */
+/**
+ * Where a "see these dates" link goes. Normally the on-site results page; in
+ * the static preview (no server to price fares) it opens WhatsApp with the
+ * trip written out, which is the same thing the search button does.
+ */
 export function buildSearchUrl(p: SearchParams): string {
+  if (isStaticPreview) return whatsappLink(flightRequestText(p));
   const sp = new URLSearchParams();
   sp.set("from", p.origin);
   sp.set("to", p.destination);

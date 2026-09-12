@@ -1,7 +1,7 @@
 import type { Offer } from "@/lib/flights/types";
 import { getAirport } from "@/data/airports";
 import { getAirline } from "@/data/airlines";
-import { site } from "@/lib/site";
+import { isStaticPreview, site } from "@/lib/site";
 import { formatDateShort, formatMoney } from "@/lib/utils";
 
 /** wa.me deep link with a prefilled message. Works on mobile and WhatsApp Web. */
@@ -46,4 +46,9 @@ export function offerChatText(offer: Offer, reference?: string): string {
 
 export function genericChatText(): string {
   return `Hi ${site.name}, I'm looking for a cheap flight. Can you help me lock a low fare?`;
+}
+
+/** Where "contact us" points: the contact form, or WhatsApp when there is no server to post it to. */
+export function contactHref(): string {
+  return isStaticPreview ? whatsappLink(genericChatText()) : "/contact";
 }
