@@ -90,7 +90,26 @@ automatically on first access.
 
 ## Deploying
 
-### One-click preview (Vercel, ~2 minutes)
+### Live preview on GitHub Pages (no accounts needed)
+
+`.github/workflows/pages.yml` builds a **static preview** on every push and
+publishes it at `https://<owner>.github.io/<repo>/`. It covers the whole
+marketing and SEO surface (2,283 pages) and the entire WhatsApp search flow,
+which runs in the browser.
+
+One-time setup, in this repository's settings:
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+2. If the deploy job still fails, also set **Settings → Actions → General →
+   Workflow permissions** to *Read and write permissions*.
+3. Re-run the latest "Deploy preview to GitHub Pages" run from the Actions tab.
+
+Not in the preview (they need a server): fare results, price lock, checkout,
+accounts, the admin dashboard, the contact form and price alerts. Links to
+those are hidden and trip deep links open WhatsApp instead. Deploy to Vercel
+below to get the full app.
+
+### Full app on Vercel (~2 minutes)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FJorujoru321%2FAir1tickets&project-name=air1tickets&repository-name=air1tickets&env=SESSION_SECRET&envDescription=Any%20random%20string%20of%2032%2B%20characters%20(e.g.%20run%3A%20openssl%20rand%20-base64%2048)&envLink=https%3A%2F%2Fgithub.com%2FJorujoru321%2FAir1tickets%2Fblob%2Fclaude%2Ftravel-ticketing-website-2uop5k%2Fdocs%2FWHAT-I-NEED-FROM-YOU.md)
 
