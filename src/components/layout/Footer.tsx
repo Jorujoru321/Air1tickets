@@ -3,7 +3,7 @@ import { CreditCard, Lock, Phone, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { FOOTER_COMPANY, FOOTER_LEGAL, FOOTER_SUPPORT, visibleLinks } from "./nav";
 import { NewsletterForm } from "./NewsletterForm";
-import { isLeadMode, isStaticPreview, site } from "@/lib/site";
+import { isLeadMode, site } from "@/lib/site";
 import { POPULAR_ROUTES } from "@/data/routes";
 import { POPULAR_DESTINATIONS } from "@/data/destinations";
 import { getAirport } from "@/data/airports";

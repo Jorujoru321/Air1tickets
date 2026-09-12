@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BadgeDollarSign, Headset, Lock, MessageCircle, PlaneTakeoff, Search, ShieldCheck, Tag } from "lucide-react";
+import { ArrowRight, BadgeDollarSign, Headset, Lock, MessageCircle, PlaneTakeoff, Search, Tag } from "lucide-react";
 import { ChatButtons } from "@/components/leads/ChatButtons";
 import { SearchTabs } from "@/components/search";
 import { PartnerStrip } from "@/components/marketing/PartnerStrip";

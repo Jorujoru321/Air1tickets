@@ -79,6 +79,8 @@ jobs:
       - name: Build static site
         env:
           NEXT_PUBLIC_STATIC_PREVIEW: "1"
+          # The export serves /path/ — canonical URLs and the sitemap must agree.
+          NEXT_PUBLIC_TRAILING_SLASH: "1"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.url.outputs.base_path }}
           NEXT_PUBLIC_SITE_URL: ${{ steps.url.outputs.base_url }}
           NEXT_TELEMETRY_DISABLED: "1"

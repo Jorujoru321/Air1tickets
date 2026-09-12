@@ -78,7 +78,28 @@ export const searchGoesToWhatsApp = site.searchMode === "whatsapp";
  */
 export const isStaticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1";
 
+/**
+ * True when the build serves pages at /path/ rather than /path (Next's
+ * `trailingSlash`). The static GitHub Pages export turns it on, so canonical
+ * URLs, Open Graph URLs, JSON-LD and the sitemap have to match or every page
+ * advertises a URL that redirects.
+ */
+export const trailingSlash = process.env.NEXT_PUBLIC_TRAILING_SLASH === "1";
+
+/**
+ * Canonical form of a site path. Adds the trailing slash when the build uses
+ * them, but never to something that is not a page: anything carrying a query
+ * string, a fragment, or a file extension is left exactly as given.
+ */
+export function canonicalPath(path = "/"): string {
+  const p = path.startsWith("/") ? path : `/${path}`;
+  if (!trailingSlash) return p;
+  if (p === "/" || p.endsWith("/")) return p;
+  if (/[?#]/.test(p) || /\.[a-z0-9]{2,5}$/i.test(p)) return p;
+  return `${p}/`;
+}
+
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;
-  return `${site.url}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${site.url}${canonicalPath(path)}`;
 }

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 import { AIRPORTS } from "@/data/airports";
 import { AIRLINES } from "@/data/airlines";
 import { DESTINATIONS } from "@/data/destinations";
@@ -34,7 +34,7 @@ const STATIC: { path: string; priority: number; changeFrequency: MetadataRoute.S
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const url = (p: string) => `${site.url}${p}`;
+  const url = (p: string) => absoluteUrl(p);
   const entries: MetadataRoute.Sitemap = STATIC.map((s) => ({ url: url(s.path), lastModified: now, changeFrequency: s.changeFrequency, priority: s.priority }));
 
   const seenRoutes = new Set<string>();
