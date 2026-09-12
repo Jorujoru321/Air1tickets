@@ -170,3 +170,23 @@ export function touristDestinationJsonLd(input: { name: string; description: str
     ...(input.image ? { image: absoluteUrl(input.image) } : {}),
   };
 }
+
+/** A service the agency offers (hotel booking, activity booking), for rich results. */
+export function serviceJsonLd(input: { name: string; description: string; path: string; serviceType: string; areaServed?: string }): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: absoluteUrl(input.path),
+    provider: { "@id": `${site.url}/#organization` },
+    areaServed: input.areaServed ?? "Worldwide",
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: absoluteUrl(input.path),
+      servicePhone: site.supportPhone,
+      availableLanguage: ["English", "Spanish"],
+    },
+  };
+}

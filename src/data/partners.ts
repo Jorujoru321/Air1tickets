@@ -13,7 +13,14 @@ export interface Partner {
   slug: string;
   name: string;
   category: "hotels" | "flights" | "activities" | "marketplace";
+  /** Set by scripts/fetch-brand-logos.mjs once a real logo file exists. */
   hasLogoFile?: boolean;
+  logoExt?: "svg" | "png";
+}
+
+/** Path to a partner's logo file, or null when we only have the name. */
+export function partnerLogo(p: Partner): string | null {
+  return p.hasLogoFile ? `/partners/${p.slug}.${p.logoExt ?? "svg"}` : null;
 }
 
 export const PARTNERS: Partner[] = [

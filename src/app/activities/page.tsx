@@ -9,7 +9,7 @@ import { DestinationArt } from "@/components/marketing/DestinationArt";
 import { PartnerStrip } from "@/components/marketing/PartnerStrip";
 import { ChatButtons } from "@/components/leads/ChatButtons";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { faqPageJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
+import { faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationPath } from "@/lib/seo/slugs";
 import { POPULAR_DESTINATIONS, destinationSuggestions } from "@/data/destinations";
 import { partnersFor } from "@/data/partners";
@@ -60,7 +60,7 @@ export default function ActivitiesPage() {
 
   return (
     <>
-      <JsonLd data={[webPageJsonLd({ name: "Things to do", description: metadata.description ?? "", path: "/activities" }), faqPageJsonLd(FAQS)]} />
+      <JsonLd data={[webPageJsonLd({ name: "Things to do", description: metadata.description ?? "", path: "/activities" }), serviceJsonLd({ name: "Tours and activities booking", description: metadata.description ?? "", path: "/activities", serviceType: "Tour booking service" }), faqPageJsonLd(FAQS)]} />
 
       <section className="relative isolate overflow-hidden bg-navy-950 text-white">
         <HeroMedia slot="activities" theme="historic" gradient={["#071229", "#2f5296"]} seed="activities-hero" />

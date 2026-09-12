@@ -9,7 +9,7 @@ import { DestinationArt } from "@/components/marketing/DestinationArt";
 import { PartnerStrip } from "@/components/marketing/PartnerStrip";
 import { ChatButtons } from "@/components/leads/ChatButtons";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { faqPageJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
+import { faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationPath } from "@/lib/seo/slugs";
 import { typicalNightly } from "@/lib/hotels/rates";
 import { DESTINATIONS, POPULAR_DESTINATIONS, destinationSuggestions } from "@/data/destinations";
@@ -57,7 +57,7 @@ export default function HotelsPage() {
 
   return (
     <>
-      <JsonLd data={[webPageJsonLd({ name: "Hotels", description: metadata.description ?? "", path: "/hotels" }), faqPageJsonLd(FAQS)]} />
+      <JsonLd data={[webPageJsonLd({ name: "Hotels", description: metadata.description ?? "", path: "/hotels" }), serviceJsonLd({ name: "Hotel booking", description: metadata.description ?? "", path: "/hotels", serviceType: "Hotel reservation service" }), faqPageJsonLd(FAQS)]} />
 
       <section className="relative isolate overflow-hidden bg-navy-950 text-white">
         <HeroMedia slot="hotels" theme="tropical" gradient={["#071229", "#1a75d8"]} seed="hotels-hero" />
@@ -144,7 +144,7 @@ export default function HotelsPage() {
         </ul>
       </section>
 
-      <CaseStudies kind="hotel" title="A real booking we handled" description="Prices are what the traveler actually paid." />
+      <CaseStudies kind="hotel" title="Where an agent beats a search box" description="The hotel situations we handle most often." />
 
       <section className="bg-white py-12">
         <div className="container-page max-w-3xl">

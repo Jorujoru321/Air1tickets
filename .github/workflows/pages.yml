@@ -51,6 +51,24 @@ jobs:
 
       - run: npm ci
 
+      # Real photography and brand logos, fetched from Wikimedia Commons at
+      # build time and cached between runs. Nothing is committed to the repo.
+      - name: Cache downloaded imagery
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/images/destinations
+            public/partners
+          key: media-${{ hashFiles('src/data/destinations/*.ts', 'src/data/partners.ts') }}
+
+      - name: Fetch destination photos
+        continue-on-error: true
+        run: node scripts/fetch-photos.mjs
+
+      - name: Fetch partner logos
+        continue-on-error: true
+        run: node scripts/fetch-brand-logos.mjs
+
       - name: Strip server-only routes and switch to static export
         env:
           FORCE_STATIC_EXPORT: "1"

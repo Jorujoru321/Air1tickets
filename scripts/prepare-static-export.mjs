@@ -38,10 +38,22 @@ const REMOVE = [
   // Proxy/middleware and route handlers have no runtime on Pages.
   "src/proxy.ts",
   "src/middleware.ts",
-  "src/app/robots.ts",
-  "src/app/sitemap.ts",
-  "src/app/manifest.ts",
 ];
+
+/**
+ * Metadata routes (sitemap.xml, robots.txt, manifest) export fine as static
+ * files, but only once they opt out of dynamic rendering.
+ */
+const FORCE_STATIC = ["src/app/robots.ts", "src/app/sitemap.ts", "src/app/manifest.ts"];
+for (const rel of FORCE_STATIC) {
+  const abs = path.join(root, rel);
+  if (!fs.existsSync(abs)) continue;
+  const src = fs.readFileSync(abs, "utf8");
+  if (!src.includes("export const dynamic")) {
+    fs.writeFileSync(abs, `export const dynamic = "force-static";\n${src}`);
+    console.log(`forced static rendering for ${rel}`);
+  }
+}
 
 for (const rel of REMOVE) {
   const abs = path.join(root, rel);
@@ -87,15 +99,4 @@ export default nextConfig;
 fs.writeFileSync(path.join(root, "next.config.ts"), config);
 console.log(`wrote static next.config.ts${basePath ? ` (basePath ${basePath})` : ""}`);
 
-// robots.txt and a sitemap still matter for the preview; write them flat.
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/+$/, "");
 fs.mkdirSync(path.join(root, "public"), { recursive: true });
-fs.writeFileSync(path.join(root, "public/robots.txt"), `User-agent: *\nAllow: /\n${siteUrl ? `Sitemap: ${siteUrl}/sitemap.xml\n` : ""}`);
-console.log("wrote public/robots.txt");
-
-// app/manifest.ts is a route handler, so the preview ships a plain file instead.
-fs.writeFileSync(
-  path.join(root, "public/manifest.webmanifest"),
-  JSON.stringify({ name: "Air1 Tickets", short_name: "Air1", start_url: `${basePath || ""}/`, display: "standalone", background_color: "#ffffff", theme_color: "#0b1d3a" }, null, 2),
-);
-console.log("wrote public/manifest.webmanifest");
