@@ -1,4 +1,5 @@
 import { whatsappLink } from "@/lib/leads/chat-links";
+import { track } from "@/lib/analytics/events";
 
 /**
  * Send a traveler into WhatsApp with their request already typed out, and
@@ -7,6 +8,14 @@ import { whatsappLink } from "@/lib/leads/chat-links";
  */
 export function openWhatsAppRequest(text: string, meta?: Record<string, unknown>): void {
   const href = whatsappLink(text);
+  // The conversion. Fire before navigating so the beacon has a chance to leave.
+  track("request_sent", {
+    kind: String(meta?.kind ?? "flight"),
+    origin: meta?.origin as string | undefined,
+    destination: meta?.destination as string | undefined,
+    travelers: meta?.travelers as number | undefined,
+    placement: String(meta?.source ?? "search_form"),
+  });
   // Fire-and-forget: never let logging delay or block the hand-off.
   try {
     const body = JSON.stringify({ text, ...meta });

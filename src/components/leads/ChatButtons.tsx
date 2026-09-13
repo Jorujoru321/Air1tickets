@@ -1,4 +1,7 @@
+"use client";
+
 import { MessageCircle, Send } from "lucide-react";
+import { track } from "@/lib/analytics/events";
 import { genericChatText, messengerLink, whatsappLink } from "@/lib/leads/chat-links";
 import { cn } from "@/lib/utils";
 
@@ -35,11 +38,11 @@ export function ChatButtons({ text, messengerRef, size = "md", layout = "inline"
   const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-field)] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500";
   return (
     <div className={cn("flex gap-2", layout === "stack" ? "flex-col" : "flex-wrap items-center", className)}>
-      <a href={whatsappLink(text ?? genericChatText())} target="_blank" rel="noopener" className={cn(base, sz, "bg-[#25d366] text-[#062b16] hover:bg-[#1fbf5b]")}>
+      <a href={whatsappLink(text ?? genericChatText())} target="_blank" rel="noopener" onClick={() => track("chat_click", { placement: "chat_buttons", channel: "whatsapp" })} className={cn(base, sz, "bg-[#25d366] text-[#062b16] hover:bg-[#1fbf5b]")}>
         <WhatsAppIcon className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} /> {whatsappLabel}
       </a>
       {showMessenger && (
-        <a href={messengerLink(messengerRef)} target="_blank" rel="noopener" className={cn(base, sz, onDark ? "bg-white/10 text-white ring-1 ring-white/25 hover:bg-white/20" : "border border-slate-300 bg-white text-navy-900 hover:bg-slate-50")}>
+        <a href={messengerLink(messengerRef)} target="_blank" rel="noopener" onClick={() => track("chat_click", { placement: "chat_buttons", channel: "messenger" })} className={cn(base, sz, onDark ? "bg-white/10 text-white ring-1 ring-white/25 hover:bg-white/20" : "border border-slate-300 bg-white text-navy-900 hover:bg-slate-50")}>
           <MessageCircle className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} aria-hidden /> Messenger
         </a>
       )}
@@ -50,7 +53,7 @@ export function ChatButtons({ text, messengerRef, size = "md", layout = "inline"
 /** Tiny inline "WhatsApp" text link for dense places like result cards. */
 export function WhatsAppTextLink({ text, className, label = "Ask on WhatsApp" }: { text: string; className?: string; label?: string }) {
   return (
-    <a href={whatsappLink(text)} target="_blank" rel="noopener" className={cn("inline-flex items-center gap-1 text-xs font-semibold text-[#0d7a3f] hover:underline", className)}>
+    <a href={whatsappLink(text)} target="_blank" rel="noopener" onClick={() => track("chat_click", { placement: "result_card", channel: "whatsapp" })} className={cn("inline-flex items-center gap-1 text-xs font-semibold text-[#0d7a3f] hover:underline", className)}>
       <Send className="h-3.5 w-3.5" aria-hidden /> {label}
     </a>
   );
