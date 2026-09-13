@@ -37,7 +37,7 @@ export const revalidate = 86400;
  */
 export const metadata = buildMetadata({
   title: "Your Ad Rate — Air1 Tickets",
-  description: `Send us your trip and a US-based agent quotes it at the ad rate — up to ${promo.discount}% off public fares. Reply in about ${site.priceLock.responseMinutes} minutes on WhatsApp.`,
+  description: `Send us your trip and a US-based agent quotes it at the ad rate — up to ${promo.discount}% off public fares across the US, Canada and beyond. Reply in about ${site.priceLock.responseMinutes} minutes on WhatsApp.`,
   path: "/offer",
   noIndex: true,
 });
@@ -138,9 +138,10 @@ export default function OfferPage() {
             Don&apos;t book that fare yet. Let us price it first.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">
-            Tell us the trip and a US-based agent quotes it against what
-            you&apos;re seeing online — using last-minute and consolidator
-            inventory the public sites can&apos;t show. Free to ask, about{" "}
+            Flights, hotels and tours across the US and Canada. Tell us the trip
+            and a US-based agent prices it against what you&apos;re seeing
+            online, using last-minute and consolidator inventory public search
+            can&apos;t show. Free to ask, about{" "}
             {site.priceLock.responseMinutes} minutes for a reply.
           </p>
           <OfferCallout className="mt-6 max-w-3xl" />

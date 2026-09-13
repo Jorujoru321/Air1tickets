@@ -3,6 +3,8 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DestinationArt } from "@/components/marketing/DestinationArt";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { ROUTE_CATEGORY_LABELS } from "@/data/types";
+import { placeLabel } from "@/components/seo/geo-groups";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { routePath } from "@/lib/seo/slugs";
@@ -17,7 +19,7 @@ export const dynamic = "force-dynamic";
 const ORIGINS = ["JFK", "LAX", "ORD", "DFW", "ATL", "MIA", "SFO", "DEN", "BOS", "SEA", "IAH", "PHX"];
 
 export const metadata = buildMetadata({
-  title: "Flight Deals from US Airports — Cheapest Dates to Fly",
+  title: "Flight Deals from US & Canadian Airports — Cheapest Dates to Fly",
   description: "The lowest round-trip fares from New York, Los Angeles, Chicago, Dallas, Atlanta and more over the next 90 days, refreshed every few hours. Taxes and fees included.",
   path: "/deals",
 });
@@ -34,7 +36,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
       <div className="bg-slate-50">
         <div className="container-page py-10">
           <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Deals", path: "/deals" }]} />
-          <h1 className="mt-4 text-3xl sm:text-4xl">Flight deals from US airports</h1>
+          <h1 className="mt-4 text-3xl sm:text-4xl">Flight deals across North America</h1>
           <p className="mt-2 max-w-2xl text-slate-600">The cheapest dates to fly in the next 90 days from your home airport. Round-trip fares per traveler with taxes and fees included, refreshed every few hours.</p>
 
           <div className="mt-6 flex flex-wrap gap-2" role="navigation" aria-label="Departure airport">
@@ -72,7 +74,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
                         <div>
                           <p className="font-display text-lg font-bold text-navy-900">{d.city}</p>
                           <p className="text-xs text-slate-500">
-                            {d.countryCode === "US" ? d.state : d.country} · {d.iata} · {deal.category === "domestic" ? "Domestic" : "International"}
+                            {placeLabel(d)} · {d.iata} · {ROUTE_CATEGORY_LABELS[deal.category]}
                           </p>
                         </div>
                         <p className="text-right">

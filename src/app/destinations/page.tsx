@@ -7,7 +7,7 @@ import { DestinationCard } from "@/components/marketing/DestinationCard";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { articlePath } from "@/lib/seo/slugs";
-import { DESTINATIONS, POPULAR_DESTINATIONS } from "@/data/destinations";
+import { DESTINATIONS, POPULAR_DESTINATIONS, featuredDestinations } from "@/data/destinations";
 import { REGION_LABELS, type Region } from "@/data/types";
 import { ARTICLES } from "@/content/articles";
 
@@ -40,7 +40,7 @@ export default function DestinationsPage() {
       <section className="container-page py-12">
         <SectionHeading title="Most popular right now" description="The destinations Air1 travelers search and book most." />
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {POPULAR_DESTINATIONS.slice(0, 8).map((d, i) => (
+          {featuredDestinations(8).map((d, i) => (
             <DestinationCard key={d.slug} d={d} priority={i < 4} />
           ))}
         </div>

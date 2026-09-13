@@ -5,6 +5,8 @@ import { Header } from "@/components/layout/Header";
 import { PromoBar } from "@/components/promo/PromoBar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingChat } from "@/components/leads/FloatingChat";
+import { StickyMobileCta } from "@/components/leads/StickyMobileCta";
+import { WelcomeOffer } from "@/components/leads/WelcomeOffer";
 import { Analytics } from "@/components/analytics/Analytics";
 import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 import { isLeadMode } from "@/lib/site";
@@ -75,7 +77,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US" className={`${inter.variable} ${jakarta.variable}`}>
-      <body className="flex min-h-screen flex-col">
+      <body className="flex min-h-screen flex-col pb-[4.25rem] sm:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-navy-900 focus:shadow-float"
@@ -89,7 +91,13 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        {isLeadMode && <FloatingChat />}
+        {isLeadMode && (
+          <>
+            <FloatingChat />
+            <StickyMobileCta />
+            <WelcomeOffer />
+          </>
+        )}
         <Analytics />
         <ConsentBanner />
       </body>

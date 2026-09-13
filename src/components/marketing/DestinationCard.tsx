@@ -4,6 +4,7 @@ import type { Destination } from "@/data/types";
 import { DestinationArt } from "@/components/marketing/DestinationArt";
 import { destinationPath } from "@/lib/seo/slugs";
 import { destinationPhoto } from "@/data/photos";
+import { placeLabel } from "@/components/seo/geo-groups";
 import { formatDuration, formatMoney } from "@/lib/utils";
 
 /** Horizontal destination card for index and "related" modules. */
@@ -13,10 +14,10 @@ export function DestinationCard({ d, priority }: { d: Destination; priority?: bo
   return (
     <Link href={destinationPath(d.slug)} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean-500">
       <div className="aspect-[16/9]">
-        <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={d.slug} priority={priority} image={destinationPhoto(d.slug) ?? undefined} alt={`${d.city}, ${d.countryCode === "US" ? d.state : d.country}`} />
+        <DestinationArt theme={d.heroTheme} gradient={d.gradient} seed={d.slug} priority={priority} image={destinationPhoto(d.slug) ?? undefined} alt={`${d.city}, ${placeLabel(d)}`} />
       </div>
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-ocean-700">{d.countryCode === "US" ? `${d.state} · United States` : d.country}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-ocean-700">{d.state ? `${d.state} · ${d.country}` : d.country}</p>
         <p className="mt-1 font-display text-lg font-bold text-navy-900 group-hover:text-ocean-700">{d.city}</p>
         <p className="mt-1 line-clamp-2 text-sm text-slate-600">{d.tagline}</p>
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-3 text-xs text-slate-500">

@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/seo/SectionHeading";
 import { RouteLinks, type RouteLinkItem } from "@/components/seo/RouteLinks";
 import { JumpNav } from "@/components/seo/JumpNav";
 import { groupBy, regionForAirport, regionLabel, INTERNATIONAL_REGIONS } from "@/components/seo/geo-groups";
+import { ROUTE_CATEGORY_LABELS } from "@/data/types";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { citySlug, flightsFromPath, flightsToPath, routePath } from "@/lib/seo/slugs";
@@ -67,7 +68,7 @@ export default async function CheapFlightsHubPage() {
   const popular = resolveRoutes(POPULAR_ROUTES);
   const pricedCount = Math.min(popular.length, 24);
   const fares = await Promise.all(popular.slice(0, pricedCount).map((r) => lowestRouteFare(r.origin.iata, r.destination.iata)));
-  const popularItems: RouteLinkItem[] = popular.map((r, i) => ({ origin: r.origin, destination: r.destination, price: fares[i]?.price ?? null, subtitle: `${r.origin.iata} → ${r.destination.iata} · ${r.def.category === "domestic" ? "Domestic" : "International"}` }));
+  const popularItems: RouteLinkItem[] = popular.map((r, i) => ({ origin: r.origin, destination: r.destination, price: fares[i]?.price ?? null, subtitle: `${r.origin.iata} → ${r.destination.iata} · ${ROUTE_CATEGORY_LABELS[r.def.category]}` }));
 
   const domestic = resolveRoutes(DOMESTIC_ROUTES);
   const domesticByCity = groupBy(domestic, (r) => citySlug(r.origin));
@@ -113,7 +114,7 @@ export default async function CheapFlightsHubPage() {
             </span>
             <span className="min-w-0 flex-1">
               <span className="block font-semibold text-navy-900 group-hover:underline">Browse flights by destination</span>
-              <span className="block text-sm text-slate-600">Every city we fly to, grouped by region, with fares from major US airports.</span>
+              <span className="block text-sm text-slate-600">Every city we fly to, grouped by region, with fares from major US and Canadian airports.</span>
             </span>
             <ArrowRight className="h-5 w-5 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />
           </Link>
@@ -131,7 +132,7 @@ export default async function CheapFlightsHubPage() {
       </section>
 
       <section className="container-page py-12">
-        <SectionHeading id="domestic" title="Domestic routes" description={`${formatCount(domestic.length)} routes within the United States, grouped by departure city. Each page covers both directions.`} />
+        <SectionHeading id="domestic" title="Domestic routes" description={`${formatCount(domestic.length)} routes within the US and within Canada, grouped by departure city. Each page covers both directions.`} />
         <JumpNav className="mt-5" label="Jump to departure city" items={domesticGroups.slice(0, 16).map((g) => ({ id: `from-${g.slug}`, label: g.city }))} />
         <div className="mt-8 space-y-8">
           {domesticGroups.map((g) => (
@@ -154,7 +155,7 @@ export default async function CheapFlightsHubPage() {
 
       <section className="bg-white py-12">
         <div className="container-page">
-          <SectionHeading id="international" title="International routes from the US" description={`${formatCount(international.length)} routes from US gateways to Canada, Mexico, the Caribbean, Europe, Asia and beyond, grouped by destination region.`} />
+          <SectionHeading id="international" title="International routes" description={`${formatCount(international.length)} routes from North American gateways to Mexico, the Caribbean, Europe, Asia and beyond, grouped by destination region.`} />
           <JumpNav className="mt-5" label="Jump to region" items={intlGroups.map((g) => ({ id: `region-${g.region}`, label: regionLabel(g.region) }))} />
           <div className="mt-8 space-y-8">
             {intlGroups.map((g) => (

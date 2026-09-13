@@ -17,13 +17,13 @@ export const site = {
   shortName: "Air1",
   tagline: "Fly for less. Book with confidence.",
   description:
-    "Air1 Tickets is a US-based online travel agency. Compare hundreds of airlines, find the cheapest flights and book in minutes — with 24/7 US-based support.",
+    "Air1 Tickets is a US-based travel agency serving the United States and Canada. Tell us your trip and a real agent sends your price on WhatsApp — with last-minute deals you will not find on public search.",
   url: rawUrl && rawUrl.length > 0 ? rawUrl : "http://localhost:3000",
   locale: "en_US",
   language: "en-US",
   currency: "USD",
   country: "US",
-  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (942) 338-2017",
+  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (942) 388-2017",
   supportEmail:
     process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@air1tickets.com",
   address: {
@@ -58,13 +58,13 @@ export const site = {
     ? "results"
     : "whatsapp") as "whatsapp" | "results",
   chat: {
-    /** E.164 digits only, e.g. 19423382017 (country code + number). */
+    /** E.164 digits only, e.g. 19423882017 (country code + number). */
     whatsapp: (
-      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 942-338-2017"
+      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 942-388-2017"
     ).replace(/[^\d]/g, ""),
     /** The same number formatted for display. */
     whatsappDisplay:
-      process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+1 (942) 338-2017",
+      process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+1 (942) 388-2017",
     /** Facebook Page username for m.me links. */
     messenger: process.env.NEXT_PUBLIC_MESSENGER_PAGE ?? "air1tickets",
     /** Optional Telegram username (without @). */

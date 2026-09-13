@@ -5,7 +5,7 @@ import { FOOTER_COMPANY, FOOTER_LEGAL, FOOTER_SUPPORT, visibleLinks } from "./na
 import { NewsletterForm } from "./NewsletterForm";
 import { isLeadMode, site } from "@/lib/site";
 import { POPULAR_ROUTES } from "@/data/routes";
-import { POPULAR_DESTINATIONS } from "@/data/destinations";
+import { POPULAR_DESTINATIONS, featuredDestinations } from "@/data/destinations";
 import { getAirport } from "@/data/airports";
 import { destinationPath, routePath } from "@/lib/seo/slugs";
 
@@ -22,7 +22,7 @@ const linkClass = "text-sm text-white/80 hover:text-white hover:underline underl
 
 export function Footer() {
   const routes = POPULAR_ROUTES.slice(0, 8);
-  const destinations = POPULAR_DESTINATIONS.slice(0, 8);
+  const destinations = featuredDestinations(8);
   return (
     <footer className="mt-auto bg-navy-950 text-white">
       <div className="border-b border-white/10">

@@ -141,7 +141,7 @@ const COPY: Record<
 > = {
   meta: {
     eyebrow: "Ad rate unlocked",
-    headline: `You came from our ad — that unlocks up to ${promo.discount}% off public fares`,
+    headline: `You came from our ad — up to ${promo.discount}% off public fares across North America`,
     subline:
       "Send us your trip and an agent quotes the ad rate, not the screen price.",
   },

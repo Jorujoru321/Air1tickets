@@ -6,37 +6,266 @@ import type { Airport } from "@/lib/flights/types";
 import { REGION_LABELS, type Region } from "@/data/types";
 
 export const US_STATE_NAMES: Record<string, string> = {
-  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming", DC: "District of Columbia", PR: "Puerto Rico", VI: "US Virgin Islands", GU: "Guam",
+  AL: "Alabama",
+  AK: "Alaska",
+  AZ: "Arizona",
+  AR: "Arkansas",
+  CA: "California",
+  CO: "Colorado",
+  CT: "Connecticut",
+  DE: "Delaware",
+  FL: "Florida",
+  GA: "Georgia",
+  HI: "Hawaii",
+  ID: "Idaho",
+  IL: "Illinois",
+  IN: "Indiana",
+  IA: "Iowa",
+  KS: "Kansas",
+  KY: "Kentucky",
+  LA: "Louisiana",
+  ME: "Maine",
+  MD: "Maryland",
+  MA: "Massachusetts",
+  MI: "Michigan",
+  MN: "Minnesota",
+  MS: "Mississippi",
+  MO: "Missouri",
+  MT: "Montana",
+  NE: "Nebraska",
+  NV: "Nevada",
+  NH: "New Hampshire",
+  NJ: "New Jersey",
+  NM: "New Mexico",
+  NY: "New York",
+  NC: "North Carolina",
+  ND: "North Dakota",
+  OH: "Ohio",
+  OK: "Oklahoma",
+  OR: "Oregon",
+  PA: "Pennsylvania",
+  RI: "Rhode Island",
+  SC: "South Carolina",
+  SD: "South Dakota",
+  TN: "Tennessee",
+  TX: "Texas",
+  UT: "Utah",
+  VT: "Vermont",
+  VA: "Virginia",
+  WA: "Washington",
+  WV: "West Virginia",
+  WI: "Wisconsin",
+  WY: "Wyoming",
+  DC: "District of Columbia",
+  PR: "Puerto Rico",
+  VI: "US Virgin Islands",
+  GU: "Guam",
 };
 
+/**
+ * Canadian provinces and territories. `state` carries these the same way it
+ * carries US state codes; no Canadian code collides with a US one, so the two
+ * tables can be looked up together.
+ */
+export const CA_PROVINCE_NAMES: Record<string, string> = {
+  AB: "Alberta",
+  BC: "British Columbia",
+  MB: "Manitoba",
+  NB: "New Brunswick",
+  NL: "Newfoundland and Labrador",
+  NS: "Nova Scotia",
+  NT: "Northwest Territories",
+  NU: "Nunavut",
+  ON: "Ontario",
+  PE: "Prince Edward Island",
+  QC: "Quebec",
+  SK: "Saskatchewan",
+  YT: "Yukon",
+};
+
+/** Full name for a US state or Canadian province code. */
 export function stateName(code: string | undefined): string {
-  return (code && US_STATE_NAMES[code]) || code || "";
+  if (!code) return "";
+  return US_STATE_NAMES[code] ?? CA_PROVINCE_NAMES[code] ?? code;
+}
+
+/** Countries whose airports carry a state/province code worth showing. */
+const SUBDIVIDED = new Set(["US", "CA"]);
+
+/**
+ * What to show under a city name: "CA" for Los Angeles, "ON" for Toronto,
+ * "Mexico" for Cancún. Keeping the subdivision for both countries is what
+ * makes a Canadian visitor recognise their own city in a list of results.
+ */
+export function placeLabel(p: {
+  state?: string;
+  country: string;
+  countryCode: string;
+}): string {
+  return SUBDIVIDED.has(p.countryCode) && p.state ? p.state : p.country;
+}
+
+/** The longer form, e.g. "Ontario, Canada" or "California". */
+export function placeLabelLong(p: {
+  state?: string;
+  country: string;
+  countryCode: string;
+}): string {
+  if (!SUBDIVIDED.has(p.countryCode) || !p.state) return p.country;
+  return p.countryCode === "US"
+    ? stateName(p.state)
+    : `${stateName(p.state)}, ${p.country}`;
 }
 
 const STATE_REGION: Record<string, Region> = {
-  CT: "us-northeast", ME: "us-northeast", MA: "us-northeast", NH: "us-northeast", RI: "us-northeast", VT: "us-northeast", NJ: "us-northeast", NY: "us-northeast", PA: "us-northeast", DE: "us-northeast", MD: "us-northeast", DC: "us-northeast",
-  VA: "us-southeast", WV: "us-southeast", NC: "us-southeast", SC: "us-southeast", GA: "us-southeast", FL: "us-southeast", KY: "us-southeast", TN: "us-southeast", AL: "us-southeast", MS: "us-southeast", AR: "us-southeast", LA: "us-southeast",
-  OH: "us-midwest", MI: "us-midwest", IN: "us-midwest", IL: "us-midwest", WI: "us-midwest", MN: "us-midwest", IA: "us-midwest", MO: "us-midwest", ND: "us-midwest", SD: "us-midwest", NE: "us-midwest", KS: "us-midwest",
-  TX: "us-southwest", OK: "us-southwest", NM: "us-southwest", AZ: "us-southwest",
-  CO: "us-west", WY: "us-west", MT: "us-west", ID: "us-west", UT: "us-west", NV: "us-west", CA: "us-west", OR: "us-west", WA: "us-west",
-  HI: "us-hawaii-alaska", AK: "us-hawaii-alaska",
+  CT: "us-northeast",
+  ME: "us-northeast",
+  MA: "us-northeast",
+  NH: "us-northeast",
+  RI: "us-northeast",
+  VT: "us-northeast",
+  NJ: "us-northeast",
+  NY: "us-northeast",
+  PA: "us-northeast",
+  DE: "us-northeast",
+  MD: "us-northeast",
+  DC: "us-northeast",
+  VA: "us-southeast",
+  WV: "us-southeast",
+  NC: "us-southeast",
+  SC: "us-southeast",
+  GA: "us-southeast",
+  FL: "us-southeast",
+  KY: "us-southeast",
+  TN: "us-southeast",
+  AL: "us-southeast",
+  MS: "us-southeast",
+  AR: "us-southeast",
+  LA: "us-southeast",
+  OH: "us-midwest",
+  MI: "us-midwest",
+  IN: "us-midwest",
+  IL: "us-midwest",
+  WI: "us-midwest",
+  MN: "us-midwest",
+  IA: "us-midwest",
+  MO: "us-midwest",
+  ND: "us-midwest",
+  SD: "us-midwest",
+  NE: "us-midwest",
+  KS: "us-midwest",
+  TX: "us-southwest",
+  OK: "us-southwest",
+  NM: "us-southwest",
+  AZ: "us-southwest",
+  CO: "us-west",
+  WY: "us-west",
+  MT: "us-west",
+  ID: "us-west",
+  UT: "us-west",
+  NV: "us-west",
+  CA: "us-west",
+  OR: "us-west",
+  WA: "us-west",
+  HI: "us-hawaii-alaska",
+  AK: "us-hawaii-alaska",
 };
 
 const COUNTRY_REGION: Record<string, Region> = {
   CA: "canada",
-  MX: "mexico-caribbean", BS: "mexico-caribbean", JM: "mexico-caribbean", DO: "mexico-caribbean", AW: "mexico-caribbean", CW: "mexico-caribbean", SX: "mexico-caribbean", KY: "mexico-caribbean", TC: "mexico-caribbean", BB: "mexico-caribbean", TT: "mexico-caribbean", CU: "mexico-caribbean", BM: "mexico-caribbean", PR: "mexico-caribbean", VI: "mexico-caribbean",
-  PA: "central-south-america", CR: "central-south-america", GT: "central-south-america", SV: "central-south-america", BZ: "central-south-america", HN: "central-south-america", CO: "central-south-america", PE: "central-south-america", EC: "central-south-america", BR: "central-south-america", CL: "central-south-america", AR: "central-south-america", UY: "central-south-america", VE: "central-south-america", BO: "central-south-america", PY: "central-south-america",
-  GB: "europe", IE: "europe", FR: "europe", NL: "europe", BE: "europe", DE: "europe", CH: "europe", AT: "europe", ES: "europe", PT: "europe", IT: "europe", GR: "europe", TR: "europe", DK: "europe", SE: "europe", NO: "europe", FI: "europe", IS: "europe", CZ: "europe", PL: "europe", HU: "europe", HR: "europe",
-  AE: "middle-east-africa", QA: "middle-east-africa", IL: "middle-east-africa", JO: "middle-east-africa", EG: "middle-east-africa", MA: "middle-east-africa", ZA: "middle-east-africa", KE: "middle-east-africa", ET: "middle-east-africa", NG: "middle-east-africa", GH: "middle-east-africa", SA: "middle-east-africa",
-  JP: "asia", KR: "asia", CN: "asia", HK: "asia", TW: "asia", SG: "asia", TH: "asia", MY: "asia", PH: "asia", ID: "asia", IN: "asia", VN: "asia",
-  AU: "oceania", NZ: "oceania", FJ: "oceania", PF: "oceania", GU: "oceania",
+  MX: "mexico-caribbean",
+  BS: "mexico-caribbean",
+  JM: "mexico-caribbean",
+  DO: "mexico-caribbean",
+  AW: "mexico-caribbean",
+  CW: "mexico-caribbean",
+  SX: "mexico-caribbean",
+  KY: "mexico-caribbean",
+  TC: "mexico-caribbean",
+  BB: "mexico-caribbean",
+  TT: "mexico-caribbean",
+  CU: "mexico-caribbean",
+  BM: "mexico-caribbean",
+  PR: "mexico-caribbean",
+  VI: "mexico-caribbean",
+  PA: "central-south-america",
+  CR: "central-south-america",
+  GT: "central-south-america",
+  SV: "central-south-america",
+  BZ: "central-south-america",
+  HN: "central-south-america",
+  CO: "central-south-america",
+  PE: "central-south-america",
+  EC: "central-south-america",
+  BR: "central-south-america",
+  CL: "central-south-america",
+  AR: "central-south-america",
+  UY: "central-south-america",
+  VE: "central-south-america",
+  BO: "central-south-america",
+  PY: "central-south-america",
+  GB: "europe",
+  IE: "europe",
+  FR: "europe",
+  NL: "europe",
+  BE: "europe",
+  DE: "europe",
+  CH: "europe",
+  AT: "europe",
+  ES: "europe",
+  PT: "europe",
+  IT: "europe",
+  GR: "europe",
+  TR: "europe",
+  DK: "europe",
+  SE: "europe",
+  NO: "europe",
+  FI: "europe",
+  IS: "europe",
+  CZ: "europe",
+  PL: "europe",
+  HU: "europe",
+  HR: "europe",
+  AE: "middle-east-africa",
+  QA: "middle-east-africa",
+  IL: "middle-east-africa",
+  JO: "middle-east-africa",
+  EG: "middle-east-africa",
+  MA: "middle-east-africa",
+  ZA: "middle-east-africa",
+  KE: "middle-east-africa",
+  ET: "middle-east-africa",
+  NG: "middle-east-africa",
+  GH: "middle-east-africa",
+  SA: "middle-east-africa",
+  JP: "asia",
+  KR: "asia",
+  CN: "asia",
+  HK: "asia",
+  TW: "asia",
+  SG: "asia",
+  TH: "asia",
+  MY: "asia",
+  PH: "asia",
+  ID: "asia",
+  IN: "asia",
+  VN: "asia",
+  AU: "oceania",
+  NZ: "oceania",
+  FJ: "oceania",
+  PF: "oceania",
+  GU: "oceania",
 };
 
 export function regionForCountry(countryCode: string): Region {
   return COUNTRY_REGION[countryCode] ?? "europe";
 }
 
-export function regionForAirport(a: Pick<Airport, "countryCode" | "state">): Region {
+export function regionForAirport(
+  a: Pick<Airport, "countryCode" | "state">,
+): Region {
+  // STATE_REGION is keyed by US state; Canadian provinces fall through to the
+  // country map, which puts every one of them in "canada".
   if (a.countryCode === "US") return STATE_REGION[a.state ?? ""] ?? "us-west";
   return regionForCountry(a.countryCode);
 }
@@ -58,8 +287,12 @@ export const REGION_ORDER: Region[] = [
   "oceania",
 ];
 
-export const US_REGIONS: Region[] = REGION_ORDER.filter((r) => r.startsWith("us-"));
-export const INTERNATIONAL_REGIONS: Region[] = REGION_ORDER.filter((r) => !r.startsWith("us-"));
+export const US_REGIONS: Region[] = REGION_ORDER.filter((r) =>
+  r.startsWith("us-"),
+);
+export const INTERNATIONAL_REGIONS: Region[] = REGION_ORDER.filter(
+  (r) => !r.startsWith("us-"),
+);
 
 export function regionLabel(region: Region): string {
   return REGION_LABELS[region];
@@ -72,7 +305,10 @@ export function isUSLike(a: Pick<Airport, "countryCode">): boolean {
 }
 
 /** Group any list by a key, preserving first-seen order of keys. */
-export function groupBy<T, K extends string>(items: T[], key: (item: T) => K): Map<K, T[]> {
+export function groupBy<T, K extends string>(
+  items: T[],
+  key: (item: T) => K,
+): Map<K, T[]> {
   const m = new Map<K, T[]>();
   for (const it of items) {
     const k = key(it);

@@ -4,6 +4,7 @@ import { getFlightProvider } from "./provider";
 import { getAirport } from "@/data/airports";
 import { getRoutesFrom } from "@/data/routes";
 import { addDays, toDateOnly } from "@/lib/utils";
+import type { RouteCategory } from "@/data/types";
 
 export interface LowestFare {
   origin: string;
@@ -50,7 +51,7 @@ export async function lowestFare(origin: string, destination: string, days = 60,
 export interface Deal extends LowestFare {
   /** Suggested 7-night return date for deep links. */
   returnDate: string;
-  category: "domestic" | "international";
+  category: RouteCategory;
 }
 
 /** Best deals departing an origin over the next `days` days, cheapest first. */

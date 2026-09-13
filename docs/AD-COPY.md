@@ -1,5 +1,9 @@
 # Ad copy and the offer mechanic
 
+Coverage is North American: every airport in the US and Canada, plus the
+international network beyond. Canadian audiences are worth a separate campaign —
+the sun routes south in winter are the highest-intent traffic you can buy.
+
 Everything here is written for Air1 and is yours to use. Paste it straight into
 Ads Manager.
 

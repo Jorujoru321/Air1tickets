@@ -11,7 +11,7 @@ import { FactList, type FactItem } from "@/components/seo/FactList";
 import { RouteLinks, type RouteLinkItem } from "@/components/seo/RouteLinks";
 import { LinkCardGrid, type LinkCardItem } from "@/components/seo/LinkCardGrid";
 import { AirlineLogo } from "@/components/results/AirlineLogo";
-import { SIZE_TIER_LABELS, stateName } from "@/components/seo/geo-groups";
+import { SIZE_TIER_LABELS, stateName, placeLabelLong } from "@/components/seo/geo-groups";
 import { fitDescription, fitTitle, formatUtcOffset, joinNames } from "@/components/seo/seo-text";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { airportJsonLd, faqPageJsonLd } from "@/lib/seo/jsonld";
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!a) return { title: "Airport not found", robots: { index: false, follow: false } };
   const title = fitTitle([`${a.name} (${a.iata}) — Flights & Airport Guide`, `${a.city} Airport (${a.iata}) Flights & Guide`, `${a.iata} Airport Guide`]);
   const description = fitDescription([
-    `${a.name} (${a.iata}) in ${a.city}, ${a.countryCode === "US" ? stateName(a.state) : a.country}: airlines, popular nonstop routes, time zone and practical facts.`,
+    `${a.name} (${a.iata}) in ${a.city}, ${placeLabelLong(a)}: airlines, popular nonstop routes, time zone and practical facts.`,
     "Compare cheap flights to and from " + a.iata + " with 24/7 US-based support.",
   ]);
   return buildMetadata({ title, description, path: airportPath(a), keywords: [`${a.iata} airport`, `${a.name}`, `flights from ${a.iata}`, `flights to ${a.iata}`] });
@@ -90,7 +90,7 @@ export default async function AirportPage({ params }: PageProps) {
 
   const facts: FactItem[] = [
     { label: "IATA / ICAO", value: `${a.iata}${a.icao ? ` / ${a.icao}` : ""}`, icon: Plane },
-    { label: "City", value: `${a.city}, ${isUS && a.state ? stateName(a.state) : a.country}`, icon: MapPin },
+    { label: "City", value: `${a.city}, ${placeLabelLong(a)}`, icon: MapPin },
     { label: "Time zone", value: `${a.tz.replace(/_/g, " ")} (${formatUtcOffset(offset)})`, icon: Clock },
     { label: "Airport size", value: SIZE_TIER_LABELS[a.size], icon: Users },
     { label: "Coordinates", value: `${a.lat.toFixed(3)}, ${a.lon.toFixed(3)}`, icon: Ruler },
@@ -133,7 +133,7 @@ export default async function AirportPage({ params }: PageProps) {
           { name: "Airports", path: "/airports" },
           { name: `${a.city} (${a.iata})`, path },
         ]}
-        eyebrow={`${SIZE_TIER_LABELS[a.size]} · ${a.city}, ${isUS && a.state ? stateName(a.state) : a.country}`}
+        eyebrow={`${SIZE_TIER_LABELS[a.size]} · ${a.city}, ${placeLabelLong(a)}`}
         title={`${a.name} (${a.iata})`}
         lead={
           <>

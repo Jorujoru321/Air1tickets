@@ -54,7 +54,7 @@ export interface Destination {
   /** URL slug, e.g. "los-angeles". Unique. */
   slug: string;
   city: string;
-  /** Two-letter state code for US cities. */
+  /** Two-letter state code (US) or province/territory code (Canada). */
   state?: string;
   country: string;
   countryCode: string;
@@ -79,7 +79,12 @@ export interface Destination {
   travelTips: string[];
   neighborhoods?: string[];
   /** Seasonal weather: exactly 4 entries (Winter, Spring, Summer, Fall). */
-  weather: { season: "Winter" | "Spring" | "Summer" | "Fall"; highF: number; lowF: number; note: string }[];
+  weather: {
+    season: "Winter" | "Spring" | "Summer" | "Fall";
+    highF: number;
+    lowF: number;
+    note: string;
+  }[];
   faqs: FAQ[];
   /** Featured on the home page / hubs. */
   popular: boolean;
@@ -87,12 +92,27 @@ export interface Destination {
   keywords: string[];
 }
 
+export type RouteCategory = "domestic" | "transborder" | "international";
+
+/** Human labels for route categories, used on every page that shows one. */
+export const ROUTE_CATEGORY_LABELS: Record<RouteCategory, string> = {
+  domestic: "Domestic",
+  transborder: "US–Canada",
+  international: "International",
+};
+
 export interface RouteDef {
   origin: string; // IATA
   destination: string; // IATA
   /** Show in "popular routes" modules. */
   popular?: boolean;
-  category: "domestic" | "international";
+  /**
+   * "domestic" means within one country — a Toronto–Vancouver flight is
+   * domestic to the traveler taking it, not international. US–Canada pairs
+   * are "transborder", which is the industry term and what the fare rules,
+   * preclearance and baggage allowances actually follow.
+   */
+  category: RouteCategory;
 }
 
 export interface FAQGroup {

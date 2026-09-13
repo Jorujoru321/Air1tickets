@@ -17,7 +17,7 @@ import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { TeamShot, hasTeamPhotos } from "@/components/marketing/TeamPhotos";
 import { OfferCallout } from "@/components/promo/OfferCallout";
 import { teamPhoto } from "@/data/photos";
-import { destinationSuggestions } from "@/data/destinations";
+import { destinationSuggestions, featuredDestinations } from "@/data/destinations";
 import { PARTNERS } from "@/data/partners";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/seo/FaqAccordion";
@@ -40,9 +40,9 @@ import { addDays, formatDateShort, formatMoney } from "@/lib/utils";
 export const revalidate = 21600;
 
 export const metadata = buildMetadata({
-  title: "Cheap Flights, Hotels & Things to Do — Priced on WhatsApp",
+  title: "Cheap Flights Across the US & Canada — Priced on WhatsApp",
   description:
-    "Tell us where you're going and a US-based agent sends your price on WhatsApp in about 15 minutes. Flights from every US airport, hotels, resorts and tours — with last-minute deals you won't find online.",
+    "Tell us where you're going and a US-based agent sends your price on WhatsApp in about 15 minutes. Flights from every airport in the US and Canada, plus hotels, resorts and tours — with last-minute deals you won't find online.",
   path: "/",
 });
 
@@ -139,7 +139,7 @@ async function TrendingRoutes() {
 
 export default function HomePage() {
   const faqs = getFaqGroup("price-lock")?.items.slice(0, 5) ?? [];
-  const destinations = POPULAR_DESTINATIONS.slice(0, 8);
+  const destinations = featuredDestinations(8);
   const articles = ARTICLES.slice(0, 3);
   const dealsDeepLink = (() => {
     const depart = addDays(new Date().toISOString().slice(0, 10), 21);

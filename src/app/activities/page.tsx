@@ -11,7 +11,7 @@ import { ChatButtons } from "@/components/leads/ChatButtons";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationPath } from "@/lib/seo/slugs";
-import { POPULAR_DESTINATIONS, destinationSuggestions } from "@/data/destinations";
+import { POPULAR_DESTINATIONS, destinationSuggestions, featuredDestinations } from "@/data/destinations";
 import { partnersFor } from "@/data/partners";
 import { destinationPhoto } from "@/data/photos";
 import { HeroMedia } from "@/components/marketing/HeroMedia";
@@ -52,7 +52,7 @@ const FAQS = [
 
 export default function ActivitiesPage() {
   const suggestions = destinationSuggestions();
-  const featured = POPULAR_DESTINATIONS.slice(0, 8);
+  const featured = featuredDestinations(8);
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Things to do", path: "/activities" },

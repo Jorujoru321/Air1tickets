@@ -19,13 +19,10 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationPath } from "@/lib/seo/slugs";
 import { typicalNightly } from "@/lib/hotels/rates";
-import {
-  DESTINATIONS,
-  POPULAR_DESTINATIONS,
-  destinationSuggestions,
-} from "@/data/destinations";
+import { DESTINATIONS, POPULAR_DESTINATIONS, destinationSuggestions, featuredDestinations } from "@/data/destinations";
 import { partnersFor } from "@/data/partners";
 import { destinationPhoto } from "@/data/photos";
+import { placeLabel } from "@/components/seo/geo-groups";
 import { HeroMedia } from "@/components/marketing/HeroMedia";
 import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { OfferCallout } from "@/components/promo/OfferCallout";
@@ -106,7 +103,7 @@ const FAQS = [
 
 export default function HotelsPage() {
   const suggestions = destinationSuggestions();
-  const featured = POPULAR_DESTINATIONS.slice(0, 8);
+  const featured = featuredDestinations(8);
   // All-inclusive belongs to beach and resort destinations, not every city in the region.
   const resorts = DESTINATIONS.filter(
     (d) =>
@@ -205,7 +202,7 @@ export default function HotelsPage() {
                       {d.city}
                     </p>
                     <p className="text-xs text-slate-500">
-                      {d.countryCode === "US" ? d.state : d.country}
+                      {placeLabel(d)}
                     </p>
                     <p className="mt-auto pt-3 text-sm text-slate-700">
                       Typically{" "}

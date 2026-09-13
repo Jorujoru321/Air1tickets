@@ -66,6 +66,7 @@ export default async function FlightsFromCityPage({ params }: PageProps) {
       })
       .filter((x): x is RouteLinkItem => x !== null);
   const domestic = routes.filter((r) => r.category === "domestic");
+  const transborder = routes.filter((r) => r.category === "transborder");
   const international = routes.filter((r) => r.category === "international");
   const minFare = fares.filter(Boolean).map((f) => f!.price).sort((a, b) => a - b)[0];
   const hubAirlines = AIRLINES.filter((al) => al.hubs.some((h) => airports.some((a) => a.iata === h)));
@@ -129,11 +130,20 @@ export default async function FlightsFromCityPage({ params }: PageProps) {
         {domestic.length ? <RouteLinks className="mt-6" routes={build(domestic, 0)} columns={3} ariaLabel={`Domestic routes from ${entry.city}`} /> : <p className="mt-4 text-sm text-slate-500">No curated domestic routes yet — search any US city above.</p>}
       </section>
 
-      {international.length > 0 && (
+      {transborder.length > 0 && (
         <section className="bg-white py-12">
           <div className="container-page">
+            <SectionHeading title={`US–Canada flights from ${entry.city}`} description="Transborder routes. Most US-bound departures from Canada clear US customs before you board, so you land as a domestic arrival." />
+            <RouteLinks className="mt-6" routes={build(transborder, domestic.length)} columns={3} ariaLabel={`US–Canada routes from ${entry.city}`} />
+          </div>
+        </section>
+      )}
+
+      {international.length > 0 && (
+        <section className={transborder.length > 0 ? "container-page py-12" : "bg-white py-12"}>
+          <div className={transborder.length > 0 ? undefined : "container-page"}>
             <SectionHeading title={`International flights from ${entry.city}`} description="Nonstop and one-stop routes to Mexico, the Caribbean, Europe and beyond." />
-            <RouteLinks className="mt-6" routes={build(international, domestic.length)} columns={3} ariaLabel={`International routes from ${entry.city}`} />
+            <RouteLinks className="mt-6" routes={build(international, domestic.length + transborder.length)} columns={3} ariaLabel={`International routes from ${entry.city}`} />
           </div>
         </section>
       )}

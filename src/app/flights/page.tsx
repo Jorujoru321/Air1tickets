@@ -3,6 +3,7 @@ import { ArrowRight, BadgePercent, CalendarClock, MapPinned, ShieldCheck } from 
 import { SearchForm } from "@/components/search";
 import { AirlineLogo } from "@/components/results/AirlineLogo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ROUTE_CATEGORY_LABELS } from "@/data/types";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { airlinePath, routePath } from "@/lib/seo/slugs";
@@ -15,7 +16,7 @@ import { CaseStudies } from "@/components/marketing/CaseStudies";
 
 export const metadata = buildMetadata({
   title: "Cheap Flights — Compare & Book Airline Tickets",
-  description: "Search cheap flights from every US airport. Compare 500+ airlines side by side, filter by stops and bags, and book with 24/7 US-based support.",
+  description: "Search cheap flights from every airport in the US and Canada. Compare 500+ airlines side by side, filter by stops and bags, and get a price from a real agent.",
   path: "/flights",
 });
 
@@ -65,7 +66,7 @@ export default function FlightsHubPage() {
                       {o.city} to {d.city}
                     </span>
                     <span className="block text-xs text-slate-500">
-                      {o.iata} → {d.iata} · {r.category === "domestic" ? "Domestic" : "International"}
+                      {o.iata} → {d.iata} · {ROUTE_CATEGORY_LABELS[r.category]}
                     </span>
                   </span>
                   <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-ocean-600" aria-hidden />

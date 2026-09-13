@@ -11,7 +11,7 @@ The site's main action is **Lock this price → talk to an agent**. Set these so
 the buttons open your real accounts and leads reach your team:
 
 ```
-NEXT_PUBLIC_WHATSAPP_NUMBER=+1 942-338-2017     # your WhatsApp Business number (set)
+NEXT_PUBLIC_WHATSAPP_NUMBER=+1 942-388-2017     # your WhatsApp Business number (set)
 NEXT_PUBLIC_MESSENGER_PAGE=yourpagename         # facebook.com/<this> → m.me link
 NEXT_PUBLIC_TELEGRAM_USERNAME=                  # optional
 LEADS_EMAIL=leads@your-domain.com               # every new lock is emailed here
@@ -26,7 +26,7 @@ one-click WhatsApp / call / email buttons and a status (new → contacted →
 quoted → won/lost), plus CSV export.
 
 **Check the WhatsApp number actually opens a chat.** It is set to
-`+1 942-338-2017`. Area code 942 is not currently assigned in the North
+`+1 942-388-2017`. Area code 942 is not currently assigned in the North
 American Numbering Plan, so if the link opens WhatsApp and says the number is
 not registered, send me the number in full international form (country code +
 number) and I will correct it in one line.

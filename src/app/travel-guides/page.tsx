@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { articlePath } from "@/lib/seo/slugs";
 import { ARTICLES } from "@/content/articles";
-import { POPULAR_DESTINATIONS } from "@/data/destinations";
+import { POPULAR_DESTINATIONS, featuredDestinations } from "@/data/destinations";
 import type { Article } from "@/data/types";
 import { formatDateLong } from "@/lib/utils";
 
@@ -100,7 +100,7 @@ export default function TravelGuidesPage() {
         <div className="container-page">
           <SectionHeading title="Plan the trip, not just the flight" description="City guides with airports, transit, neighborhoods, weather and typical fares." link={{ href: "/destinations", label: "All destinations" }} />
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {POPULAR_DESTINATIONS.slice(0, 4).map((d) => (
+            {featuredDestinations(4).map((d) => (
               <DestinationCard key={d.slug} d={d} />
             ))}
           </div>

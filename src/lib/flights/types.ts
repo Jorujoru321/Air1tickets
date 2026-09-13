@@ -38,7 +38,7 @@ export interface Airport {
   city: string;
   /** Metropolitan area code when the city has several airports (NYC, CHI, WAS, LON, TYO…). */
   metro?: string;
-  /** Two-letter US state code for US airports. */
+  /** Two-letter US state code, or Canadian province/territory code (e.g. "ON"). */
   state?: string;
   country: string;
   countryCode: string; // ISO 3166-1 alpha-2
