@@ -1,3 +1,5 @@
+import { asset } from "@/lib/site";
+
 /**
  * Real photography.
  *
@@ -20,7 +22,9 @@ export const DESTINATION_PHOTOS: ReadonlySet<string> = new Set<string>([
 
 /** Photo URL for a destination, or null to fall back to generated art. */
 export function destinationPhoto(slug: string): string | null {
-  return DESTINATION_PHOTOS.has(slug) ? `/images/destinations/${slug}.jpg` : null;
+  return DESTINATION_PHOTOS.has(slug)
+    ? asset(`/images/destinations/${slug}.jpg`)
+    : null;
 }
 
 /**
@@ -35,16 +39,92 @@ export interface HeroMediaSource {
 }
 
 /**
- * A photograph of the founder or the team for the about page.
+ * Photographs of the agency and the people in it.
  *
- * Take this one yourself — a phone photo of a real person outperforms any
- * stock image or generated portrait, and a generated "team" that does not
- * exist is a lie a customer can catch. Until a file is set, the page shows
- * initials rather than a stranger's face.
+ * Drop the files in `public/images/team/` using exactly these names and set the
+ * matching flag to true. Anything left false simply does not render, so the
+ * pages stay correct while photos are still missing.
+ *
+ * Use only photographs you own, of people who agreed to appear on a public
+ * website. Real, slightly imperfect photos of your actual office beat stock
+ * imagery — that authenticity is the whole point of putting them up.
  */
-export const TEAM_PHOTO: string | null = null; // e.g. "/images/team/founder.jpg"
+export interface TeamPhoto {
+  /** File under public/images/team/. */
+  file: string;
+  /** Alt text. Describe what is happening, not "team photo". */
+  alt: string;
+  /** Caption shown under the image on the about page. */
+  caption?: string;
+  available: boolean;
+}
 
-export const HERO_MEDIA: Record<"home" | "hotels" | "activities", HeroMediaSource> = {
+export const TEAM_PHOTOS = {
+  /** Wide shot of the office floor with agents working. */
+  office: {
+    file: "office.jpg",
+    alt: "Air1 Tickets agents working at their desks in the office",
+    caption:
+      "Our office. Every quote you get is worked by someone in this room.",
+    available: false,
+  },
+  /** An agent going through an itinerary with a customer, passports on the desk. */
+  consultation: {
+    file: "consultation.jpg",
+    alt: "An Air1 Tickets agent going through an itinerary with a customer",
+    caption:
+      "Going through an itinerary in person. Most of it now happens on WhatsApp.",
+    available: false,
+  },
+  /** Agents on headsets handling calls and messages. */
+  support: {
+    file: "support.jpg",
+    alt: "Air1 Tickets agents handling calls and messages on headsets",
+    caption: "When you message us, this is who picks it up.",
+    available: false,
+  },
+  /** The whole team together. */
+  group: {
+    file: "group.jpg",
+    alt: "The Air1 Tickets team together in the office",
+    caption: "The team.",
+    available: false,
+  },
+  /** A single agent portrait. */
+  portrait: {
+    file: "portrait.jpg",
+    alt: "An Air1 Tickets travel agent",
+    caption: undefined,
+    available: false,
+  },
+} satisfies Record<string, TeamPhoto>;
+
+export type TeamPhotoKey = keyof typeof TEAM_PHOTOS;
+
+/** URL for a team photo, or null when the file has not been added yet. */
+export function teamPhoto(key: TeamPhotoKey): string | null {
+  const p = TEAM_PHOTOS[key];
+  return p.available ? asset(`/images/team/${p.file}`) : null;
+}
+
+/** Every photo that actually exists, for galleries. */
+export function availableTeamPhotos(): (TeamPhoto & {
+  key: TeamPhotoKey;
+  src: string;
+})[] {
+  return (Object.keys(TEAM_PHOTOS) as TeamPhotoKey[])
+    .filter((k) => TEAM_PHOTOS[k].available)
+    .map((k) => ({
+      ...TEAM_PHOTOS[k],
+      key: k,
+      src: asset(`/images/team/${TEAM_PHOTOS[k].file}`),
+    }));
+}
+
+export const HERO_MEDIA: Record<
+  "home" | "hotels" | "activities",
+  HeroMediaSource
+> = {
   home: {
     // video: "/video/hero.mp4",
     // image: "/images/hero/home.jpg",

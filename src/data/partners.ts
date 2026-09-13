@@ -1,3 +1,4 @@
+import { asset } from "@/lib/site";
 /**
  * Brands we shop when an agent prices a trip, shown as a "rates compared
  * across" strip on the home, hotels and activities pages.
@@ -20,7 +21,9 @@ export interface Partner {
 
 /** Path to a partner's logo file, or null when we only have the name. */
 export function partnerLogo(p: Partner): string | null {
-  return p.hasLogoFile ? `/partners/${p.slug}.${p.logoExt ?? "svg"}` : null;
+  return p.hasLogoFile
+    ? asset(`/partners/${p.slug}.${p.logoExt ?? "svg"}`)
+    : null;
 }
 
 export const PARTNERS: Partner[] = [

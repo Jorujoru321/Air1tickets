@@ -1,6 +1,7 @@
 import { DestinationArt } from "@/components/marketing/DestinationArt";
 import { HERO_MEDIA } from "@/data/photos";
 import type { HeroTheme } from "@/data/types";
+import { asset } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -29,20 +30,49 @@ export function HeroMedia({
   overlay?: string;
   className?: string;
 }) {
-  const { video, image } = HERO_MEDIA[slot];
+  const raw = HERO_MEDIA[slot];
+  const video = raw.video ? asset(raw.video) : undefined;
+  const image = raw.image ? asset(raw.image) : undefined;
   return (
-    <div className={cn("absolute inset-0 -z-10 overflow-hidden", className)} aria-hidden>
+    <div
+      className={cn("absolute inset-0 -z-10 overflow-hidden", className)}
+      aria-hidden
+    >
       {video ? (
-        <video className="h-full w-full object-cover motion-reduce:hidden" autoPlay muted loop playsInline poster={image} preload="metadata">
+        <video
+          className="h-full w-full object-cover motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={image}
+          preload="metadata"
+        >
           <source src={video} type="video/mp4" />
         </video>
       ) : null}
       {/* Shown when there is no video, and to anyone who asked for less motion. */}
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={image} alt="" className={cn("h-full w-full object-cover", video && "hidden motion-reduce:block")} loading="eager" decoding="sync" fetchPriority="high" />
+        <img
+          src={image}
+          alt=""
+          className={cn(
+            "h-full w-full object-cover",
+            video && "hidden motion-reduce:block",
+          )}
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+        />
       ) : !video ? (
-        <DestinationArt theme={theme} gradient={gradient} seed={seed} priority className="h-full w-full" />
+        <DestinationArt
+          theme={theme}
+          gradient={gradient}
+          seed={seed}
+          priority
+          className="h-full w-full"
+        />
       ) : null}
       <div className={cn("absolute inset-0", overlay)} />
     </div>

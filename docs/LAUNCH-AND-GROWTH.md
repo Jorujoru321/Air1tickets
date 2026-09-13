@@ -51,9 +51,11 @@ feel safe. In rough order of impact:
    happened, what they paid, what the public price was, and permission to use
    a first name. I will not invent these — fabricated testimonials carry FTC
    civil penalties and are the kind of thing that surfaces later.
-3. **[you] A photo of you, or the team.** An "about" page with a real face and
-   a real name outperforms any stock image. Same for the office, if there is
-   one.
+3. **[you] Photos of you, the team and the office.** The slots are built and
+   wired into the home, about and help pages — see
+   `public/images/team/README.md`. Drop five JPEGs in that folder and flip the
+   flags in `src/data/photos.ts` and they go live. A real face and a real name
+   outperforms any stock image, and this is the fastest credibility win left.
 4. **[you] Accreditation.** ARC or IATA number, host agency, consortium
    membership, ASTA. Any of these, displayed, materially changes perception.
 5. **Response-time honesty.** The site promises a reply in about 15 minutes.

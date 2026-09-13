@@ -3,6 +3,7 @@
 import * as React from "react";
 import { getAirline } from "@/data/airlines";
 import { hasAirlineLogoFile } from "@/data/airline-logos";
+import { asset } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /** Relative luminance of a #rrggbb colour (WCAG). */
@@ -27,7 +28,15 @@ function markTextColor(background: string): string {
  * generated mark in the brand colour with the IATA code. Always includes the
  * airline name for screen readers.
  */
-export function AirlineLogo({ iata, size = 36, className }: { iata: string; size?: number; className?: string }) {
+export function AirlineLogo({
+  iata,
+  size = 36,
+  className,
+}: {
+  iata: string;
+  size?: number;
+  className?: string;
+}) {
   const [failed, setFailed] = React.useState(false);
   const airline = getAirline(iata);
   const name = airline?.name ?? iata;
@@ -36,7 +45,7 @@ export function AirlineLogo({ iata, size = 36, className }: { iata: string; size
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={`/airlines/${iata}.svg`}
+        src={asset(`/airlines/${iata}.svg`)}
         alt={name}
         width={size}
         height={size}
@@ -51,8 +60,18 @@ export function AirlineLogo({ iata, size = 36, className }: { iata: string; size
       role="img"
       aria-label={name}
       title={name}
-      className={cn("inline-flex shrink-0 select-none items-center justify-center rounded-lg font-display font-extrabold", className)}
-      style={{ width: size, height: size, background: color, color: markTextColor(color), fontSize: Math.max(10, Math.round(size * 0.36)), letterSpacing: "0.02em" }}
+      className={cn(
+        "inline-flex shrink-0 select-none items-center justify-center rounded-lg font-display font-extrabold",
+        className,
+      )}
+      style={{
+        width: size,
+        height: size,
+        background: color,
+        color: markTextColor(color),
+        fontSize: Math.max(10, Math.round(size * 0.36)),
+        letterSpacing: "0.02em",
+      }}
     >
       {iata}
     </span>
