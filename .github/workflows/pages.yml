@@ -58,12 +58,17 @@ jobs:
         with:
           path: |
             public/images/destinations
+            public/images/articles
             public/partners
           key: media-${{ hashFiles('src/data/destinations/*.ts', 'src/data/partners.ts') }}
 
       - name: Fetch destination photos
         continue-on-error: true
         run: node scripts/fetch-photos.mjs
+
+      - name: Fetch travel-guide photos
+        continue-on-error: true
+        run: node scripts/fetch-article-photos.mjs
 
       - name: Fetch partner logos
         continue-on-error: true

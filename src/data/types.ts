@@ -139,6 +139,13 @@ export interface Article {
   readingMinutes: number;
   heroTheme: HeroTheme;
   gradient: [string, string];
+  /**
+   * A concrete, photographable subject for the hero image, e.g. "airport
+   * departure board". Titles like "Basic Economy vs Main Cabin" return nothing
+   * useful from a photo library, so each article names what to actually show.
+   * Used by scripts/fetch-article-photos.mjs; falls back to generated art.
+   */
+  photoQuery?: string;
   /** Short intro paragraph shown above the fold. */
   intro: string;
   sections: ArticleSection[];

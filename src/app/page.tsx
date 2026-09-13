@@ -16,8 +16,12 @@ import { HeroMedia } from "@/components/marketing/HeroMedia";
 import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { TeamShot, hasTeamPhotos } from "@/components/marketing/TeamPhotos";
 import { OfferCallout } from "@/components/promo/OfferCallout";
+import { ValueTags } from "@/components/marketing/ValueTags";
 import { teamPhoto } from "@/data/photos";
-import { destinationSuggestions, featuredDestinations } from "@/data/destinations";
+import {
+  destinationSuggestions,
+  featuredDestinations,
+} from "@/data/destinations";
 import { PARTNERS } from "@/data/partners";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/seo/FaqAccordion";
@@ -189,8 +193,9 @@ export default function HomePage() {
             in about {site.priceLock.responseMinutes} minutes. Free to ask, no
             account, no card.
           </p>
-          <OfferCallout className="mt-6 max-w-3xl" />
-          <div className="mt-8">
+          <ValueTags className="mt-6" />
+          <OfferCallout className="mt-4 max-w-3xl" />
+          <div className="mt-6">
             <SearchTabs suggestions={destinationSuggestions()} />
           </div>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

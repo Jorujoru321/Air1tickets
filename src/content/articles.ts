@@ -10,7 +10,8 @@ export const ARTICLES: Article[] = [
   {
     slug: "how-to-find-cheap-flights",
     title: "How to Find Cheap Flights in 2026: 15 Strategies That Work",
-    description: "Practical, tested ways to pay less for airfare — when to book, which days to fly, how to use alternate airports, fare alerts and fare classes.",
+    description:
+      "Practical, tested ways to pay less for airfare — when to book, which days to fly, how to use alternate airports, fare alerts and fare classes.",
     category: "tips",
     publishedAt: "2026-01-14",
     updatedAt: "2026-08-20",
@@ -18,6 +19,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 9,
     heroTheme: "city",
     gradient: ["#0b1d3a", "#2f93ef"],
+    photoQuery: "airport departure board",
     intro:
       "Airfares are not random, but they are not fixed either. Airlines change prices constantly based on how many seats are left, how far away departure is and what competitors are charging. You cannot outsmart every rule, but a handful of habits reliably shave 20 to 40 percent off what a casual booker pays. Here are the ones that still work in 2026.",
     sections: [
@@ -41,7 +43,13 @@ export const ARTICLES: Article[] = [
           "Large metro areas have two to five airports and fares between them can differ by hundreds of dollars. Newark versus JFK, Oakland versus San Francisco, Midway versus O'Hare, Fort Lauderdale versus Miami, Burbank versus LAX, Baltimore versus Reagan National: in each pair a low-cost carrier's presence at one airport drags fares down. Our search shows every airport by name, and route pages list the alternatives so you can compare in one click.",
           "The same trick works at your destination. Flying into Sanford instead of Orlando or Providence instead of Boston can be worth the extra drive if you are renting a car anyway.",
         ],
-        bullets: ["New York: JFK, LaGuardia, Newark", "Chicago: O'Hare, Midway", "Bay Area: SFO, Oakland, San Jose", "Washington: Reagan, Dulles, Baltimore", "Los Angeles: LAX, Burbank, Long Beach, Orange County, Ontario"],
+        bullets: [
+          "New York: JFK, LaGuardia, Newark",
+          "Chicago: O'Hare, Midway",
+          "Bay Area: SFO, Oakland, San Jose",
+          "Washington: Reagan, Dulles, Baltimore",
+          "Los Angeles: LAX, Burbank, Long Beach, Orange County, Ontario",
+        ],
       },
       {
         heading: "Compare the total, not the headline fare",
@@ -98,17 +106,36 @@ export const ARTICLES: Article[] = [
       "Fare alerts plus the 24-hour cancellation rule let you lock in drops with no risk.",
     ],
     faqs: [
-      { question: "Is it cheaper to book flights at the last minute?", answer: "Almost never for domestic flights. Airlines raise prices inside two weeks of departure because the remaining seats sell to business travelers. Last-minute deals exist mainly on package tours and cruises, not flights." },
-      { question: "Does searching in incognito mode lower prices?", answer: "No. Airlines and search sites price by route, date and remaining inventory, not by your browsing history. Prices rise between searches because seats sell, not because you were tracked." },
-      { question: "Which day of the week is cheapest to fly?", answer: "Tuesday and Wednesday, followed by Saturday, on most US domestic routes. Friday and Sunday are the most expensive." },
+      {
+        question: "Is it cheaper to book flights at the last minute?",
+        answer:
+          "Almost never for domestic flights. Airlines raise prices inside two weeks of departure because the remaining seats sell to business travelers. Last-minute deals exist mainly on package tours and cruises, not flights.",
+      },
+      {
+        question: "Does searching in incognito mode lower prices?",
+        answer:
+          "No. Airlines and search sites price by route, date and remaining inventory, not by your browsing history. Prices rise between searches because seats sell, not because you were tracked.",
+      },
+      {
+        question: "Which day of the week is cheapest to fly?",
+        answer:
+          "Tuesday and Wednesday, followed by Saturday, on most US domestic routes. Friday and Sunday are the most expensive.",
+      },
     ],
     relatedDestinations: ["las-vegas", "orlando", "cancun"],
-    keywords: ["cheap flights", "how to find cheap flights", "best day to book flights", "airfare tips", "flight deals"],
+    keywords: [
+      "cheap flights",
+      "how to find cheap flights",
+      "best day to book flights",
+      "airfare tips",
+      "flight deals",
+    ],
   },
   {
     slug: "best-time-to-book-flights",
     title: "The Best Time to Book Domestic and International Flights",
-    description: "How far in advance to book for US domestic, Europe, Asia, Mexico and the Caribbean, plus the seasonal patterns that move fares up and down.",
+    description:
+      "How far in advance to book for US domestic, Europe, Asia, Mexico and the Caribbean, plus the seasonal patterns that move fares up and down.",
     category: "tips",
     publishedAt: "2026-02-03",
     updatedAt: "2026-08-20",
@@ -116,6 +143,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 7,
     heroTheme: "nature",
     gradient: ["#166534", "#93cdfb"],
+    photoQuery: "airport terminal window airplane",
     intro:
       "Every fare study reaches the same broad conclusion: there is a booking window for each kind of trip, and prices rise steeply once you are inside it. Below is the practical version — how far ahead to book by destination type, which seasons cost the most, and how to read the fare calendar on our route pages.",
     sections: [
@@ -147,7 +175,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Seasons and events that move fares",
-        paragraphs: ["Beyond the booking window, certain dates carry predictable premiums. Plan around them where you can."],
+        paragraphs: [
+          "Beyond the booking window, certain dates carry predictable premiums. Plan around them where you can.",
+        ],
         bullets: [
           "Thanksgiving week and December 18 – January 3: 30–45% above normal on most routes",
           "Spring break (mid-March to early April): Florida, Mexico, the Caribbean and Hawaii spike",
@@ -172,17 +202,35 @@ export const ARTICLES: Article[] = [
       "Use the fare calendar to move dates before you pay — day-of-week shifts save the most.",
     ],
     faqs: [
-      { question: "How far in advance should I book a domestic flight?", answer: "One to three months before departure. Prices climb sharply inside 14 days, and holiday weeks should be booked three to four months out." },
-      { question: "Are flights cheaper if you book six months ahead?", answer: "For Europe and Asia in peak season, yes. For US domestic trips, six months is usually too early — airlines have not yet released their lowest fare buckets, so you may pay more than someone booking two months out." },
-      { question: "What is the cheapest month to fly?", answer: "January and February for most US and European routes, and September for Europe and domestic leisure destinations. The Caribbean and Mexico are cheapest in late summer and early fall." },
+      {
+        question: "How far in advance should I book a domestic flight?",
+        answer:
+          "One to three months before departure. Prices climb sharply inside 14 days, and holiday weeks should be booked three to four months out.",
+      },
+      {
+        question: "Are flights cheaper if you book six months ahead?",
+        answer:
+          "For Europe and Asia in peak season, yes. For US domestic trips, six months is usually too early — airlines have not yet released their lowest fare buckets, so you may pay more than someone booking two months out.",
+      },
+      {
+        question: "What is the cheapest month to fly?",
+        answer:
+          "January and February for most US and European routes, and September for Europe and domestic leisure destinations. The Caribbean and Mexico are cheapest in late summer and early fall.",
+      },
     ],
     relatedDestinations: ["london", "tokyo", "punta-cana"],
-    keywords: ["best time to book flights", "how far in advance to book flights", "cheapest month to fly", "when to buy plane tickets"],
+    keywords: [
+      "best time to book flights",
+      "how far in advance to book flights",
+      "cheapest month to fly",
+      "when to buy plane tickets",
+    ],
   },
   {
     slug: "basic-economy-vs-main-cabin",
     title: "Basic Economy vs. Main Cabin: What You Actually Get",
-    description: "Airline by airline, what basic economy takes away — seats, bags, changes, boarding, miles — and when the cheaper fare is worth it.",
+    description:
+      "Airline by airline, what basic economy takes away — seats, bags, changes, boarding, miles — and when the cheaper fare is worth it.",
     category: "airlines",
     publishedAt: "2026-01-28",
     updatedAt: "2026-08-25",
@@ -190,6 +238,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 8,
     heroTheme: "city",
     gradient: ["#12244a", "#ff7f47"],
+    photoQuery: "airliner cabin interior seats",
     intro:
       "Basic economy is the same seat, in the same cabin, on the same plane as main cabin. What you give up is flexibility and a few conveniences, and the difference is usually $30 to $70 each way. Whether that is a bargain or a trap depends on how you travel. Here is what each major US airline strips out in 2026 and how to decide.",
     sections: [
@@ -233,7 +282,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "When basic economy is worth it",
-        paragraphs: ["Basic economy is a genuine saving when all of the following are true. If any one is false, price the main-cabin fare first."],
+        paragraphs: [
+          "Basic economy is a genuine saving when all of the following are true. If any one is false, price the main-cabin fare first.",
+        ],
         bullets: [
           "You are traveling with a carry-on only, or you would pay for a checked bag on either fare anyway",
           "You do not care where you sit, or you are traveling alone",
@@ -250,17 +301,35 @@ export const ARTICLES: Article[] = [
       "Ultra-low-cost carriers charge for carry-ons; add them before comparing.",
     ],
     faqs: [
-      { question: "Can I bring a carry-on in basic economy?", answer: "On American, Delta, Alaska, JetBlue and Southwest, yes. United allows it on domestic and most nearby international routes but not on some long-haul basic fares. Spirit, Frontier and Allegiant charge for carry-ons on their lowest fares." },
-      { question: "Can I change or cancel a basic economy ticket?", answer: "Only within 24 hours of booking (for flights seven or more days out) under the US Department of Transportation rule. After that, basic economy fares on American and United are locked; Delta allows cancellation for a credit minus a fee; JetBlue charges a change fee." },
-      { question: "Will my family be seated together in basic economy?", answer: "Not guaranteed. Airlines have committed to seating children under 13 next to an adult when possible, but it is not a legal requirement on every fare. If sitting together matters, book main cabin or pay for seats." },
+      {
+        question: "Can I bring a carry-on in basic economy?",
+        answer:
+          "On American, Delta, Alaska, JetBlue and Southwest, yes. United allows it on domestic and most nearby international routes but not on some long-haul basic fares. Spirit, Frontier and Allegiant charge for carry-ons on their lowest fares.",
+      },
+      {
+        question: "Can I change or cancel a basic economy ticket?",
+        answer:
+          "Only within 24 hours of booking (for flights seven or more days out) under the US Department of Transportation rule. After that, basic economy fares on American and United are locked; Delta allows cancellation for a credit minus a fee; JetBlue charges a change fee.",
+      },
+      {
+        question: "Will my family be seated together in basic economy?",
+        answer:
+          "Not guaranteed. Airlines have committed to seating children under 13 next to an adult when possible, but it is not a legal requirement on every fare. If sitting together matters, book main cabin or pay for seats.",
+      },
     ],
     relatedDestinations: ["new-york", "orlando", "los-angeles"],
-    keywords: ["basic economy vs main cabin", "what is basic economy", "basic economy carry-on", "airline fare classes explained"],
+    keywords: [
+      "basic economy vs main cabin",
+      "what is basic economy",
+      "basic economy carry-on",
+      "airline fare classes explained",
+    ],
   },
   {
     slug: "airline-baggage-fees-explained",
     title: "Airline Baggage Fees in 2026: What Each Carrier Charges",
-    description: "Checked and carry-on bag fees for American, Delta, United, Southwest, JetBlue, Alaska, Spirit, Frontier and international airlines, with tips to avoid them.",
+    description:
+      "Checked and carry-on bag fees for American, Delta, United, Southwest, JetBlue, Alaska, Spirit, Frontier and international airlines, with tips to avoid them.",
     category: "airlines",
     publishedAt: "2026-03-05",
     updatedAt: "2026-08-25",
@@ -268,6 +337,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 8,
     heroTheme: "city",
     gradient: ["#1a3a7a", "#ffc9ac"],
+    photoQuery: "airport baggage claim carousel",
     intro:
       "Bag fees are the most common way a cheap fare becomes an expensive trip. Every major US airline now charges for checked bags on standard domestic fares — Southwest ended its free-bags policy in 2025 — and the ultra-low-cost carriers charge for carry-ons too. This guide lists what you will pay in 2026, where the exceptions are, and how to avoid the fees altogether.",
     sections: [
@@ -310,7 +380,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "How to avoid bag fees",
-        paragraphs: ["A few habits eliminate most bag charges without giving up much."],
+        paragraphs: [
+          "A few habits eliminate most bag charges without giving up much.",
+        ],
         bullets: [
           "Pay for bags at booking, never at the airport — the difference is $5–$60 per bag",
           "Use an airline credit card on the carrier you fly most; the free first bag usually pays for the annual fee in two trips",
@@ -322,7 +394,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Fees in one table",
-        paragraphs: ["Typical first-checked-bag fees on domestic routes when paid online, as of mid-2026. Fees vary by route and date on some carriers; we show the exact allowance for each fare in search results."],
+        paragraphs: [
+          "Typical first-checked-bag fees on domestic routes when paid online, as of mid-2026. Fees vary by route and date on some carriers; we show the exact allowance for each fare in search results.",
+        ],
         bullets: [
           "American: $35 online, $40 at the airport; second bag $45",
           "Delta: $35 first, $45 second",
@@ -342,17 +416,35 @@ export const ARTICLES: Article[] = [
       "Long-haul international economy usually includes a bag, except on 'light' fares.",
     ],
     faqs: [
-      { question: "Does Southwest still have free checked bags?", answer: "No. Since May 28, 2025, Southwest charges about $35 for the first checked bag and $45 for the second on Basic and Choice fares. Choice Preferred and Choice Extra fares, A-List Preferred members and Southwest credit-card holders still get bags included." },
-      { question: "Is a carry-on free on Spirit and Frontier?", answer: "Only a personal item that fits under the seat is free. A full-size carry-on costs $40–$75 each way, sometimes more than a checked bag, unless you buy a bundle." },
-      { question: "How can I see the bag fee before I book?", answer: "Every fare in our search results shows whether a carry-on and checked bag are included and the fee for a first bag when they are not, so you can compare true totals." },
+      {
+        question: "Does Southwest still have free checked bags?",
+        answer:
+          "No. Since May 28, 2025, Southwest charges about $35 for the first checked bag and $45 for the second on Basic and Choice fares. Choice Preferred and Choice Extra fares, A-List Preferred members and Southwest credit-card holders still get bags included.",
+      },
+      {
+        question: "Is a carry-on free on Spirit and Frontier?",
+        answer:
+          "Only a personal item that fits under the seat is free. A full-size carry-on costs $40–$75 each way, sometimes more than a checked bag, unless you buy a bundle.",
+      },
+      {
+        question: "How can I see the bag fee before I book?",
+        answer:
+          "Every fare in our search results shows whether a carry-on and checked bag are included and the fee for a first bag when they are not, so you can compare true totals.",
+      },
     ],
     relatedDestinations: ["las-vegas", "miami", "denver"],
-    keywords: ["airline baggage fees", "checked bag fees 2026", "Southwest bag fees", "carry-on fees Spirit Frontier"],
+    keywords: [
+      "airline baggage fees",
+      "checked bag fees 2026",
+      "Southwest bag fees",
+      "carry-on fees Spirit Frontier",
+    ],
   },
   {
     slug: "tsa-precheck-vs-global-entry-vs-clear",
     title: "TSA PreCheck vs. Global Entry vs. CLEAR: Which Is Worth It?",
-    description: "What each program does, what it costs in 2026, how long enrollment takes and which combination makes sense for your travel pattern.",
+    description:
+      "What each program does, what it costs in 2026, how long enrollment takes and which combination makes sense for your travel pattern.",
     category: "airports",
     publishedAt: "2026-02-18",
     updatedAt: "2026-08-25",
@@ -360,6 +452,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 7,
     heroTheme: "city",
     gradient: ["#0b1d3a", "#5fb3f7"],
+    photoQuery: "airport security checkpoint",
     intro:
       "Three programs promise to get you through the airport faster, and they do very different things. TSA PreCheck speeds up the security screening itself. Global Entry speeds up US immigration and customs when you return from abroad — and includes PreCheck. CLEAR skips the ID-check line but not the screening. Here is how they compare in 2026.",
     sections: [
@@ -414,17 +507,35 @@ export const ARTICLES: Article[] = [
       "Add your Known Traveler Number to every reservation or PreCheck will not appear.",
     ],
     faqs: [
-      { question: "How much does TSA PreCheck cost in 2026?", answer: "About $77 to $85 for a five-year membership depending on which enrollment provider you use. Renewals are slightly cheaper online." },
-      { question: "Does Global Entry include TSA PreCheck?", answer: "Yes. Global Entry membership ($120 for five years) includes PreCheck benefits; your PASSID doubles as your Known Traveler Number." },
-      { question: "Is CLEAR worth it?", answer: "Only if you fly often through large hubs where lines are long even for PreCheck. For most travelers, PreCheck or Global Entry alone is enough." },
+      {
+        question: "How much does TSA PreCheck cost in 2026?",
+        answer:
+          "About $77 to $85 for a five-year membership depending on which enrollment provider you use. Renewals are slightly cheaper online.",
+      },
+      {
+        question: "Does Global Entry include TSA PreCheck?",
+        answer:
+          "Yes. Global Entry membership ($120 for five years) includes PreCheck benefits; your PASSID doubles as your Known Traveler Number.",
+      },
+      {
+        question: "Is CLEAR worth it?",
+        answer:
+          "Only if you fly often through large hubs where lines are long even for PreCheck. For most travelers, PreCheck or Global Entry alone is enough.",
+      },
     ],
     relatedDestinations: ["new-york", "atlanta", "denver"],
-    keywords: ["TSA PreCheck vs Global Entry", "CLEAR vs PreCheck", "Global Entry cost", "REAL ID airport"],
+    keywords: [
+      "TSA PreCheck vs Global Entry",
+      "CLEAR vs PreCheck",
+      "Global Entry cost",
+      "REAL ID airport",
+    ],
   },
   {
     slug: "flight-delayed-or-canceled-your-rights",
     title: "Flight Delayed or Canceled? Your Rights Under US DOT Rules",
-    description: "What airlines owe you when a flight is canceled or significantly delayed — automatic refunds, rebooking, meals and hotels — and how to claim it.",
+    description:
+      "What airlines owe you when a flight is canceled or significantly delayed — automatic refunds, rebooking, meals and hotels — and how to claim it.",
     category: "guides",
     publishedAt: "2026-03-20",
     updatedAt: "2026-08-25",
@@ -432,6 +543,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 8,
     heroTheme: "city",
     gradient: ["#7f2c12", "#ffa477"],
+    photoQuery: "airport departure board delayed",
     intro:
       "US passenger rights are narrower than Europe's, but they have expanded since 2024, and airlines often do more than the law requires if you know what to ask for. This guide covers the rules for cancellations, long delays, involuntary bumping and lost bags, and the practical steps that get you rebooked or refunded fastest.",
     sections: [
@@ -475,7 +587,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "What to do in the moment",
-        paragraphs: ["Speed matters when hundreds of passengers are competing for the same seats."],
+        paragraphs: [
+          "Speed matters when hundreds of passengers are competing for the same seats.",
+        ],
         bullets: [
           "Rebook yourself in the airline's app the moment a cancellation notice arrives — it is faster than the counter",
           "Call the airline while standing in the customer-service line; whichever answers first wins",
@@ -493,17 +607,35 @@ export const ARTICLES: Article[] = [
       "Involuntary bumping pays cash: up to $2,150 by law.",
     ],
     faqs: [
-      { question: "Do airlines have to compensate me for a delayed flight?", answer: "Not by federal law, but the ten largest US airlines have committed to free rebooking, meals after three hours and hotels for overnight delays when the cause is within their control. For EU departures, EC 261 requires cash compensation for delays of three hours or more." },
-      { question: "How long does an airline refund take?", answer: "Seven business days for credit-card purchases and 20 calendar days for other methods, under DOT rules. Refunds must go back to the original form of payment, not a voucher, unless you choose a voucher." },
-      { question: "Can Air1 Tickets help if my flight is canceled?", answer: "Yes. Our US-based agents are available 24/7, can see availability across airlines, and will rebook you or process your refund. Call the number on your confirmation." },
+      {
+        question: "Do airlines have to compensate me for a delayed flight?",
+        answer:
+          "Not by federal law, but the ten largest US airlines have committed to free rebooking, meals after three hours and hotels for overnight delays when the cause is within their control. For EU departures, EC 261 requires cash compensation for delays of three hours or more.",
+      },
+      {
+        question: "How long does an airline refund take?",
+        answer:
+          "Seven business days for credit-card purchases and 20 calendar days for other methods, under DOT rules. Refunds must go back to the original form of payment, not a voucher, unless you choose a voucher.",
+      },
+      {
+        question: "Can Air1 Tickets help if my flight is canceled?",
+        answer:
+          "Yes. Our US-based agents are available 24/7, can see availability across airlines, and will rebook you or process your refund. Call the number on your confirmation.",
+      },
     ],
     relatedDestinations: ["chicago", "london", "denver"],
-    keywords: ["flight canceled rights", "DOT refund rule", "flight delay compensation", "airline passenger rights"],
+    keywords: [
+      "flight canceled rights",
+      "DOT refund rule",
+      "flight delay compensation",
+      "airline passenger rights",
+    ],
   },
   {
     slug: "nonstop-vs-connecting-flights",
     title: "Nonstop vs. Connecting Flights: When a Layover Is Worth It",
-    description: "How much a connection really saves, how long a layover should be, which hubs connect best and when to pay for the nonstop.",
+    description:
+      "How much a connection really saves, how long a layover should be, which hubs connect best and when to pay for the nonstop.",
     category: "tips",
     publishedAt: "2026-04-08",
     updatedAt: "2026-08-25",
@@ -511,6 +643,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 7,
     heroTheme: "mountain",
     gradient: ["#19305e", "#93cdfb"],
+    photoQuery: "airliner wing above clouds",
     intro:
       "A connection is a trade: your time and a bit of risk for a lower fare. Sometimes the trade is excellent — $150 saved for 90 extra minutes. Sometimes it is a terrible deal that costs a night in a hub-city hotel. Here is how to judge it, based on the routes and hubs that dominate US travel.",
     sections: [
@@ -548,7 +681,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "When to pay for the nonstop",
-        paragraphs: ["Take the nonstop, even at a premium, when any of these apply."],
+        paragraphs: [
+          "Take the nonstop, even at a premium, when any of these apply.",
+        ],
         bullets: [
           "The saving is under $60 per person or under 10 percent of the fare",
           "You are traveling with small children or a mobility limitation",
@@ -571,17 +706,35 @@ export const ARTICLES: Article[] = [
       "Pay for the nonstop when the saving is small or the deadline is firm.",
     ],
     faqs: [
-      { question: "Is a 45-minute layover enough?", answer: "It is legal and usually works at compact hubs on the same airline, but leaves no margin for a late inbound flight. Choose 60–90 minutes if the option exists for a similar price." },
-      { question: "Do I have to collect my bag during a connection?", answer: "Not on a single domestic or international-departing ticket — bags are checked through. On arrival into the US from abroad you must collect bags, clear customs and re-check them, even if you are connecting on the same airline." },
-      { question: "What happens if I miss a connection?", answer: "If both flights are on one ticket, the airline rebooks you free on its next available flight and, for a controllable cause, provides meals or a hotel. On separate tickets you must buy a new flight; travel protection may reimburse it." },
+      {
+        question: "Is a 45-minute layover enough?",
+        answer:
+          "It is legal and usually works at compact hubs on the same airline, but leaves no margin for a late inbound flight. Choose 60–90 minutes if the option exists for a similar price.",
+      },
+      {
+        question: "Do I have to collect my bag during a connection?",
+        answer:
+          "Not on a single domestic or international-departing ticket — bags are checked through. On arrival into the US from abroad you must collect bags, clear customs and re-check them, even if you are connecting on the same airline.",
+      },
+      {
+        question: "What happens if I miss a connection?",
+        answer:
+          "If both flights are on one ticket, the airline rebooks you free on its next available flight and, for a controllable cause, provides meals or a hotel. On separate tickets you must buy a new flight; travel protection may reimburse it.",
+      },
     ],
     relatedDestinations: ["atlanta", "denver", "dublin"],
-    keywords: ["nonstop vs connecting flights", "how long should a layover be", "best connecting airports", "layover tips"],
+    keywords: [
+      "nonstop vs connecting flights",
+      "how long should a layover be",
+      "best connecting airports",
+      "layover tips",
+    ],
   },
   {
     slug: "red-eye-flights-guide",
     title: "Red-Eye Flights: Pros, Cons and How to Survive One",
-    description: "Why overnight flights are cheaper, who they suit, and the seat, sleep and arrival-day tactics that make a red-eye work.",
+    description:
+      "Why overnight flights are cheaper, who they suit, and the seat, sleep and arrival-day tactics that make a red-eye work.",
     category: "tips",
     publishedAt: "2026-04-22",
     updatedAt: "2026-08-25",
@@ -589,6 +742,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 6,
     heroTheme: "nightlife",
     gradient: ["#071229", "#5b2a86"],
+    photoQuery: "airport terminal at night",
     intro:
       "Red-eyes — flights that depart late at night and arrive the next morning — are the cheapest seats on transcontinental and Hawaii routes and the standard way to cross the Atlantic. Done right, they save a hotel night and a vacation day. Done wrong, they wreck the first day of your trip. Here is how to decide and how to sleep.",
     sections: [
@@ -601,7 +755,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Who should take one",
-        paragraphs: ["Red-eyes work well for some travelers and poorly for others."],
+        paragraphs: [
+          "Red-eyes work well for some travelers and poorly for others.",
+        ],
         bullets: [
           "Good fit: adults who sleep easily, business travelers saving a workday, anyone saving a hotel night, families with kids who sleep on planes",
           "Poor fit: light sleepers, travelers with an important morning meeting or a wedding on arrival day, anyone with a tight connection the next morning",
@@ -615,7 +771,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "How to actually sleep",
-        paragraphs: ["Small habits make the difference between four hours of sleep and none."],
+        paragraphs: [
+          "Small habits make the difference between four hours of sleep and none.",
+        ],
         bullets: [
           "Eat before the airport and skip the in-flight meal so you can sleep from takeoff",
           "Bring a real neck pillow, an eye mask and foam earplugs or noise-cancelling headphones",
@@ -646,17 +804,35 @@ export const ARTICLES: Article[] = [
       "Plan a light arrival morning with daylight and a short afternoon nap at most.",
     ],
     faqs: [
-      { question: "Are red-eye flights cheaper?", answer: "Usually. Overnight departures are 10–25% cheaper than daytime flights on the same route because fewer people want them." },
-      { question: "What counts as a red-eye flight?", answer: "A flight departing roughly between 9pm and 1am and arriving the following morning. They operate mainly eastbound: West Coast to East Coast, Hawaii to the mainland and North America to Europe." },
-      { question: "Are red-eyes safe with kids?", answer: "Many parents prefer them — children often sleep through the flight. Bring familiar comfort items, board last so they are not waiting on the plane, and plan a quiet arrival morning." },
+      {
+        question: "Are red-eye flights cheaper?",
+        answer:
+          "Usually. Overnight departures are 10–25% cheaper than daytime flights on the same route because fewer people want them.",
+      },
+      {
+        question: "What counts as a red-eye flight?",
+        answer:
+          "A flight departing roughly between 9pm and 1am and arriving the following morning. They operate mainly eastbound: West Coast to East Coast, Hawaii to the mainland and North America to Europe.",
+      },
+      {
+        question: "Are red-eyes safe with kids?",
+        answer:
+          "Many parents prefer them — children often sleep through the flight. Bring familiar comfort items, board last so they are not waiting on the plane, and plan a quiet arrival morning.",
+      },
     ],
     relatedDestinations: ["new-york", "honolulu", "london"],
-    keywords: ["red-eye flights", "overnight flight tips", "how to sleep on a plane", "red eye flight meaning"],
+    keywords: [
+      "red-eye flights",
+      "overnight flight tips",
+      "how to sleep on a plane",
+      "red eye flight meaning",
+    ],
   },
   {
     slug: "flying-with-a-baby-checklist",
     title: "Flying With a Baby or Toddler: The Complete Checklist",
-    description: "Lap infants vs. seats, car seats and strollers, documents, TSA rules for formula and milk, and a packing list for flights with children under 3.",
+    description:
+      "Lap infants vs. seats, car seats and strollers, documents, TSA rules for formula and milk, and a packing list for flights with children under 3.",
     category: "guides",
     publishedAt: "2026-05-06",
     updatedAt: "2026-08-25",
@@ -664,6 +840,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 8,
     heroTheme: "tropical",
     gradient: ["#00a3a1", "#ffc9ac"],
+    photoQuery: "airport terminal family travel",
     intro:
       "The first flight with a baby feels like a logistics exam. It is easier than it looks once you know the rules on lap infants, car seats, strollers and security, and pack for the three things that go wrong on every flight: hunger, ear pressure and a blowout. This checklist covers children under three from booking to landing.",
     sections: [
@@ -682,7 +859,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Documents",
-        paragraphs: ["What you need depends on where you fly and whether both parents are traveling."],
+        paragraphs: [
+          "What you need depends on where you fly and whether both parents are traveling.",
+        ],
         bullets: [
           "Domestic: airlines may ask for proof of age for a lap infant — carry a birth certificate copy or passport",
           "International: every child needs their own passport; Mexico, Canada and many countries also ask for a notarized consent letter when one parent travels alone with the child",
@@ -704,7 +883,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Ears, feeding and the diaper bag",
-        paragraphs: ["Pressure changes hurt small ears during descent more than takeoff. Feeding, a pacifier or a bottle during the final 30 minutes helps."],
+        paragraphs: [
+          "Pressure changes hurt small ears during descent more than takeoff. Feeding, a pacifier or a bottle during the final 30 minutes helps.",
+        ],
         bullets: [
           "Diapers for double the flight time, wipes, two changes of clothes (one for you), zip bags for soiled items",
           "Formula pre-measured in a dispenser plus bottled water (ask the crew for warm water)",
@@ -728,17 +909,36 @@ export const ARTICLES: Article[] = [
       "Feed or offer a pacifier during descent to protect small ears.",
     ],
     faqs: [
-      { question: "Do babies fly free?", answer: "On US domestic flights, children under two on a parent's lap fly free (some carriers collect taxes). On international flights lap infants typically cost 10% of the adult fare plus taxes. A child in their own seat pays a full fare." },
-      { question: "Can I bring breast milk or formula through security?", answer: "Yes. TSA exempts breast milk, formula and baby food from the 3.4-ounce liquid limit in reasonable quantities. Tell the officer at the start of screening; the containers may be tested separately." },
-      { question: "Does my baby need a passport for Mexico or the Caribbean?", answer: "Yes — every traveler, including infants, needs a valid passport for international flights. Passport processing for children requires both parents' consent, so apply at least 8–10 weeks before travel." },
+      {
+        question: "Do babies fly free?",
+        answer:
+          "On US domestic flights, children under two on a parent's lap fly free (some carriers collect taxes). On international flights lap infants typically cost 10% of the adult fare plus taxes. A child in their own seat pays a full fare.",
+      },
+      {
+        question: "Can I bring breast milk or formula through security?",
+        answer:
+          "Yes. TSA exempts breast milk, formula and baby food from the 3.4-ounce liquid limit in reasonable quantities. Tell the officer at the start of screening; the containers may be tested separately.",
+      },
+      {
+        question: "Does my baby need a passport for Mexico or the Caribbean?",
+        answer:
+          "Yes — every traveler, including infants, needs a valid passport for international flights. Passport processing for children requires both parents' consent, so apply at least 8–10 weeks before travel.",
+      },
     ],
     relatedDestinations: ["orlando", "honolulu", "cancun"],
-    keywords: ["flying with a baby", "lap infant rules", "car seat on plane", "TSA formula breast milk", "flying with toddler tips"],
+    keywords: [
+      "flying with a baby",
+      "lap infant rules",
+      "car seat on plane",
+      "TSA formula breast milk",
+      "flying with toddler tips",
+    ],
   },
   {
     slug: "first-time-international-travel-checklist",
     title: "First International Trip? A Step-by-Step Checklist for Americans",
-    description: "Passports, visas and ETAs, phone plans, money, insurance, arrival logistics and what to do before, during and after your first flight abroad.",
+    description:
+      "Passports, visas and ETAs, phone plans, money, insurance, arrival logistics and what to do before, during and after your first flight abroad.",
     category: "guides",
     publishedAt: "2026-05-27",
     updatedAt: "2026-08-25",
@@ -746,6 +946,7 @@ export const ARTICLES: Article[] = [
     readingMinutes: 9,
     heroTheme: "historic",
     gradient: ["#1e293b", "#f59e0b"],
+    photoQuery: "passport and boarding pass",
     intro:
       "More than half of Americans have never flown outside the country, and the first trip raises a hundred small questions: does my passport need six months' validity, will my phone work, do I need cash, what happens at customs? This checklist walks through everything in order, from three months before departure to the day you get home.",
     sections: [
@@ -764,7 +965,9 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "One month out: money and phones",
-        paragraphs: ["Two things trip up first-time travelers more than anything else: card declines and phone bills."],
+        paragraphs: [
+          "Two things trip up first-time travelers more than anything else: card declines and phone bills.",
+        ],
         bullets: [
           "Tell your bank the travel dates (or set a travel notice in the app) and confirm your card has no foreign transaction fee",
           "Carry two cards from different networks and a small amount of local currency from an ATM on arrival — airport exchange counters charge 5–10%",
@@ -806,12 +1009,29 @@ export const ARTICLES: Article[] = [
       "Arrive three hours early, keep your first-night address handy, and use rail links or official taxis on arrival.",
     ],
     faqs: [
-      { question: "Does my passport need to be valid for six months?", answer: "Many countries require it — including most of Asia and the Middle East and, in practice, the Schengen area (three months beyond departure). Airlines enforce these rules at check-in, so renew anything expiring within nine months of travel." },
-      { question: "Do I need travel insurance for an international trip?", answer: "It is strongly recommended. Most US health plans and Medicare do not cover medical care abroad, and evacuation can cost tens of thousands of dollars. Plans offered at checkout typically include medical, evacuation, cancellation and baggage coverage." },
-      { question: "Will my US phone work abroad?", answer: "Yes with an international plan or eSIM. Carrier day passes cost about $10–$12 per day; an eSIM for the destination country usually costs $10–$30 for a week or more of data. Turn off data roaming until you have a plan to avoid surprise charges." },
+      {
+        question: "Does my passport need to be valid for six months?",
+        answer:
+          "Many countries require it — including most of Asia and the Middle East and, in practice, the Schengen area (three months beyond departure). Airlines enforce these rules at check-in, so renew anything expiring within nine months of travel.",
+      },
+      {
+        question: "Do I need travel insurance for an international trip?",
+        answer:
+          "It is strongly recommended. Most US health plans and Medicare do not cover medical care abroad, and evacuation can cost tens of thousands of dollars. Plans offered at checkout typically include medical, evacuation, cancellation and baggage coverage.",
+      },
+      {
+        question: "Will my US phone work abroad?",
+        answer:
+          "Yes with an international plan or eSIM. Carrier day passes cost about $10–$12 per day; an eSIM for the destination country usually costs $10–$30 for a week or more of data. Turn off data roaming until you have a plan to avoid surprise charges.",
+      },
     ],
     relatedDestinations: ["london", "paris", "tokyo", "mexico-city"],
-    keywords: ["first international trip checklist", "international travel tips", "passport validity rules", "what to do before traveling abroad"],
+    keywords: [
+      "first international trip checklist",
+      "international travel tips",
+      "passport validity rules",
+      "what to do before traveling abroad",
+    ],
   },
 ];
 

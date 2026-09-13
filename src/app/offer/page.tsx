@@ -17,6 +17,7 @@ import { TeamShot, hasTeamPhotos } from "@/components/marketing/TeamPhotos";
 import { ChatButtons } from "@/components/leads/ChatButtons";
 import { ClaimOffer } from "@/components/promo/ClaimOffer";
 import { OfferCallout } from "@/components/promo/OfferCallout";
+import { ValueTags } from "@/components/marketing/ValueTags";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationSuggestions } from "@/data/destinations";
@@ -141,10 +142,11 @@ export default function OfferPage() {
             Flights, hotels and tours across the US and Canada. Tell us the trip
             and a US-based agent prices it against what you&apos;re seeing
             online, using last-minute and consolidator inventory public search
-            can&apos;t show. Free to ask, about{" "}
-            {site.priceLock.responseMinutes} minutes for a reply.
+            can&apos;t show. Free to ask, about {site.priceLock.responseMinutes}{" "}
+            minutes for a reply.
           </p>
-          <OfferCallout className="mt-6 max-w-3xl" />
+          <ValueTags className="mt-6" />
+          <OfferCallout className="mt-4 max-w-3xl" />
           <div className="mt-8">
             <SearchTabs suggestions={destinationSuggestions()} />
           </div>

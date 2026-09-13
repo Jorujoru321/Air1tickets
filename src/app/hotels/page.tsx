@@ -19,13 +19,19 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo/jsonld";
 import { destinationPath } from "@/lib/seo/slugs";
 import { typicalNightly } from "@/lib/hotels/rates";
-import { DESTINATIONS, POPULAR_DESTINATIONS, destinationSuggestions, featuredDestinations } from "@/data/destinations";
+import {
+  DESTINATIONS,
+  POPULAR_DESTINATIONS,
+  destinationSuggestions,
+  featuredDestinations,
+} from "@/data/destinations";
 import { partnersFor } from "@/data/partners";
 import { destinationPhoto } from "@/data/photos";
 import { placeLabel } from "@/components/seo/geo-groups";
 import { HeroMedia } from "@/components/marketing/HeroMedia";
 import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { OfferCallout } from "@/components/promo/OfferCallout";
+import { ValueTags } from "@/components/marketing/ValueTags";
 import { site } from "@/lib/site";
 import { formatMoney } from "@/lib/utils";
 
@@ -160,7 +166,8 @@ export default function HotelsPage() {
               best few options on WhatsApp.
             </p>
           </div>
-          <OfferCallout className="mt-6 max-w-3xl" />
+          <ValueTags className="mt-6" />
+          <OfferCallout className="mt-4 max-w-3xl" />
           <div className="mt-8">
             <HotelSearchForm suggestions={suggestions} />
           </div>
@@ -201,9 +208,7 @@ export default function HotelsPage() {
                     <p className="font-display text-lg font-bold text-navy-900 group-hover:text-ocean-700">
                       {d.city}
                     </p>
-                    <p className="text-xs text-slate-500">
-                      {placeLabel(d)}
-                    </p>
+                    <p className="text-xs text-slate-500">{placeLabel(d)}</p>
                     <p className="mt-auto pt-3 text-sm text-slate-700">
                       Typically{" "}
                       <span className="font-bold text-navy-900">

@@ -28,6 +28,28 @@ export function destinationPhoto(slug: string): string | null {
 }
 
 /**
+ * Photography for the travel guides.
+ *
+ * Same arrangement as destinations: files live in
+ * `public/images/articles/<slug>.jpg` and are listed here by slug. Anything
+ * not listed falls back to the generated scene, so a guide never shows a
+ * broken image.
+ *
+ * Populate with `node scripts/fetch-article-photos.mjs` on a machine with
+ * internet access — the deploy workflow runs it on every build.
+ */
+export const ARTICLE_PHOTOS: ReadonlySet<string> = new Set<string>([
+  // none yet — run scripts/fetch-article-photos.mjs
+]);
+
+/** Photo URL for a travel guide, or null to fall back to generated art. */
+export function articlePhoto(slug: string): string | null {
+  return ARTICLE_PHOTOS.has(slug)
+    ? asset(`/images/articles/${slug}.jpg`)
+    : null;
+}
+
+/**
  * Hero media for the home page and the hotels / activities pages.
  * Set a value once the corresponding file exists in `public/`.
  *   video: a short, muted, looping clip (MP4, H.264, ideally under 4 MB)
