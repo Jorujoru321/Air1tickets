@@ -15,8 +15,13 @@ name: Deploy preview to GitHub Pages
 
 on:
   push:
-    branches: [claude/travel-ticketing-website-2uop5k, main]
+    branches: [claude/travel-ticketing-website-2uop5k, claude/vibrant-ptolemy-rojsvk, main]
   workflow_dispatch:
+
+# Custom domain for GitHub Pages. Leave empty to publish at
+# https://<owner>.github.io/<repo>/ instead.
+env:
+  CUSTOM_DOMAIN: aironeagency.com
 
 permissions:
   contents: read
@@ -44,10 +49,16 @@ jobs:
       - name: Work out the public URL
         id: url
         run: |
-          repo="${GITHUB_REPOSITORY#*/}"
-          owner="${GITHUB_REPOSITORY%%/*}"
-          echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
-          echo "base_url=https://${owner,,}.github.io/${repo}" >> "$GITHUB_OUTPUT"
+          if [ -n "${CUSTOM_DOMAIN}" ]; then
+            # Custom domain: the site is the root, so no base path.
+            echo "base_path=" >> "$GITHUB_OUTPUT"
+            echo "base_url=https://${CUSTOM_DOMAIN}" >> "$GITHUB_OUTPUT"
+          else
+            repo="${GITHUB_REPOSITORY#*/}"
+            owner="${GITHUB_REPOSITORY%%/*}"
+            echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
+            echo "base_url=https://${owner,,}.github.io/${repo}" >> "$GITHUB_OUTPUT"
+          fi
 
       - run: npm ci
 
@@ -91,8 +102,23 @@ jobs:
           NEXT_TELEMETRY_DISABLED: "1"
         run: npm run build
 
+      # The export emits an RSC payload (.txt) next to every page for soft
+      # client-side navigation. At this page count they come to ~900 MB, which
+      # pushes the site past the 1 GB GitHub Pages limit. Dropping them keeps
+      # every page byte-identical; Next just falls back to a full navigation
+      # (verified: pages render the same, links still work).
+      - name: Drop RSC payloads to stay under the 1 GB Pages limit
+        run: |
+          before=$(du -sm out | cut -f1)
+          find out -name "*.txt" -not -name "robots.txt" -delete
+          echo "out/: ${before} MB -> $(du -sm out | cut -f1) MB"
+
       - name: Stop Pages from hiding _next/
         run: touch out/.nojekyll
+
+      - name: Tell Pages about the custom domain
+        if: env.CUSTOM_DOMAIN != ''
+        run: echo "${CUSTOM_DOMAIN}" > out/CNAME
 
       - uses: actions/upload-pages-artifact@v3
         with:

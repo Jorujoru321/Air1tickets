@@ -109,12 +109,12 @@ Migrations run automatically on first request (`npm run db:migrate` also works).
 
 ## 5. Domain, hosting and the canonical URL
 
-* Buy the domain (the code assumes **air1tickets.com** — change `NEXT_PUBLIC_SITE_URL` if different).
+* Buy the domain (the code assumes **aironeagency.com** — change `NEXT_PUBLIC_SITE_URL` if different).
 * Recommended host: **Vercel** (zero-config for Next.js). Import the GitHub repo, add the environment variables above, deploy.
 * Set:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://www.air1tickets.com
+NEXT_PUBLIC_SITE_URL=https://www.aironeagency.com
 SESSION_SECRET=<run: openssl rand -base64 48>
 ```
 

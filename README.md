@@ -38,7 +38,7 @@ Useful scripts:
 | `npm test` | Unit tests (Vitest) |
 | `npm run test:e2e` | End-to-end tests (Playwright; builds and starts the app on port 3100) |
 | `npm run db:migrate` | Apply schema migrations to `DATABASE_URL` |
-| `npm run db:seed` | Create a demo account (`demo@air1tickets.com` / `Demo1234`) and a sample booking |
+| `npm run db:seed` | Create a demo account (`demo@aironeagency.com` / `Demo1234`) and a sample booking |
 | `npx tsx scripts/validate-data.ts` | Validate the airport/airline/route/content datasets |
 | `node scripts/smoke.mjs http://127.0.0.1:3100` | Crawl key pages on a running server, check SEO basics, save screenshots to `.smoke/` |
 

@@ -25,7 +25,7 @@ export const site = {
   country: "US",
   supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (942) 388-2017",
   supportEmail:
-    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@air1tickets.com",
+    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@aironeagency.com",
   address: {
     streetAddress: "1250 Market Street, Suite 400",
     addressLocality: "San Francisco",
@@ -81,7 +81,7 @@ export const site = {
     leadsEmail:
       process.env.LEADS_EMAIL ??
       process.env.NEXT_PUBLIC_SUPPORT_EMAIL ??
-      "support@air1tickets.com",
+      "support@aironeagency.com",
   },
 } as const;
 

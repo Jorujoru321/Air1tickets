@@ -1,7 +1,7 @@
 /**
  * Seed a demo account and a sample confirmed booking for local development.
  *   npx tsx scripts/seed.ts
- * Account: demo@air1tickets.com / Demo1234
+ * Account: demo@aironeagency.com / Demo1234
  */
 import { eq } from "drizzle-orm";
 import { nanoid } from "nanoid";
@@ -37,7 +37,7 @@ async function main() {
   }
   const db = drizzle(client, { schema });
 
-  const email = "demo@air1tickets.com";
+  const email = "demo@aironeagency.com";
   let user = (await db.select().from(schema.users).where(eq(schema.users.email, email)).limit(1))[0];
   if (!user) {
     const id = `usr_${nanoid(16)}`;

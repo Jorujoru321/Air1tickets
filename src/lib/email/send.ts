@@ -12,7 +12,7 @@ interface Mail {
 
 async function deliver(mail: Mail): Promise<void> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM ?? `${site.name} <bookings@air1tickets.com>`;
+  const from = process.env.EMAIL_FROM ?? `${site.name} <bookings@aironeagency.com>`;
   if (!key) {
     console.log(`\n[air1] email (not sent — RESEND_API_KEY missing)\n  to: ${mail.to}\n  subject: ${mail.subject}\n${mail.text.split("\n").map((l) => "  " + l).join("\n")}\n`);
     return;

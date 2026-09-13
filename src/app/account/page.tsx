@@ -150,7 +150,7 @@ export default async function AccountPage() {
             </dl>
             <p className="mt-4 text-xs text-slate-500">
               To update your details or delete your account, email{" "}
-              <a href="mailto:support@air1tickets.com" className="underline">
+              <a href="mailto:support@aironeagency.com" className="underline">
                 support
               </a>
               .
