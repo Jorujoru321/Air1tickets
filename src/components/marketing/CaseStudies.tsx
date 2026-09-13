@@ -16,7 +16,7 @@ export function CaseStudyCard({ c }: { c: CaseStudy }) {
     <article className={cn("flex h-full flex-col rounded-2xl border bg-white p-6 shadow-card", c.verified ? "border-success-200 ring-1 ring-success-100" : "border-slate-200")}>
       <p className={cn("inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold", c.verified ? "bg-success-50 text-success-700" : "bg-slate-100 text-slate-600")}>
         {c.verified ? <BadgeCheck className="h-3.5 w-3.5" aria-hidden /> : <Lightbulb className="h-3.5 w-3.5" aria-hidden />}
-        {c.verified ? "Customer story" : "Example scenario"}
+        {c.verified ? "Customer story" : "How we handle it"}
       </p>
       <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ocean-700">{c.context}</p>
       <h3 className="mt-2 font-display text-xl font-bold text-navy-900">{c.headline}</h3>
@@ -44,13 +44,14 @@ export function CaseStudyCard({ c }: { c: CaseStudy }) {
 }
 
 /**
- * "What we've actually done" — real customer stories. Every entry is vetted in
- * src/content/case-studies.ts; nothing here is invented.
+ * Proof section. Mixes verified customer stories with plainly-labelled
+ * descriptions of how we handle common situations — which is what a new agency
+ * honestly has. Entries are vetted in src/content/case-studies.ts.
  */
 export function CaseStudies({
   kind = "flight",
-  title = "What that looks like in practice",
-  description = "One real customer story, plus the situations we handle most. Prices in the customer story are what the traveler actually paid.",
+  title = "The situations we handle",
+  description = "What an agent does that a search box cannot. Any price shown is what a real traveler actually paid.",
   onDark = false,
   className,
 }: {

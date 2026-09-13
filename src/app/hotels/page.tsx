@@ -144,7 +144,7 @@ export default function HotelsPage() {
         </ul>
       </section>
 
-      <CaseStudies kind="hotel" title="Where an agent beats a search box" description="The hotel situations we handle most often." />
+      <CaseStudies kind="hotel" title="Where an agent beats a search box" description="What we do that a hotel search page cannot." />
 
       <section className="bg-white py-12">
         <div className="container-page max-w-3xl">

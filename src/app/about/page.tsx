@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageJsonLd } from "@/lib/seo/jsonld";
 import { site } from "@/lib/site";
+import { TEAM_PHOTO } from "@/data/photos";
 import { contactHref } from "@/lib/leads/chat-links";
 
 export const metadata = buildMetadata({
@@ -84,13 +85,22 @@ export default function AboutPage() {
             </ol>
           </div>
           <div>
-            <h2 className="text-2xl sm:text-3xl">The team</h2>
+            <h2 className="text-2xl sm:text-3xl">Who you&apos;re messaging</h2>
             <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sunrise-50 text-sunrise-700">
-                <Users className="h-5 w-5" aria-hidden />
-              </span>
-              <p className="mt-4 text-slate-700">We are travel agents, former airline operations staff and engineers working from {site.address.addressLocality} and remotely across the US. Our support team is entirely US-based and staffed around the clock; our editors write every destination guide and route page from real schedules and fares rather than templates.</p>
-              <p className="mt-3 text-slate-700">We don&apos;t publish invented review scores or booking counts. What we can promise is on every page: the total price up front, the fare rules in plain English and a person on the line when you need one.</p>
+              {TEAM_PHOTO ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={TEAM_PHOTO} alt={`The ${site.name} team`} className="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
+              ) : (
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sunrise-50 text-sunrise-700">
+                  <Users className="h-5 w-5" aria-hidden />
+                </span>
+              )}
+              <p className="mt-4 text-slate-700">
+                When you message {site.name} you reach a person, not a queue. We are a small US-based agency, which is the point: the agent who quotes your trip is the one who rebooks you when a flight moves, and you keep the same thread rather than starting again with a call centre.
+              </p>
+              <p className="mt-3 text-slate-700">
+                We don&apos;t publish invented review scores, booking counts or testimonials. What we promise is on every page: the total price up front, the fare rules in plain English, and someone who answers.
+              </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 <Button href={contactHref()} variant="secondary">
                   Contact us

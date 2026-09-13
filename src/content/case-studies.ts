@@ -1,25 +1,29 @@
 /**
  * Proof for the home, flights and hotels pages.
  *
- * There are two kinds of entry and the site labels them differently, because
- * the difference matters both to readers and legally:
+ * Two kinds of entry, labelled differently on the card, because the
+ * difference matters both to readers and legally:
  *
  *   verified: true  — a real thing that happened to a real customer. Shown as
- *                     "Customer story" with their name.
- *   verified: false — an illustrative example of how we work. Shown as
- *                     "Example scenario", with no name and no invented quote.
+ *                     "Customer story" with their first name.
+ *   verified: false — how we handle a situation. Shown as "How we handle it",
+ *                     with no name, no invented quote and no claimed outcome.
  *
- * NEVER flip an example to verified to make it look better. Fake testimonials
- * are illegal for a US business: the FTC's rule on consumer reviews and
- * testimonials (16 CFR Part 465, in force since 2024) carries civil penalties
- * per violation for fabricated endorsements.
+ * NEVER flip an example to verified to make it look better, and never write a
+ * "customer" who does not exist. Fabricated testimonials are illegal for a US
+ * business: the FTC rule on consumer reviews and testimonials (16 CFR Part
+ * 465) carries civil penalties per violation. They are also the easiest thing
+ * in the world for a competitor or a journalist to check.
+ *
+ * A new agency with no track record is not stuck. The examples below sell the
+ * service on how it works rather than on who has used it, which is honest and
+ * persuasive. Replace them with verified stories as real ones accumulate.
  *
  * Before adding a verified story:
  *   1. It must have actually happened.
  *   2. Get the traveler's permission to use their first name.
  *   3. Keep evidence for any price comparison — a screenshot of the public
- *      fare at that moment. A savings claim has to reflect what the customer
- *      would genuinely have paid otherwise.
+ *      fare at that moment.
  */
 export interface CaseStudy {
   id: string;
@@ -32,6 +36,7 @@ export interface CaseStudy {
   story: string;
   /** Short situation label, e.g. "Missed flight · Chicago O'Hare". */
   context: string;
+  /** Only ever set on verified stories — these are claims about real money. */
   paid?: number;
   publicPrice?: number;
   result: string;
@@ -52,48 +57,81 @@ export const CASE_STUDIES: CaseStudy[] = [
     result: "Rebooked the same day for $200, about half the going online price.",
   },
   {
-    id: "example-fare-climbing",
+    id: "stranded",
     kind: "flight",
     verified: false,
-    traveler: "A traveler watching a fare climb",
-    headline: "The fare keeps rising while you decide",
-    context: "Example scenario · Fare volatility",
+    traveler: "Someone stuck at the airport",
+    headline: "Your flight is gone and the airline queue is forty deep",
+    context: "Missed connection or cancellation",
     story:
-      "You find a fare you like but you are not ready to commit, and every time you check back it has moved. Send it to us instead. We note the exact itinerary and price, keep watching the route, and tell you when it is genuinely time to book — including when the right move is a nearby airport or shifting a date by one day.",
-    result: "You stop refreshing a search and let an agent watch the route for you.",
+      "The desk will rebook you onto that airline's next seat, which may be tomorrow. We are not limited to one airline. While you are still in the queue we check every carrier out of that airport, including the ones whose last-minute seats never surface on public search, and send you what is actually flyable tonight.",
+    result: "Message us before you join the queue, not after.",
   },
   {
-    id: "example-group-travel",
+    id: "fare-climbing",
+    kind: "flight",
+    verified: false,
+    traveler: "Someone watching a fare climb",
+    headline: "The price moves every time you check",
+    context: "Deciding when to book",
+    story:
+      "Send us the trip instead of refreshing it. We note the exact itinerary and price you saw, watch the route, and tell you when it is genuinely time to book — including when the better move is a nearby airport, or shifting a date by one day.",
+    result: "An agent watches the route so you do not have to.",
+  },
+  {
+    id: "group-seats",
     kind: "flight",
     verified: false,
     traveler: "A family booking together",
     headline: "Four seats together, not four separate bookings",
-    context: "Example scenario · Family travel",
+    context: "Family and group travel",
     story:
-      "Booking sites price group seats from whatever inventory is left, which is how families end up scattered across the cabin or paying four different fares. An agent can see how the seat map is filling and which fare class actually has four seats side by side, then hold them while you decide.",
-    result: "Everyone sits together, priced as one booking rather than four.",
+      "Booking sites price group seats from whatever is left, which is how families end up scattered across the cabin at four different fares. An agent can see how the cabin is filling and which fare class actually has seats side by side, then hold them while you decide.",
+    result: "Everyone sits together, priced as one booking.",
   },
   {
-    id: "example-all-inclusive",
+    id: "complex-itinerary",
+    kind: "flight",
+    verified: false,
+    traveler: "Someone with an awkward route",
+    headline: "The trip no search box handles well",
+    context: "Multi-city and open-jaw",
+    story:
+      "Fly into one city and home from another, stop somewhere for three days on the way, travel with an infant and a set of golf clubs. Search boxes either refuse these or price them badly. Describe it in a sentence and we price it properly, including whether two separate tickets beat one.",
+    result: "Say it in plain English; we turn it into an itinerary.",
+  },
+  {
+    id: "all-inclusive",
     kind: "hotel",
     verified: false,
     traveler: "A couple pricing a resort",
     headline: "Same resort, very different price two days apart",
-    context: "Example scenario · All-inclusive",
+    context: "All-inclusive resorts",
     story:
-      "All-inclusive pricing swings hard by date, and the public rate rarely shows you the cheaper night either side of your dates. Tell us your budget per person and roughly when you want to go, and we quote the dates that cost noticeably less alongside the ones you asked for.",
-    result: "You see what flexibility is actually worth before you commit.",
+      "All-inclusive pricing swings hard by date, and the public rate rarely shows the cheaper night either side of your dates. Tell us your budget per person and roughly when, and we quote the dates that cost noticeably less alongside the ones you asked for.",
+    result: "You see what flexibility is actually worth before committing.",
   },
   {
-    id: "example-late-room",
+    id: "late-room",
     kind: "hotel",
     verified: false,
     traveler: "A late booker",
     headline: "The room nobody sold",
-    context: "Example scenario · Last-minute stay",
+    context: "Last-minute stays",
     story:
-      "Hotels discount unsold rooms in the last few days before a date, but those rates often sit in channels the public search never shows. If your trip is close, message us: that window is exactly what our agents watch.",
-    result: "Late bookings are often the cheapest, not the most expensive.",
+      "Hotels discount unsold rooms in the last few days before a date, but those rates often sit in channels public search never shows. If your trip is close, message us — that window is exactly what our agents watch.",
+    result: "Late bookings are often the cheapest, not the dearest.",
+  },
+  {
+    id: "right-neighbourhood",
+    kind: "hotel",
+    verified: false,
+    traveler: "A first-time visitor",
+    headline: "The cheap hotel that is cheap for a reason",
+    context: "Choosing where to stay",
+    story:
+      "A rate looks good until you realise it is forty minutes from everything you came to see, or beside a motorway. We book these cities constantly. Tell us what you are in town for and we will say which areas actually work and which bargain to skip.",
+    result: "The right neighbourhood, not just the lowest number.",
   },
 ];
 

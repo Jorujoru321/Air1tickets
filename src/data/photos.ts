@@ -34,6 +34,16 @@ export interface HeroMediaSource {
   image?: string;
 }
 
+/**
+ * A photograph of the founder or the team for the about page.
+ *
+ * Take this one yourself — a phone photo of a real person outperforms any
+ * stock image or generated portrait, and a generated "team" that does not
+ * exist is a lie a customer can catch. Until a file is set, the page shows
+ * initials rather than a stranger's face.
+ */
+export const TEAM_PHOTO: string | null = null; // e.g. "/images/team/founder.jpg"
+
 export const HERO_MEDIA: Record<"home" | "hotels" | "activities", HeroMediaSource> = {
   home: {
     // video: "/video/hero.mp4",
