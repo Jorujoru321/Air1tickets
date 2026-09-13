@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Menu, Phone, X } from "lucide-react";
 import { PRIMARY_NAV, visibleLinks } from "./nav";
@@ -8,8 +9,22 @@ import { Button } from "@/components/ui/Button";
 import { isStaticPreview, site } from "@/lib/site";
 import { Logo } from "./Logo";
 
+/**
+ * The menu overlay is portalled to document.body rather than rendered where it
+ * sits in the tree.
+ *
+ * The header carries `backdrop-blur`, and an element with a backdrop-filter
+ * becomes the containing block for fixed-position descendants. Rendered in
+ * place, this panel's `fixed inset-0` therefore resolved against the header —
+ * 68px tall — and the menu opened squashed into the header strip with its
+ * links spilling over the page. The portal puts it back on the viewport.
+ */
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  // Portals need a DOM target, which does not exist during the server render.
+  React.useEffect(() => setMounted(true), []);
 
   React.useEffect(() => {
     if (!open) return;
@@ -34,51 +49,94 @@ export function MobileNav() {
       >
         <Menu className="h-6 w-6" aria-hidden />
       </button>
-      {open && (
-        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Site menu" id="mobile-menu">
-          <button type="button" className="absolute inset-0 bg-navy-950/50" aria-label="Close menu" onClick={() => setOpen(false)} />
-          <div className="absolute inset-y-0 right-0 flex w-[min(22rem,90vw)] flex-col bg-white shadow-float">
-            <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-              <Logo />
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-field)] hover:bg-slate-100">
-                <X className="h-5 w-5" aria-hidden />
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto px-3 py-3">
-              <ul className="space-y-0.5">
-                {visibleLinks(PRIMARY_NAV).map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100">
-                      {item.label}
+      {open &&
+        mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[70]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            id="mobile-menu"
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-navy-950/50"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+            />
+            <div className="absolute inset-y-0 right-0 flex w-[min(22rem,90vw)] flex-col bg-white shadow-float">
+              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+                <Logo />
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-field)] hover:bg-slate-100"
+                >
+                  <X className="h-5 w-5" aria-hidden />
+                </button>
+              </div>
+              <nav className="flex-1 overflow-y-auto px-3 py-3">
+                <ul className="space-y-0.5">
+                  {visibleLinks(PRIMARY_NAV).map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      href="/price-lock"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100"
+                    >
+                      How price lock works
                     </Link>
                   </li>
-                ))}
-                <li>
-                  <Link href="/price-lock" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-navy-900 hover:bg-slate-100">
-                    How price lock works
-                  </Link>
-                </li>
-              </ul>
-              {!isStaticPreview && (
-                <div className="mt-4 space-y-2 border-t border-slate-100 px-3 pt-4">
-                  <Button href="/account/login" variant="outline" full onClick={() => setOpen(false)}>
-                    Sign in
-                  </Button>
-                  <Button href="/account/register" variant="secondary" full onClick={() => setOpen(false)}>
-                    Create account
-                  </Button>
-                </div>
-              )}
-            </nav>
-            <div className="border-t border-slate-100 px-5 py-4 text-sm text-slate-600">
-              <a href={`tel:${site.supportPhone.replace(/[^\d+]/g, "")}`} className="flex items-center gap-2 font-semibold text-navy-900">
-                <Phone className="h-4 w-4 text-ocean-600" aria-hidden /> {site.supportPhone}
-              </a>
-              <p className="mt-1 text-xs text-slate-500">24/7 US-based support</p>
+                </ul>
+                {!isStaticPreview && (
+                  <div className="mt-4 space-y-2 border-t border-slate-100 px-3 pt-4">
+                    <Button
+                      href="/account/login"
+                      variant="outline"
+                      full
+                      onClick={() => setOpen(false)}
+                    >
+                      Sign in
+                    </Button>
+                    <Button
+                      href="/account/register"
+                      variant="secondary"
+                      full
+                      onClick={() => setOpen(false)}
+                    >
+                      Create account
+                    </Button>
+                  </div>
+                )}
+              </nav>
+              <div className="border-t border-slate-100 px-5 py-4 text-sm text-slate-600">
+                <a
+                  href={`tel:${site.supportPhone.replace(/[^\d+]/g, "")}`}
+                  className="flex items-center gap-2 font-semibold text-navy-900"
+                >
+                  <Phone className="h-4 w-4 text-ocean-600" aria-hidden />{" "}
+                  {site.supportPhone}
+                </a>
+                <p className="mt-1 text-xs text-slate-500">
+                  24/7 US-based support
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
