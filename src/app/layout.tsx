@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { PromoBar } from "@/components/promo/PromoBar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingChat } from "@/components/leads/FloatingChat";
 import { Analytics } from "@/components/analytics/Analytics";
@@ -11,24 +12,43 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonld";
 import { site } from "@/lib/site";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap", weight: ["600", "700", "800"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+  weight: ["600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} — Cheap Flights & Airline Tickets`, template: `%s | ${site.name}` },
+  title: {
+    default: `${site.name} — Cheap Flights & Airline Tickets`,
+    template: `%s | ${site.name}`,
+  },
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.legalName,
   formatDetection: { telephone: true, email: true, address: false },
-  openGraph: { type: "website", siteName: site.name, locale: site.locale, url: site.url },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: site.locale,
+    url: site.url,
+  },
   twitter: { card: "summary_large_image", site: site.twitterHandle },
   robots: { index: true, follow: true },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
-    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
   },
   icons: {
     icon: [
@@ -48,7 +68,11 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en-US" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="flex min-h-screen flex-col">
@@ -59,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <PromoBar />
         <Header />
         <main id="main" className="flex-1">
           {children}

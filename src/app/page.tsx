@@ -15,6 +15,7 @@ import { PartnerStrip } from "@/components/marketing/PartnerStrip";
 import { HeroMedia } from "@/components/marketing/HeroMedia";
 import { CaseStudies } from "@/components/marketing/CaseStudies";
 import { TeamShot, hasTeamPhotos } from "@/components/marketing/TeamPhotos";
+import { OfferCallout } from "@/components/promo/OfferCallout";
 import { teamPhoto } from "@/data/photos";
 import { destinationSuggestions } from "@/data/destinations";
 import { PARTNERS } from "@/data/partners";
@@ -71,13 +72,13 @@ const TRUST = [
 const WHY = [
   {
     icon: Lock,
-    title: "Lock the fare, skip the panic",
-    text: "See a price you like? Lock it in 30 seconds with just your name and number. We hold that itinerary and price — no card, no commitment.",
+    title: "Lock a fare before it moves",
+    text: `See a price you like? Lock it in 30 seconds with a name and a number — no card. That price is then the most you'll pay for ${site.priceLock.hours} hours, however far it climbs.`,
   },
   {
     icon: Tag,
     title: "We shop it again before you fly",
-    text: "Fares move right up to departure. 1–2 days before you fly our agents re-check every airline and send your final, last-minute deal — usually below what you locked.",
+    text: "Airlines discount unsold seats late, and those fares rarely reach public search. One to two days out we re-check every carrier and send your final deal — which is often below what you locked.",
   },
   {
     icon: Headset,
@@ -179,13 +180,16 @@ export default function HomePage() {
             agency · real agents on WhatsApp
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Tell us where you&apos;re going. Get the price on WhatsApp.
+            The cheapest fare is rarely the one on the screen.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">
-            Flights, hotels and things to do. Fill in your trip, hit the button,
-            and a real agent replies with a last-minute deal in about{" "}
-            {site.priceLock.responseMinutes} minutes. Free, no account, no card.
+            Tell us the trip — flights, hotels, things to do — and a US-based
+            agent prices it against what you&apos;re seeing, using last-minute
+            and consolidator inventory public search can&apos;t display. A reply
+            in about {site.priceLock.responseMinutes} minutes. Free to ask, no
+            account, no card.
           </p>
+          <OfferCallout className="mt-6 max-w-3xl" />
           <div className="mt-8">
             <SearchTabs suggestions={destinationSuggestions()} />
           </div>

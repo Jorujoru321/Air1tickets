@@ -21,7 +21,11 @@ export type AnalyticsEvent =
   /** Newsletter signup. */
   | "newsletter_signup"
   /** A search form failed validation — high counts mean the form is confusing. */
-  | "search_error";
+  | "search_error"
+  /** An ad-referral offer was displayed. Compare against ad clicks to spot tracking loss. */
+  | "promo_shown"
+  /** A request went to WhatsApp carrying an offer code — the ad actually converted. */
+  | "promo_applied";
 
 export interface EventParams {
   /** "flight" | "hotel" | "activity" — what was requested. */
@@ -33,6 +37,12 @@ export interface EventParams {
   travelers?: number;
   /** Approximate trip value, used for value-based bidding once you run ads. */
   value?: number;
+  /** Ad-referral offer code carried into the request, e.g. "META50". */
+  offer_code?: string;
+  /** Paid channel the visitor arrived from, e.g. "meta". */
+  source?: string;
+  /** utm_campaign from the ad, when it passed one. */
+  campaign?: string;
   currency?: string;
   [key: string]: unknown;
 }
@@ -56,6 +66,9 @@ const META_EVENTS: Partial<Record<AnalyticsEvent, string>> = {
   phone_click: "Contact",
   lock_completed: "Lead",
   newsletter_signup: "Subscribe",
+  // Meta counts this as the conversion for ad optimisation; it is a lead that
+  // is attributable to a specific campaign.
+  promo_applied: "Lead",
 };
 
 export function track(event: AnalyticsEvent, params: EventParams = {}): void {
@@ -69,8 +82,14 @@ export function track(event: AnalyticsEvent, params: EventParams = {}): void {
 
   try {
     const metaName = META_EVENTS[event];
-    if (metaName) w.fbq?.("track", metaName, { content_category: params.kind, value: params.value, currency: payload.currency });
+    if (metaName)
+      w.fbq?.("track", metaName, {
+        content_category: params.kind,
+        value: params.value,
+        currency: payload.currency,
+      });
   } catch {}
 
-  if (process.env.NODE_ENV === "development") console.debug("[analytics]", event, payload);
+  if (process.env.NODE_ENV === "development")
+    console.debug("[analytics]", event, payload);
 }
