@@ -171,7 +171,11 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-navy-950 text-white">
+      {/* No overflow-hidden / isolate here: the search form's date and airport
+          popovers are absolutely positioned and would be clipped at the section
+          edge. HeroMedia clips its own background (absolute inset-0 -z-10
+          overflow-hidden), so the section does not need to. */}
+      <section className="relative bg-navy-950 text-white">
         <HeroMedia
           slot="home"
           theme="city"

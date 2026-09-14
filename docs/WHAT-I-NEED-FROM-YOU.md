@@ -25,11 +25,10 @@ open `/admin/leads`: every lock shows the traveler, trip, locked price, expiry,
 one-click WhatsApp / call / email buttons and a status (new → contacted →
 quoted → won/lost), plus CSV export.
 
-**Check the WhatsApp number actually opens a chat.** It is set to
-`+1 942-388-2017`. Area code 942 is not currently assigned in the North
-American Numbering Plan, so if the link opens WhatsApp and says the number is
-not registered, send me the number in full international form (country code +
-number) and I will correct it in one line.
+**WhatsApp number:** `+1 942-388-2017`, confirmed by the owner as the live
+business line. It is the destination for every WhatsApp button, the site-wide
+chat widget and the header call link, so if it ever changes, change it in
+`NEXT_PUBLIC_WHATSAPP_NUMBER` / `NEXT_PUBLIC_SUPPORT_PHONE` and nowhere else.
 
 **Please confirm the promises the copy makes**, or tell me what to change:
 the locked price is the *maximum* the traveler pays; you re-check fares and send

@@ -140,7 +140,9 @@ export default function HotelsPage() {
         ]}
       />
 
-      <section className="relative isolate overflow-hidden bg-navy-950 text-white">
+      {/* See the home hero: no overflow-hidden / isolate, or the date popover
+          is clipped and trapped below later sections. */}
+      <section className="relative bg-navy-950 text-white">
         <HeroMedia
           slot="hotels"
           theme="tropical"
