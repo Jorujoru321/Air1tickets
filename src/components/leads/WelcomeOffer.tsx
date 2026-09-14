@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { BadgeCheck, Clock3, PhoneCall, Plane, Tag, X } from "lucide-react";
 import { WhatsAppIcon } from "@/components/leads/ChatButtons";
 import { whatsappLink } from "@/lib/leads/chat-links";
+import { claimPopupSlot } from "@/lib/leads/popup-slot";
 import { withOfferLine, useOffer } from "@/lib/promo/claim";
 import { formatCountdown, promo } from "@/lib/promo/offer";
 import { track } from "@/lib/analytics/events";
@@ -105,6 +106,9 @@ export function WelcomeOffer() {
     let done = false;
     const show = () => {
       if (done) return;
+      // The scripted chat opens earlier than this. Whichever got there first
+      // owns the screen; two of these at once is intolerable.
+      if (!claimPopupSlot("welcome-offer")) return;
       done = true;
       markSeen();
       setOpen(true);

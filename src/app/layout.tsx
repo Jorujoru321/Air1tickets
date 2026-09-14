@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { PromoBar } from "@/components/promo/PromoBar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingChat } from "@/components/leads/FloatingChat";
+import { ScriptedChat } from "@/components/leads/ScriptedChat";
 import { StickyMobileCta } from "@/components/leads/StickyMobileCta";
 import { WelcomeOffer } from "@/components/leads/WelcomeOffer";
 import { Analytics } from "@/components/analytics/Analytics";
@@ -93,7 +93,7 @@ export default function RootLayout({
         <Footer />
         {isLeadMode && (
           <>
-            <FloatingChat />
+            <ScriptedChat />
             <StickyMobileCta />
             <WelcomeOffer />
           </>

@@ -5,6 +5,31 @@
  */
 import { site } from "@/lib/site";
 
+/**
+ * Two-letter state codes spelled out. A governing-law clause has to name the
+ * state in full ("the State of Georgia", not "the State of GA"), and this has
+ * to keep working if the business moves, so it is a lookup rather than a
+ * special case for wherever we happen to be incorporated today.
+ */
+const US_STATE_NAMES: Record<string, string> = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DE: "Delaware", DC: "District of Columbia",
+  FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho", IL: "Illinois",
+  IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana",
+  ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan",
+  MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana",
+  NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+  NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota",
+  OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania",
+  RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota",
+  TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia",
+  WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+};
+
+/** Full state name for the registered address, falling back to the raw code. */
+const stateName =
+  US_STATE_NAMES[site.address.addressRegion] ?? site.address.addressRegion;
+
 export interface LegalSection {
   id: string;
   heading: string;
@@ -114,7 +139,7 @@ export const TERMS: LegalDoc = {
       id: "disputes",
       heading: "10. Governing law and disputes",
       paragraphs: [
-        `These terms are governed by the laws of the State of ${site.address.addressRegion === "CA" ? "California" : site.address.addressRegion} and applicable US federal law. If a dispute cannot be resolved through our support team, you agree that it will be resolved in the state or federal courts located in ${site.address.addressLocality}, ${site.address.addressRegion}, unless applicable law requires otherwise. Nothing in this section prevents you from filing a complaint with the US Department of Transportation or your state attorney general.`,
+        `These terms are governed by the laws of the State of ${stateName} and applicable US federal law. If a dispute cannot be resolved through our support team, you agree that it will be resolved in the state or federal courts located in ${site.address.addressLocality}, ${site.address.addressRegion}, unless applicable law requires otherwise. Nothing in this section prevents you from filing a complaint with the US Department of Transportation or your state attorney general.`,
       ],
     },
     {
