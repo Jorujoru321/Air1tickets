@@ -61,10 +61,10 @@ This is the most important account you have — the entire site funnels into it.
    sending the payment link, confirming a booking.
 7. Add your **catalogue** later if you want, but it's low value for flights.
 
-> **Before anything else: confirm the number works.** Area code 942 is not
-> currently assigned in the North American Numbering Plan. Message the number
-> from another phone. If WhatsApp says it isn't registered, nothing else on
-> this page matters.
+> **Before anything else: confirm the number works.** Message +1 (647) 375-3020
+> from another phone. If WhatsApp says it isn't registered, install WhatsApp
+> Business on that line first — nothing else on this page matters until a
+> message actually lands.
 
 ---
 

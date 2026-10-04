@@ -29,9 +29,10 @@ These are the things that will cost you money or credibility if you skip them.
 
 5. **[you] Confirm the company details** in `src/lib/site.ts`: legal name,
    address, founding year, support email. They are placeholders right now.
-6. **[you] Verify the WhatsApp number opens a chat.** Area code 942 is not
-   currently assigned in the North American numbering plan. If WhatsApp says
-   the number is not registered, send the number in full international form.
+6. **[you] Verify the WhatsApp number opens a chat.** The site uses
+   +1 (647) 375-3020. Tap the WhatsApp button on the live site from another
+   phone; if it says the number is not registered, install WhatsApp Business
+   on that line first.
 
 ---
 

@@ -23,7 +23,7 @@ export const site = {
   language: "en-US",
   currency: "USD",
   country: "US",
-  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (942) 388-2017",
+  supportPhone: process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+1 (647) 375-3020",
   supportEmail:
     process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@air1tickets.com",
   address: {
@@ -58,13 +58,13 @@ export const site = {
     ? "results"
     : "whatsapp") as "whatsapp" | "results",
   chat: {
-    /** E.164 digits only, e.g. 19423882017 (country code + number). */
+    /** E.164 digits only, e.g. 16473753020 (country code + number). */
     whatsapp: (
-      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 942-388-2017"
+      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "+1 647-375-3020"
     ).replace(/[^\d]/g, ""),
     /** The same number formatted for display. */
     whatsappDisplay:
-      process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+1 (942) 388-2017",
+      process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+1 (647) 375-3020",
     /** Facebook Page username for m.me links. */
     messenger: process.env.NEXT_PUBLIC_MESSENGER_PAGE ?? "air1tickets",
     /** Optional Telegram username (without @). */
